@@ -210,6 +210,31 @@ st.markdown(
         justify-content: center !important;
         align-items: center !important;
     }
+    /* Caixa do select */
+    div[data-testid="stSelectbox"] > div > div {
+        background: rgba(255,255,255,0.18) !important;
+        border: 1px solid rgba(255,255,255,0.22) !important;
+        border-radius: 16px !important;
+        backdrop-filter: blur(8px);
+    }
+    
+    /* Texto do select */
+    div[data-testid="stSelectbox"] * {
+        color: white !important;
+        font-weight: 700 !important;
+    }
+    
+    /* Menu dropdown aberto */
+    div[role="listbox"] {
+        background: rgba(20,20,28,0.92) !important;
+        border-radius: 14px !important;
+        border: 1px solid rgba(255,255,255,0.15) !important;
+    }
+    
+    /* Hover das opções */
+    div[role="option"]:hover {
+        background: rgba(88,166,255,0.25) !important;
+    }
     .question-type {
         text-align: center;
         font-size: clamp(0.55rem, 2.1vw, 0.7rem);
@@ -689,15 +714,15 @@ if st.session_state.tela == "configuracao":
     qtd_verbos = 0
 
     if modalidade == "Vocabulário":
-        st.markdown('<div class="fake-label">Quantidade de questões</div>', unsafe_allow_html=True)
+        st.markdown('<div class="fake-label">Questões</div>', unsafe_allow_html=True)
         qtd_vocabulario = st.slider("", 1, 50, 10, label_visibility="collapsed")
 
     elif modalidade == "Verbos":
-        qtd_verbos = st.slider("Quantidade de questões de verbos", 1, 50, 10)
+        qtd_verbos = st.slider("Nº de verbos", 1, 50, 10)
     else:
-        st.markdown('<div class="fake-label">Quantidade de questões de vocabulário</div>', unsafe_allow_html=True)
+        st.markdown('<div class="fake-label">Nº vocabulário</div>', unsafe_allow_html=True)
         qtd_vocabulario = st.slider("", 1, 50, 10, label_visibility="collapsed")
-        qtd_verbos = st.slider("Quantidade de questões de verbos", 1, 50, 10)
+        qtd_verbos = st.slider("Nº verbos", 1, 50, 10)
 
     col1, col2, col3 = st.columns([1, 2, 1])
 
