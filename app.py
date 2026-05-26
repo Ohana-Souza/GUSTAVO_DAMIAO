@@ -423,92 +423,160 @@ st.markdown(
     }
     
     /* =============================
-       AJUSTES FINAIS DE ESPAÇAMENTO
+       COMPACTAÇÃO FORTE DO STREAMLIT
        ============================= */
 
-    .element-container {
-        margin-bottom: 0rem !important;
+    [data-testid="element-container"] {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
 
-    .stMarkdown {
-        margin-bottom: 0rem !important;
+    [data-testid="element-container"]:has(.answer-button),
+    [data-testid="element-container"]:has(.mode-button),
+    [data-testid="element-container"]:has(.start-button),
+    [data-testid="element-container"]:has(.next-button) {
+        margin-top: -0.18rem !important;
+        margin-bottom: -0.18rem !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    div[data-testid="stVerticalBlock"] {
+        gap: 0 !important;
     }
 
     div[data-testid="stVerticalBlock"] > div {
-        gap: 0.02rem !important;
+        gap: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
 
     div[data-testid="stHorizontalBlock"] {
         gap: 0.10rem !important;
         margin-top: 0 !important;
         margin-bottom: 0 !important;
-    }
-
-    .question-card {
-        max-width: min(500px, 92vw) !important;
-        margin: 0.04rem auto 0.08rem auto !important;
-        padding: 0.42rem 0.60rem !important;
-        border-radius: 14px !important;
-    }
-
-    .question-text {
-        font-size: clamp(0.84rem, 3vw, 1.05rem) !important;
-        line-height: 1.16 !important;
-    }
-
-    .question-type {
-        margin-bottom: 0.14rem !important;
-    }
-
-    .motivation {
-        margin: 0.04rem auto 0.08rem auto !important;
-        padding: 0.26rem 0.55rem !important;
-    }
-
-    .options-wrapper {
-        margin: 0.02rem auto 0 auto !important;
-        gap: 0 !important;
-    }
-
-    .mode-button {
-        margin: -0.20rem 0 !important;
-        padding: 0 !important;
-    }
-
-    .answer-button {
-        margin: -0.28rem 0 !important;
-        padding: 0 !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button {
-        min-height: 26px !important;
-        padding: 0.10rem 0.45rem !important;
-        margin: 0.01rem auto !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.72rem !important;
-        line-height: 1 !important;
-    }
-
-    .option-box {
-        width: min(260px, 72vw) !important;
-        max-width: 260px !important;
-        min-height: 26px !important;
-        margin: 0.03rem auto !important;
-        padding: 0.16rem 0.45rem !important;
-        font-size: 0.72rem !important;
-        line-height: 1 !important;
-        border-radius: 12px !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
 
     .small-title {
-        margin: 0.02rem auto 0.06rem auto !important;
+        margin: 0 auto 0.05rem auto !important;
+        padding: 0 !important;
+        font-size: clamp(0.95rem, 3.2vw, 1.12rem) !important;
+        line-height: 1.05 !important;
+    }
+
+    .motivation {
+        margin: 0.02rem auto 0.05rem auto !important;
+        padding: 0.24rem 0.50rem !important;
+        line-height: 1.05 !important;
     }
 
     div[data-testid="stCaptionContainer"] {
-        margin-top: -0.06rem !important;
-        margin-bottom: 0.02rem !important;
+        margin-top: -0.08rem !important;
+        margin-bottom: -0.04rem !important;
+        padding: 0 !important;
+    }
+
+    .question-card {
+        max-width: min(470px, 90vw) !important;
+        margin: 0.02rem auto 0.04rem auto !important;
+        padding: 0.32rem 0.50rem !important;
+        border-radius: 13px !important;
+    }
+
+    .question-type {
+        margin-bottom: 0.08rem !important;
+        font-size: clamp(0.48rem, 1.8vw, 0.62rem) !important;
+        line-height: 1 !important;
+    }
+
+    .question-text {
+        font-size: clamp(0.80rem, 2.8vw, 1rem) !important;
+        line-height: 1.08 !important;
+        margin: 0 !important;
+    }
+
+    .options-wrapper {
+        margin: 0 auto !important;
+        padding: 0 !important;
+        gap: 0 !important;
+    }
+
+    .answer-button {
+        margin: -0.36rem 0 !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+    }
+
+    .answer-button div[data-testid="stButton"] {
+        margin: 0 !important;
+        padding: 0 !important;
+        min-height: 0 !important;
+    }
+
+    .answer-button div[data-testid="stButton"] > button {
+        min-height: 24px !important;
+        height: 28px !important;
+        padding: 0.05rem 0.38rem !important;
+        margin: 0 auto !important;
+        border-radius: 11px !important;
+    }
+
+    .answer-button div[data-testid="stButton"] > button p {
+        font-size: 0.70rem !important;
+        line-height: 1 !important;
+        margin: 0 !important;
+    }
+
+    .option-box {
+        width: min(240px, 68vw) !important;
+        max-width: 240px !important;
+        min-height: 24px !important;
+        margin: 0.02rem auto !important;
+        padding: 0.12rem 0.38rem !important;
+        font-size: 0.70rem !important;
+        line-height: 1 !important;
+        border-radius: 11px !important;
+    }
+
+    .mode-button {
+        margin: -0.22rem 0 !important;
+        padding: 0 !important;
+    }
+
+    .mode-button div[data-testid="stButton"] > button {
+        min-height: 26px !important;
+        height: 30px !important;
+        padding: 0.08rem 0.42rem !important;
+    }
+
+    .start-button {
+        margin-top: -0.18rem !important;
+    }
+
+    .stMarkdown {
+        margin-bottom: 0 !important;
+    }
+
+    @media (max-width: 600px) {
+        .question-card {
+            max-width: min(430px, 90vw) !important;
+            padding: 0.28rem 0.45rem !important;
+        }
+
+        .answer-button {
+            margin: -0.40rem 0 !important;
+        }
+
+        .answer-button div[data-testid="stButton"] > button {
+            height: 26px !important;
+            min-height: 22px !important;
+        }
     }
 
 </style>
