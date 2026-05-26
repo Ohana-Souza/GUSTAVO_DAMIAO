@@ -168,24 +168,16 @@ st.markdown(
         width: fit-content;
         min-width: 240px;
         max-width: 300px;
-    
         margin: 0.35rem auto 0.15rem auto;
         padding: 0.55rem 1rem;
-    
         border-radius: 14px;
-    
-        background: rgba(255,255,255,0.90);
+        background: rgba(255,255,255,0.72);
         border: 1px solid rgba(255,255,255,0.35);
-    
         color: #111827;
-    
         font-size: 0.95rem;
         font-weight: 800;
         text-align: center;
-    
         backdrop-filter: blur(8px);
-    
-        box-shadow: 0 5px 18px rgba(0,0,0,0.14);
     }
     div[role="radiogroup"] {
         display: flex !important;
@@ -675,11 +667,23 @@ if st.session_state.tela == "configuracao":
     )
     
     st.markdown('<div class="fake-label">O que você quer treinar?</div>', unsafe_allow_html=True)
-    modalidade = st.radio(
-        "",
-        ["Vocabulário", "Verbos", "Vocabulário + Verbos"],            
-        label_visibility="collapsed"
-    )
+    if "modalidade" not in st.session_state:
+        st.session_state.modalidade = "Vocabulário"
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        if st.button("Vocabulário"):
+            st.session_state.modalidade = "Vocabulário"
+    
+    with col2:
+        if st.button("Verbos"):
+            st.session_state.modalidade = "Verbos"
+    
+    with col3:
+        if st.button("Vocab. + Verbos"):
+            st.session_state.modalidade = "Vocabulário + Verbos"
+    
+    modalidade = st.session_state.modalidade
 
     qtd_vocabulario = 0
     qtd_verbos = 0
