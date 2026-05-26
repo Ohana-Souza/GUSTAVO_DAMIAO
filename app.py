@@ -185,11 +185,9 @@ st.markdown(
     }
 
     div.stButton > button:hover {
-        border: 1px solid #58a6ff;
-        background: rgba(31, 41, 55, 0.92);
-        transform: translateY(-1px);
+        border: 1px solid #2563eb;
+        background: #f3f4f6;
     }
-
     div.stButton > button:disabled {
         opacity: 0.62;
         color: #c9d1d9;
@@ -289,9 +287,18 @@ st.markdown(
         }
 
         div.stButton > button {
-            min-height: 36px;
-            border-radius: 12px;
-            padding: 0.36rem 0.55rem;
+            width: 100%;
+            max-width: 260px;
+            min-height: 38px;
+            margin: 0.35rem auto;
+            display: block;
+            border-radius: 14px;
+            padding: 0.45rem 0.7rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
+            color: #111827;
         }
 
         .correct-box,
@@ -543,6 +550,12 @@ if st.session_state.tela == "configuracao":
             st.rerun()
 
 elif st.session_state.tela == "questao":
+    col1, col2 = st.columns([8, 1])
+    with col2:
+        if st.button("✕", key="cancelar_x"):
+            reiniciar()
+            st.rerun()
+            
     total = len(st.session_state.teste)
     indice = st.session_state.indice
     pergunta = st.session_state.teste[indice]
@@ -552,7 +565,6 @@ elif st.session_state.tela == "questao":
         unsafe_allow_html=True
     )
 
-    st.progress((indice + 1) / total)
     st.caption(f"Questão {indice + 1} de {total}")
 
     st.markdown('<div class="question-card">', unsafe_allow_html=True)
@@ -593,10 +605,6 @@ elif st.session_state.tela == "questao":
         if st.button(texto_botao):
             proxima_questao()
             st.rerun()
-
-    if st.button("Cancelar treino"):
-        reiniciar()
-        st.rerun()
 
 elif st.session_state.tela == "resultado":
     total = len(st.session_state.teste)
