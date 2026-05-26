@@ -2,7 +2,6 @@ import base64
 import csv
 import random
 import html
-from urllib.parse import quote, unquote
 from pathlib import Path
 
 import streamlit as st
@@ -76,7 +75,7 @@ adicionar_fundo_animado(CAMINHO_FUNDO)
 
 
 # =============================
-# ESTILO VISUAL
+# ESTILO VISUAL LIMPO
 # =============================
 st.markdown(
     """
@@ -86,173 +85,85 @@ st.markdown(
     }
 
     .block-container {
-        max-width: 720px;
-        padding-top: 0.45rem;
-        padding-bottom: 0.6rem;
-        padding-left: 0.9rem;
-        padding-right: 0.9rem;
-        margin: auto;
-    }
-    /* REMOVE espaço invisível entre widgets */
-    div[data-testid="element-container"] {
-        margin-bottom: 0rem !important;
-    }
-    
-    /* REMOVE espaço do bloco vertical */
-    div[data-testid="stVerticalBlock"] {
-        gap: 0rem !important;
-    }
-    
-    /* BOTÕES */
-    .answer-button {
-        margin: 0.08rem 0 !important;
-        padding: 0 !important;
-    }
-    
-    /* BOTÃO INTERNO */
-    .answer-button div[data-testid="stButton"] > button {
-        min-height: 24px !important;
-        padding: 0rem 0.4rem !important;
-        border-radius: 12px !important;
-    }
-    
-    /* TEXTO */
-    .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.72rem !important;
-        line-height: 0.8 !important;
-    }
-    /* Espaçamento geral controlado, sem margens negativas */
-    div[data-testid="stVerticalBlock"] > div {
-        gap: 0.24rem !important;
+        max-width: 620px !important;
+        padding-top: 1.25rem !important;
+        padding-bottom: 0.6rem !important;
+        padding-left: 0.85rem !important;
+        padding-right: 0.85rem !important;
+        margin: auto !important;
     }
 
-    div[data-testid="stHorizontalBlock"] {
-        gap: 0.35rem !important;
+    div[data-testid="stVerticalBlock"] > div {
+        gap: 0.18rem !important;
     }
 
     [data-testid="element-container"] {
-        margin-bottom: 0.08rem !important;
+        margin-bottom: 0.02rem !important;
     }
 
     .main-title {
         text-align: center;
-        font-size: clamp(1.65rem, 5vw, 2.35rem);
-        font-weight: 800;
-        margin: 0.20rem auto 0.05rem auto;
         color: #ffffff;
-        text-shadow: 0 3px 12px rgba(0,0,0,0.60);
-        line-height: 1.12;
-    }
-
-    .small-title {
-        text-align: center;
-        font-size: clamp(1.00rem, 3.4vw, 1.22rem);
+        font-size: clamp(1.45rem, 4.5vw, 2.15rem);
         font-weight: 850;
-        margin: 0.05rem auto 0.22rem auto;
-        color: #ffffff;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.60);
-        line-height: 1.15;
+        line-height: 1.1;
+        margin: 0.45rem auto 0.06rem auto;
+        text-shadow: 0 3px 12px rgba(0,0,0,0.65);
     }
 
     .subtitle {
         text-align: center;
-        font-size: clamp(0.78rem, 2.7vw, 0.95rem);
         color: #d5dce8;
-        margin: 0 auto 0.65rem auto;
-        line-height: 1.25;
-        max-width: 520px;
+        font-size: clamp(0.72rem, 2.5vw, 0.9rem);
+        margin: 0 auto 0.55rem auto;
         text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+    }
+
+    .small-title {
+        text-align: center;
+        color: #ffffff;
+        font-size: clamp(0.98rem, 3.2vw, 1.16rem);
+        font-weight: 850;
+        line-height: 1.1;
+        margin: 0.18rem auto 0.12rem auto;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.60);
     }
 
     .fake-label {
         width: fit-content;
-        min-width: 150px;
-        max-width: 230px;
-        margin: 0.22rem auto 0.10rem auto;
-        padding: 0.32rem 0.72rem;
+        min-width: 140px;
+        max-width: 210px;
+        margin: 0.16rem auto 0.08rem auto;
+        padding: 0.26rem 0.62rem;
         border-radius: 12px;
-        background: rgba(255,255,255,0.72);
+        background: rgba(255,255,255,0.76);
         border: 1px solid rgba(255,255,255,0.32);
         color: #111827;
-        font-size: 0.74rem;
+        font-size: 0.68rem;
         font-weight: 800;
         text-align: center;
         backdrop-filter: blur(8px);
         box-shadow: 0 4px 12px rgba(0,0,0,0.12);
     }
 
-    .motivation {
-        text-align: center;
-        font-size: clamp(0.70rem, 2.5vw, 0.88rem);
-        font-weight: 800;
-        color: #f0f6fc;
-        margin: 0.10rem auto 0.10rem auto;
-        padding: 0.36rem 0.70rem;
-        max-width: 540px;
-        border-radius: 999px;
-        background: rgba(13, 17, 23, 0.56);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(7px);
-        line-height: 1.2;
-    }
-
-    .question-card {
-        max-width: min(620px, 92vw);
-        margin: 0.20rem auto 0.30rem auto;
-        text-align: center;
-        background: rgba(13, 17, 23, 0.76);
-        border: 1px solid rgba(255,255,255,0.14);
-        border-radius: 16px;
-        padding: 0.70rem 0.85rem;
-        box-shadow: 0 8px 22px rgba(0,0,0,0.30);
-        color: #f0f6fc;
-        backdrop-filter: blur(8px);
-    }
-
-    .question-type {
-        text-align: center;
-        font-size: clamp(0.52rem, 1.9vw, 0.68rem);
-        color: #b8c0cc;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        font-weight: 850;
-        margin-bottom: 0.24rem;
-    }
-
-    .question-text {
-        text-align: center;
-        font-size: clamp(0.92rem, 3.4vw, 1.18rem);
-        font-weight: 800;
-        line-height: 1.23;
-        color: #ffffff;
-        margin: 0;
-    }
-
-    div[data-testid="stCaptionContainer"] {
-        text-align: center;
-        color: #d5dce8;
-        font-weight: 800;
-        font-size: clamp(0.64rem, 2.3vw, 0.78rem);
-        margin-top: -0.02rem;
-        margin-bottom: 0.08rem;
-    }
-
     div[data-testid="stSelectbox"] {
-        max-width: 200px !important;
-        margin: 0 auto !important;
+        width: 210px !important;
+        max-width: 210px !important;
+        margin: 0 auto 0.35rem auto !important;
     }
 
     div[data-testid="stSelectbox"] > div,
     div[data-testid="stSelectbox"] > div > div {
-        max-width: 200px !important;
+        width: 210px !important;
+        max-width: 210px !important;
     }
 
     div[data-testid="stSelectbox"] > div > div {
+        min-height: 36px !important;
+        border-radius: 14px !important;
         background: rgba(255,255,255,0.22) !important;
         border: 1px solid rgba(255,255,255,0.24) !important;
-        border-radius: 14px !important;
         backdrop-filter: blur(8px);
-        min-height: 34px !important;
     }
 
     div[data-testid="stSelectbox"] * {
@@ -264,128 +175,228 @@ st.markdown(
     div[role="listbox"] {
         background: rgba(20,20,28,0.92) !important;
         border-radius: 14px !important;
-        border: 1px solid rgba(255,255,255,0.15) !important;
+    }
+
+    /* Modalidade como botões via radio */
+    div[data-testid="stRadio"] {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    div[data-testid="stRadio"] > div {
+        width: 100% !important;
+    }
+
+    div[role="radiogroup"] {
+        width: 100% !important;
+        max-width: 260px !important;
+        margin: 0.05rem auto 0.2rem auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.32rem !important;
+    }
+
+    div[role="radiogroup"] label {
+        width: 240px !important;
+        max-width: 82vw !important;
+        min-height: 38px !important;
+        margin: 0 auto !important;
+        padding: 0.28rem 0.7rem !important;
+        border-radius: 14px !important;
+        background: rgba(255,255,255,0.92) !important;
+        border: 1px solid rgba(255,255,255,0.35) !important;
+        color: #111827 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
+    }
+
+    div[role="radiogroup"] label > div:first-child {
+        display: none !important;
+    }
+
+    div[role="radiogroup"] label p {
+        margin: 0 !important;
+        color: #111827 !important;
+        font-size: 0.88rem !important;
+        font-weight: 550 !important;
+        text-align: center !important;
+    }
+
+    div[role="radiogroup"] label:has(input:checked) {
+        border: 2px solid #58a6ff !important;
+        background: rgba(255,255,255,0.98) !important;
+        font-weight: 800 !important;
     }
 
     div[data-testid="stSlider"] {
-        max-width: 360px !important;
-        margin: 0 auto !important;
+        width: 320px !important;
+        max-width: 82vw !important;
+        margin: 0.02rem auto 0.35rem auto !important;
     }
 
-    /* Botões */
     div[data-testid="stButton"] {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
     }
 
     div[data-testid="stButton"] > button {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        min-height: 38px !important;
-        padding: 0.42rem 0.75rem !important;
-        margin: 0.06rem auto !important;
-        border-radius: 14px !important;
         border: 1px solid #e5e7eb !important;
-        background: rgba(255,255,255,0.92) !important;
+        background: rgba(255,255,255,0.94) !important;
         color: #111827 !important;
         box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
-    }
-
-    div[data-testid="stButton"] > button:hover {
-        background: #f3f4f6 !important;
-        color: #111827 !important;
-        border-color: #2563eb !important;
+        border-radius: 14px !important;
+        margin: 0 auto !important;
     }
 
     div[data-testid="stButton"] > button p {
         margin: 0 !important;
         color: inherit !important;
-        font-size: 0.90rem !important;
-        line-height: 1.1 !important;
     }
 
-    .mode-button div[data-testid="stButton"] > button p {
-        font-size: 0.82rem !important;
-        font-weight: 600 !important;
+    .start-button {
+        max-width: 240px;
+        margin: 0.2rem auto 0 auto;
+    }
+
+    .start-button div[data-testid="stButton"] > button {
+        width: 240px !important;
+        max-width: 82vw !important;
+        min-height: 40px !important;
+        padding: 0.32rem 0.7rem !important;
     }
 
     .start-button div[data-testid="stButton"] > button p {
-        font-size: 0.86rem !important;
+        font-size: 0.9rem !important;
         font-weight: 550 !important;
     }
 
-    .close-button div[data-testid="stButton"] > button {
-        width: 40px !important;
-        height: 40px !important;
-        min-height: 40px !important;
-        max-width: 40px !important;
+    .top-actions {
+        position: fixed;
+        top: 72px;
+        right: 20px;
+        z-index: 999999;
+    }
+
+    .top-actions div[data-testid="stButton"] > button {
+        width: 42px !important;
+        height: 42px !important;
+        min-height: 42px !important;
+        max-width: 42px !important;
         border-radius: 50% !important;
         padding: 0 !important;
         background: #ffffff !important;
     }
 
-    .close-button div[data-testid="stButton"] > button p {
-        font-size: 1.18rem !important;
+    .top-actions div[data-testid="stButton"] > button p {
+        font-size: 1.2rem !important;
         font-weight: 900 !important;
         line-height: 1 !important;
     }
 
+    .motivation {
+        text-align: center;
+        max-width: 540px;
+        margin: 0.08rem auto 0.08rem auto;
+        padding: 0.30rem 0.65rem;
+        border-radius: 999px;
+        background: rgba(13, 17, 23, 0.58);
+        border: 1px solid rgba(255,255,255,0.12);
+        color: #f0f6fc;
+        font-size: clamp(0.70rem, 2.5vw, 0.86rem);
+        font-weight: 800;
+        backdrop-filter: blur(7px);
+        line-height: 1.15;
+    }
+
+    div[data-testid="stCaptionContainer"] {
+        text-align: center;
+        color: #d5dce8;
+        font-weight: 800;
+        font-size: clamp(0.64rem, 2.3vw, 0.78rem);
+        margin-top: -0.04rem;
+        margin-bottom: 0.04rem;
+    }
+
+    .question-card {
+        max-width: min(560px, 92vw);
+        margin: 0.10rem auto 0.14rem auto;
+        padding: 0.55rem 0.75rem;
+        border-radius: 14px;
+        text-align: center;
+        background: rgba(13, 17, 23, 0.76);
+        border: 1px solid rgba(255,255,255,0.14);
+        box-shadow: 0 8px 22px rgba(0,0,0,0.30);
+        color: #f0f6fc;
+        backdrop-filter: blur(8px);
+    }
+
+    .question-type {
+        text-align: center;
+        font-size: clamp(0.50rem, 1.8vw, 0.64rem);
+        color: #b8c0cc;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 850;
+        margin-bottom: 0.12rem;
+    }
+
+    .question-text {
+        text-align: center;
+        font-size: clamp(0.88rem, 3vw, 1.08rem);
+        font-weight: 800;
+        line-height: 1.16;
+        color: #ffffff;
+        margin: 0;
+    }
+
+    .answers-area {
+        max-width: 320px;
+        margin: 0.05rem auto 0 auto;
+    }
+
     .answer-button {
-        margin: 0.12rem 0 !important;
+        margin: 0.08rem 0 !important;
         padding: 0 !important;
     }
 
     .answer-button div[data-testid="stButton"] > button {
-        min-height: 38px !important;
-        padding: 0.36rem 0.70rem !important;
-        margin: 0.02rem auto !important;
-        border-radius: 14px !important;
+        width: 320px !important;
+        max-width: 82vw !important;
+        min-height: 36px !important;
+        padding: 0.24rem 0.6rem !important;
     }
 
     .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.92rem !important;
-        font-weight: 650 !important;
-    }
-
-    .next-button div[data-testid="stButton"] > button {
-        width: 48px !important;
-        height: 48px !important;
-        min-height: 48px !important;
-        max-width: 48px !important;
-        border-radius: 50% !important;
-        padding: 0 !important;
-        background: #ffffff !important;
-    }
-
-    .next-button div[data-testid="stButton"] > button p {
-        font-size: 1.40rem !important;
-        font-weight: 900 !important;
+        font-size: 0.84rem !important;
         line-height: 1 !important;
+        font-weight: 600 !important;
     }
 
     .options-wrapper {
         width: 100% !important;
-        max-width: 440px !important;
-        margin: 0.12rem auto 0 auto !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 0.18rem !important;
+        max-width: 360px !important;
+        margin: 0.03rem auto 0 auto !important;
     }
 
     .option-box {
-        width: min(340px, 82vw) !important;
-        max-width: 340px !important;
-        min-height: 38px !important;
-        margin: 0.08rem auto !important;
-        text-align: center !important;
-        padding: 0.36rem 0.70rem !important;
-        border-radius: 14px !important;
-        font-size: 0.92rem !important;
+        width: min(320px, 82vw) !important;
+        max-width: 320px !important;
+        min-height: 36px !important;
+        margin: 0.05rem auto !important;
+        padding: 0.24rem 0.6rem !important;
+        border-radius: 13px !important;
+        font-size: 0.84rem !important;
         font-weight: 800 !important;
-        line-height: 1.18 !important;
+        line-height: 1.05 !important;
         box-sizing: border-box !important;
         display: flex !important;
         align-items: center !important;
@@ -411,443 +422,68 @@ st.markdown(
         color: #111827 !important;
     }
 
-    @media (max-width: 600px) {
-        .block-container {
-            padding-top: 0.35rem !important;
-            padding-left: 0.60rem !important;
-            padding-right: 0.60rem !important;
-        }
-
-        .main-title {
-            font-size: 1.52rem !important;
-            line-height: 1.15 !important;
-            margin-top: 0.05rem !important;
-        }
-
-        .subtitle {
-            font-size: 0.72rem !important;
-            margin-bottom: 0.45rem !important;
-        }
-
-        .fake-label {
-            min-width: 145px !important;
-            max-width: 190px !important;
-            padding: 0.28rem 0.58rem !important;
-            font-size: 0.70rem !important;
-        }
-
-        div[data-testid="stSelectbox"],
-        div[data-testid="stSelectbox"] > div,
-        div[data-testid="stSelectbox"] > div > div {
-            width: 185px !important;
-            max-width: 185px !important;
-        }
-
-        div[data-testid="stButton"] > button p {
-            font-size: 0.82rem !important;
-        }
-
-        .answer-button div[data-testid="stButton"] > button,
-        .option-box {
-            min-height: 36px !important;
-            padding: 0.32rem 0.60rem !important;
-            font-size: 0.84rem !important;
-        }
-
-        .answer-button div[data-testid="stButton"] > button p {
-            font-size: 0.84rem !important;
-        }
+    .next-button {
+        max-width: 54px;
+        margin: 0.3rem auto 0 auto;
     }
 
-    /* ===== AJUSTE FINAL BALANCEADO ===== */
-    .block-container {
-        padding-top: 1.05rem !important;
-        padding-bottom: 0.35rem !important;
-        max-width: 720px !important;
-    }
-
-    .main-title {
-        margin-top: 0.65rem !important;
-        margin-bottom: 0.02rem !important;
-        font-size: clamp(1.35rem, 4.2vw, 2.05rem) !important;
-        line-height: 1.08 !important;
-    }
-
-    .subtitle {
-        margin: 0 auto 0.32rem auto !important;
-        font-size: clamp(0.68rem, 2.4vw, 0.86rem) !important;
-    }
-
-    .fake-label {
-        margin: 0.08rem auto 0.04rem auto !important;
-        padding: 0.22rem 0.58rem !important;
-        font-size: 0.68rem !important;
-        min-width: 135px !important;
-        max-width: 190px !important;
-    }
-
-    div[data-testid="stSelectbox"] {
-        max-width: 185px !important;
-    }
-
-    div[data-testid="stSelectbox"] > div,
-    div[data-testid="stSelectbox"] > div > div {
-        max-width: 185px !important;
-    }
-
-    div[data-testid="stSelectbox"] > div > div {
-        min-height: 30px !important;
-    }
-
-    div[data-testid="stVerticalBlock"] > div {
-        gap: 0.22rem !important;
-    }
-
-    div[data-testid="stHorizontalBlock"] {
-        gap: 0.16rem !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-    }
-
-    [data-testid="element-container"] {
-        margin-bottom: 0.12rem !important;
-    }
-
-    .mode-button {
-        margin: 0rem 0 !important;
+    .next-button div[data-testid="stButton"] > button {
+        width: 50px !important;
+        height: 50px !important;
+        min-height: 50px !important;
+        max-width: 50px !important;
+        border-radius: 50% !important;
         padding: 0 !important;
     }
 
-    .mode-button div[data-testid="stButton"] > button {
-        min-height: 30px !important;
-        padding: 0.18rem 0.55rem !important;
-        margin: 0.01rem auto !important;
-    }
-
-    .mode-button div[data-testid="stButton"] > button p {
-        font-size: 0.76rem !important;
-    }
-
-    .start-button div[data-testid="stButton"] > button {
-        min-height: 32px !important;
-        padding: 0.22rem 0.60rem !important;
-        margin-top: 0.10rem !important;
-    }
-
-    div[data-testid="stSlider"] {
-        margin-top: -0.08rem !important;
-        margin-bottom: -0.02rem !important;
-    }
-
-    .small-title {
-        margin: 0.02rem auto 0.08rem auto !important;
-        font-size: clamp(0.95rem, 3.2vw, 1.14rem) !important;
-        line-height: 1.06 !important;
-    }
-
-    .motivation {
-        margin: 0.03rem auto 0.06rem auto !important;
-        padding: 0.26rem 0.58rem !important;
-        max-width: 520px !important;
-    }
-    div[data-testid="stButton"] {
-        margin-bottom: -0.55rem !important;
-    }
-
-    div[data-testid="stCaptionContainer"] {
-        margin-top: -0.05rem !important;
-        margin-bottom: 0.02rem !important;
-    }
-
-    .question-card {
-        max-width: min(560px, 92vw) !important;
-        margin: 0.08rem auto 0.10rem auto !important;
-        padding: 0.52rem 0.70rem !important;
-        border-radius: 14px !important;
-    }
-
-    .question-type {
-        margin-bottom: 0.12rem !important;
-        font-size: clamp(0.50rem, 1.8vw, 0.64rem) !important;
-    }
-
-    .question-text {
-        font-size: clamp(0.86rem, 3vw, 1.06rem) !important;
-        line-height: 1.14 !important;
-    }
-
-    .options-wrapper {
-        width: 100% !important;
-        max-width: 360px !important;
-        margin: 0.02rem auto 0 auto !important;
-        gap: 0 !important;
-    }
-
-    .answer-button {
-        margin: -0.20rem 0 !important;
-        padding: 0 !important;
-    }
-
-    .answer-button div[data-testid="stButton"] {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button {
-        min-height: 26px !important;
-        padding: 0.05rem 0.45rem !important;
-        margin: 0.01rem auto !important;
-        border-radius: 13px !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.76rem !important;
-        line-height: 1 !important;
-    }
-
-    .option-box {
-        width: min(320px, 80vw) !important;
-        max-width: 320px !important;
-        min-height: 32px !important;
-        margin: 0.01rem auto !important;
-        padding: 0.22rem 0.58rem !important;
-        font-size: 0.82rem !important;
-        line-height: 1.05 !important;
+    .next-button div[data-testid="stButton"] > button p {
+        font-size: 1.4rem !important;
+        font-weight: 900 !important;
     }
 
     @media (max-width: 600px) {
         .block-container {
-            padding-top: 0.85rem !important;
+            max-width: 100% !important;
+            padding-top: 0.95rem !important;
             padding-left: 0.55rem !important;
             padding-right: 0.55rem !important;
         }
 
         .main-title {
-            font-size: 1.34rem !important;
-            margin-top: 0.48rem !important;
-        }
-
-        .subtitle {
-            margin-bottom: 0.22rem !important;
-        }
-
-        .fake-label {
-            font-size: 0.64rem !important;
-            padding: 0.20rem 0.50rem !important;
-        }
-
-        .answer-button div[data-testid="stButton"] > button,
-        .option-box {
-            min-height: 30px !important;
-            padding: 0.20rem 0.50rem !important;
-        }
-
-        .answer-button div[data-testid="stButton"] > button p {
-            font-size: 0.78rem !important;
-        }
-    }
-
-
-    /* =====================================================
-       REFINO FINAL DA TELA INICIAL
-       ===================================================== */
-
-    .block-container {
-        padding-top: 1.25rem !important;
-        padding-bottom: 0.45rem !important;
-        max-width: 720px !important;
-    }
-
-    .main-title {
-        font-size: clamp(1.38rem, 3.8vw, 1.95rem) !important;
-        line-height: 1.08 !important;
-        margin: 0.50rem auto 0.16rem auto !important;
-        text-align: center !important;
-    }
-
-    .subtitle {
-        margin: 0 auto 0.58rem auto !important;
-        font-size: clamp(0.68rem, 2.1vw, 0.84rem) !important;
-        line-height: 1.1 !important;
-    }
-
-    .fake-label {
-        margin: 0.18rem auto 0.12rem auto !important;
-        padding: 0.27rem 0.62rem !important;
-        min-width: 145px !important;
-        max-width: 210px !important;
-        font-size: 0.68rem !important;
-        line-height: 1.05 !important;
-        position: relative !important;
-        z-index: 3 !important;
-    }
-
-    div[data-testid="stSelectbox"] {
-        width: 205px !important;
-        max-width: 205px !important;
-        margin: 0 auto 0.56rem auto !important;
-        position: relative !important;
-        z-index: 1 !important;
-    }
-
-    div[data-testid="stSelectbox"] > div,
-    div[data-testid="stSelectbox"] > div > div {
-        width: 205px !important;
-        max-width: 205px !important;
-    }
-
-    div[data-testid="stSelectbox"] > div > div {
-        min-height: 36px !important;
-    }
-
-    /* Espaçamento controlado entre widgets */
-    div[data-testid="stVerticalBlock"] > div {
-        gap: 0.14rem !important;
-    }
-
-    div[data-testid="stHorizontalBlock"] {
-        gap: 0.16rem !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-    }
-
-    [data-testid="element-container"] {
-        margin-bottom: 0.02rem !important;
-    }
-
-    div[data-testid="stButton"] {
-        margin-bottom: 0rem !important;
-    }
-
-    .mode-button {
-        margin: 0.14rem 0 !important;
-        padding: 0 !important;
-    }
-
-    .mode-button div[data-testid="stButton"] > button {
-        height: 36px !important;
-        min-height: 36px !important;
-        padding: 0.25rem 0.65rem !important;
-        margin: 0 auto !important;
-        border-radius: 14px !important;
-    }
-
-    .mode-button div[data-testid="stButton"] > button p {
-        font-size: 0.80rem !important;
-        line-height: 1.05 !important;
-        font-weight: 500 !important;
-    }
-
-    div[data-testid="stSlider"] {
-        max-width: 320px !important;
-        width: 320px !important;
-        margin: 0.05rem auto 0.34rem auto !important;
-    }
-
-    .start-button {
-        margin-top: 0.20rem !important;
-    }
-
-    .start-button div[data-testid="stButton"] > button {
-        height: 38px !important;
-        min-height: 38px !important;
-        padding: 0.28rem 0.70rem !important;
-        margin: 0 auto !important;
-        border-radius: 14px !important;
-    }
-
-    /* Perguntas continuam compactas, mas sem esmagar */
-    .small-title {
-        margin: 0.02rem auto 0.08rem auto !important;
-        font-size: clamp(0.95rem, 3vw, 1.14rem) !important;
-    }
-
-    .motivation {
-        margin: 0.04rem auto 0.06rem auto !important;
-        padding: 0.27rem 0.60rem !important;
-    }
-
-    .question-card {
-        max-width: min(560px, 92vw) !important;
-        margin: 0.10rem auto 0.12rem auto !important;
-        padding: 0.52rem 0.70rem !important;
-        border-radius: 14px !important;
-    }
-
-    .options-wrapper {
-        width: 100% !important;
-        max-width: 360px !important;
-        margin: 0.03rem auto 0 auto !important;
-        gap: 0 !important;
-    }
-
-    .answer-button {
-        margin: 0.04rem 0 !important;
-        padding: 0 !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button {
-        height: 34px !important;
-        min-height: 34px !important;
-        padding: 0.20rem 0.55rem !important;
-        margin: 0.01rem auto !important;
-        border-radius: 13px !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.82rem !important;
-        line-height: 1 !important;
-    }
-
-    @media (max-width: 600px) {
-        .block-container {
-            padding-top: 1rem !important;
-            padding-left: 0.55rem !important;
-            padding-right: 0.55rem !important;
-        }
-
-        .main-title {
-            font-size: 1.28rem !important;
+            font-size: 1.35rem !important;
             margin-top: 0.45rem !important;
         }
 
         .subtitle {
-            margin-bottom: 0.48rem !important;
-            font-size: 0.66rem !important;
+            font-size: 0.68rem !important;
+            margin-bottom: 0.42rem !important;
         }
 
-        .fake-label {
-            font-size: 0.62rem !important;
-            padding: 0.20rem 0.50rem !important;
-            min-width: 130px !important;
+        div[role="radiogroup"] {
+            gap: 0.26rem !important;
         }
 
-        div[data-testid="stSelectbox"],
-        div[data-testid="stSelectbox"] > div,
-        div[data-testid="stSelectbox"] > div > div {
-            width: 190px !important;
-            max-width: 190px !important;
+        div[role="radiogroup"] label {
+            width: 220px !important;
+            min-height: 36px !important;
         }
 
-        div[data-testid="stSlider"] {
-            width: 280px !important;
-            max-width: 280px !important;
+        .answers-area {
+            max-width: 300px;
         }
 
-        .mode-button {
-            margin: 0.12rem 0 !important;
-        }
-
-        .mode-button div[data-testid="stButton"] > button {
-            height: 34px !important;
+        .answer-button div[data-testid="stButton"] > button,
+        .option-box {
+            width: 300px !important;
+            max-width: 82vw !important;
             min-height: 34px !important;
         }
     }
-
-</style>
+    </style>
     """,
     unsafe_allow_html=True
 )
+
 
 
 # =============================
@@ -1064,24 +700,18 @@ if st.session_state.tela == "configuracao":
     if "modalidade" not in st.session_state:
         st.session_state.modalidade = "Vocabulário"
 
-    col1, col2, col3 = st.columns([1.45, 1, 1.45], gap="small")
+    opcoes_modo = ["Vocabulário", "Verbos", "Ambos"]
+    modo_atual = "Ambos" if st.session_state.modalidade == "Vocabulário + Verbos" else st.session_state.modalidade
 
-    with col2:
-        st.markdown('<div class="mode-button">', unsafe_allow_html=True)
-        if st.button("Vocabulário", key="btn_modo_vocab", use_container_width=True):
-            st.session_state.modalidade = "Vocabulário"
-        st.markdown("</div>", unsafe_allow_html=True)
+    modalidade_escolhida = st.radio(
+        "",
+        opcoes_modo,
+        index=opcoes_modo.index(modo_atual),
+        label_visibility="collapsed",
+        key="radio_modalidade"
+    )
 
-        st.markdown('<div class="mode-button">', unsafe_allow_html=True)
-        if st.button("Verbos", key="btn_modo_verbos", use_container_width=True):
-            st.session_state.modalidade = "Verbos"
-        st.markdown("</div>", unsafe_allow_html=True)
-
-        st.markdown('<div class="mode-button">', unsafe_allow_html=True)
-        if st.button("Ambos", key="btn_modo_ambos", use_container_width=True):
-            st.session_state.modalidade = "Vocabulário + Verbos"
-        st.markdown("</div>", unsafe_allow_html=True)
-
+    st.session_state.modalidade = "Vocabulário + Verbos" if modalidade_escolhida == "Ambos" else modalidade_escolhida
     modalidade = st.session_state.modalidade
 
     qtd_vocabulario = 0
@@ -1100,12 +730,9 @@ if st.session_state.tela == "configuracao":
         st.markdown('<div class="fake-label">Nº verbos</div>', unsafe_allow_html=True)
         qtd_verbos = st.slider("", 1, 50, 10, key="slider_verbos", label_visibility="collapsed")
 
-    col1, col2, col3 = st.columns([1.45, 1, 1.45], gap="small")
-
-    with col2:
-        st.markdown('<div class="start-button">', unsafe_allow_html=True)
-        iniciar = st.button("Commencer", key="btn_commencer", use_container_width=True)
-        st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown('<div class="start-button">', unsafe_allow_html=True)
+    iniciar = st.button("Commencer", key="btn_commencer", use_container_width=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 
     if iniciar:
         vocabulario_nivel = filtrar_por_nivel(vocabulario, nivel)
@@ -1132,14 +759,11 @@ if st.session_state.tela == "configuracao":
 
 
 elif st.session_state.tela == "questao":
-    colx1, colx2, colx3 = st.columns([8, 1, 1], gap="small")
-
-    with colx3:
-        st.markdown('<div class="close-button">', unsafe_allow_html=True)
-        if st.button("×", key="fechar_treino", use_container_width=True):
-            reiniciar()
-            st.rerun()
-        st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown('<div class="top-actions">', unsafe_allow_html=True)
+    if st.button("×", key="fechar_treino"):
+        reiniciar()
+        st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown('<div class="small-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
 
@@ -1187,32 +811,29 @@ elif st.session_state.tela == "questao":
                     unsafe_allow_html=True
                 )
     else:
-        col1, col2, col3 = st.columns([1.25, 1, 1.25], gap="small")
-        with col2:
-            for opcao in pergunta["opcoes"]:
-                st.markdown('<div class="answer-button">', unsafe_allow_html=True)
-                st.button(
-                    opcao,
-                    key=f"opcao_{indice}_{opcao}",
-                    on_click=selecionar_resposta,
-                    args=(opcao,),
-                    use_container_width=True
-                )
-                st.markdown("</div>", unsafe_allow_html=True)
+        st.markdown('<div class="answers-area">', unsafe_allow_html=True)
+        for opcao in pergunta["opcoes"]:
+            st.markdown('<div class="answer-button">', unsafe_allow_html=True)
+            st.button(
+                opcao,
+                key=f"opcao_{indice}_{opcao}",
+                on_click=selecionar_resposta,
+                args=(opcao,),
+                use_container_width=True
+            )
+            st.markdown("</div>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
 
     if st.session_state.respondido:
-        col1, col2, col3 = st.columns([1.4, 0.35, 1.4], gap="small")
+        st.markdown('<div class="next-button">', unsafe_allow_html=True)
+        simbolo_botao = "✓" if indice + 1 == total else "→"
 
-        with col2:
-            st.markdown('<div class="next-button">', unsafe_allow_html=True)
-            simbolo_botao = "✓" if indice + 1 == total else "→"
-
-            if st.button(simbolo_botao, key=f"proxima_{indice}", use_container_width=True):
-                proxima_questao()
-                st.rerun()
-            st.markdown("</div>", unsafe_allow_html=True)
+        if st.button(simbolo_botao, key=f"proxima_{indice}"):
+            proxima_questao()
+            st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
 
 elif st.session_state.tela == "resultado":
     total = len(st.session_state.teste)
