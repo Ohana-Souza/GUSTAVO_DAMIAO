@@ -296,6 +296,74 @@ st.markdown(
         border-color: #2563eb !important;
     }
 
+
+    /* ===== BOTÕES DE MODALIDADE: Vocabulário / Verbos / Ambos ===== */
+
+    div[data-testid="stRadio"] {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    div[data-testid="stRadio"] > div {
+        width: 100% !important;
+    }
+
+    div[role="radiogroup"] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.18rem !important;
+        width: 100% !important;
+    }
+
+    div[role="radiogroup"] label {
+        width: 180px !important;
+        max-width: 72vw !important;
+        min-height: 30px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        margin: 0 auto !important;
+        padding: 0.18rem 0.50rem !important;
+
+        border-radius: 13px !important;
+
+        background: rgba(255,255,255,0.74) !important;
+        border: 1px solid rgba(255,255,255,0.28) !important;
+
+        color: #111827 !important;
+
+        backdrop-filter: blur(8px);
+        box-shadow: 0 5px 16px rgba(0,0,0,0.14) !important;
+
+        transition: 0.2s ease;
+    }
+
+    div[role="radiogroup"] label p {
+        font-size: 0.74rem !important;
+        font-weight: 500 !important;
+        margin: 0 !important;
+        color: #111827 !important;
+    }
+
+    div[role="radiogroup"] label > div:first-child {
+        display: none !important;
+    }
+
+    div[role="radiogroup"] label:has(input:checked) {
+        background: rgba(255,255,255,0.96) !important;
+        border: 2px solid #58a6ff !important;
+    }
+
+    div[role="radiogroup"] label:hover {
+        background: rgba(255,255,255,0.96) !important;
+        border-color: #2563eb !important;
+    }
+
     /* ===== BOTÃO COMMENCER ===== */
     .start-button div[data-testid="stButton"] > button {
         width: 190px !important;
@@ -471,6 +539,16 @@ st.markdown(
         }
 
         .mode-buttons div[data-testid="stButton"] > button p {
+            font-size: 0.68rem !important;
+        }
+
+
+        div[role="radiogroup"] label {
+            width: 160px !important;
+            min-height: 28px !important;
+        }
+
+        div[role="radiogroup"] label p {
             font-size: 0.68rem !important;
         }
 
@@ -772,19 +850,23 @@ if st.session_state.tela == "configuracao":
     if "modalidade" not in st.session_state:
         st.session_state.modalidade = "Vocabulário"
     
-    st.markdown('<div class="mode-buttons">', unsafe_allow_html=True)
+    opcoes_modalidade = ["Vocabulário", "Verbos", "Ambos"]
+    modalidade_atual = "Ambos" if st.session_state.modalidade == "Vocabulário + Verbos" else st.session_state.modalidade
 
-    if st.button("Vocabulário", key="btn_modo_vocab"):
-        st.session_state.modalidade = "Vocabulário"
-    
-    if st.button("Verbos", key="btn_modo_verbos"):
-        st.session_state.modalidade = "Verbos"
-    
-    if st.button("Ambos", key="btn_modo_ambos"):
+    modalidade_escolhida = st.radio(
+        "",
+        opcoes_modalidade,
+        index=opcoes_modalidade.index(modalidade_atual),
+        horizontal=False,
+        label_visibility="collapsed",
+        key="radio_modalidade"
+    )
+
+    if modalidade_escolhida == "Ambos":
         st.session_state.modalidade = "Vocabulário + Verbos"
-    
-    st.markdown("</div>", unsafe_allow_html=True)
-    
+    else:
+        st.session_state.modalidade = modalidade_escolhida
+
     modalidade = st.session_state.modalidade
 
     qtd_vocabulario = 0
