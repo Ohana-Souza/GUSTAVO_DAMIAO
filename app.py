@@ -504,14 +504,7 @@ st.markdown(
         align-items: center !important;
     }
     
-    /* CENTRALIZA COLUNAS */
-    div[data-testid="column"] {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-    }
-    
-    /* BOTÕES DA MODALIDADE */
+/* BOTÕES DA MODALIDADE */
     .mode-buttons {
         display: flex !important;
         flex-direction: column !important;
@@ -552,31 +545,68 @@ st.markdown(
     }
     
     /* =============================
-       AJUSTE FINAL ROBUSTO
+       CORREÇÃO FINAL — BOTÕES DA TELA INICIAL
        ============================= */
 
-    /* Evita que colunas globais quebrem layout */
-    div[data-testid="column"] {
-        align-items: stretch !important;
+    .mode-buttons {
+        width: 100% !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.10rem !important;
     }
 
-    /* Compacta a tela de perguntas */
+    .mode-buttons div[data-testid="stButton"] {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 !important;
+    }
+
+    .mode-buttons div[data-testid="stButton"] > button {
+        width: 180px !important;
+        max-width: 72vw !important;
+        min-height: 30px !important;
+        padding: 0.18rem 0.50rem !important;
+        border-radius: 13px !important;
+        margin: 0.02rem auto !important;
+        background: rgba(255,255,255,0.74) !important;
+        border: 1px solid rgba(255,255,255,0.28) !important;
+        color: #111827 !important;
+        box-shadow: 0 5px 16px rgba(0,0,0,0.14) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .mode-buttons div[data-testid="stButton"] > button p {
+        font-size: 0.74rem !important;
+        font-weight: 500 !important;
+        line-height: 1.1 !important;
+        margin: 0 !important;
+        color: #111827 !important;
+    }
+
+    .mode-buttons div[data-testid="stButton"] > button:hover {
+        background: rgba(255,255,255,0.96) !important;
+        border-color: #2563eb !important;
+    }
+
+    /* Compacta e corrige tela de pergunta */
     .small-title {
         font-size: clamp(0.95rem, 3.5vw, 1.15rem) !important;
         margin: 0.02rem auto 0.10rem auto !important;
+        line-height: 1.15 !important;
         white-space: normal !important;
         overflow: visible !important;
-        line-height: 1.15 !important;
     }
 
     .motivation {
         margin: 0.10rem auto 0.18rem auto !important;
         padding: 0.30rem 0.55rem !important;
-    }
-
-    div[data-testid="stCaptionContainer"] {
-        margin-top: -0.10rem !important;
-        margin-bottom: 0.15rem !important;
     }
 
     .question-card {
@@ -614,43 +644,14 @@ st.markdown(
         font-size: 0.80rem !important;
     }
 
-    /* Centralização real dos botões da tela inicial via colunas */
-    .mode-buttons div[data-testid="stButton"] > button,
-    div[data-testid="stButton"] > button {
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-
-    /* Botões de modalidade */
-    button[kind="secondary"] p {
-        margin: 0 !important;
-    }
-
-    /* Ajusta especificamente os botões do topo por texto/posição através do padrão geral */
-    div[data-testid="stButton"] > button {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-
-    /* Mantém Commencer central sem depender de coluna larga */
-    .start-button {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
-
-    .start-button div[data-testid="stButton"] > button {
-        width: 190px !important;
-        max-width: 74vw !important;
-        min-height: 34px !important;
-    }
-
     @media (max-width: 600px) {
-        .block-container {
-            padding-top: 0.10rem !important;
-            padding-left: 0.50rem !important;
-            padding-right: 0.50rem !important;
+        .mode-buttons div[data-testid="stButton"] > button {
+            width: 160px !important;
+            min-height: 28px !important;
+        }
+
+        .mode-buttons div[data-testid="stButton"] > button p {
+            font-size: 0.68rem !important;
         }
 
         .main-title {
@@ -669,26 +670,6 @@ st.markdown(
             max-width: 185px !important;
             padding: 0.25rem 0.55rem !important;
             font-size: 0.68rem !important;
-        }
-
-        div[data-testid="stSelectbox"],
-        div[data-testid="stSelectbox"] > div,
-        div[data-testid="stSelectbox"] > div > div {
-            width: 178px !important;
-            max-width: 178px !important;
-        }
-
-        .answer-button div[data-testid="stButton"] > button,
-        .option-box {
-            width: min(240px, 72vw) !important;
-            max-width: 240px !important;
-            min-height: 30px !important;
-            padding: 0.30rem 0.55rem !important;
-            font-size: 0.76rem !important;
-        }
-
-        .answer-button div[data-testid="stButton"] > button p {
-            font-size: 0.76rem !important;
         }
     }
 </style>
@@ -943,9 +924,12 @@ if st.session_state.tela == "configuracao":
         qtd_vocabulario = st.slider("", 1, 50, 10, label_visibility="collapsed")
         st.markdown('<div class="fake-label">Nº verbos</div>',unsafe_allow_html=True)
         qtd_verbos = st.slider("", 1, 50, 10, key="slider_verbos",label_visibility="collapsed")
-    st.markdown('<div class="start-button">', unsafe_allow_html=True)
-    iniciar = st.button("Commencer", key="btn_commencer")
-    st.markdown("</div>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([1, 2, 1])
+
+    with col2:
+        st.markdown('<div class="start-button">', unsafe_allow_html=True)
+        iniciar = st.button("Commencer", key="btn_commencer")
+        st.markdown("</div>", unsafe_allow_html=True)
     
     if iniciar:
         vocabulario_nivel = filtrar_por_nivel(vocabulario, nivel)
