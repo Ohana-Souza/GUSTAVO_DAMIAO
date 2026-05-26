@@ -500,90 +500,7 @@ st.markdown(
             min-height: 34px !important;
         }
     }
-    div[data-testid="stVerticalBlock"] div[data-testid="element-container"] {
-        margin-bottom: -0.38rem !important;
-    }
-
-    /* ===== AJUSTE FINAL MAIS FORTE: opções bem próximas ===== */
-
-    .answers-area {
-        max-width: 320px !important;
-        margin: -0.10rem auto 0 auto !important;
-        padding: 0 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 0.02rem !important;
-    }
-
-    .answers-area [data-testid="element-container"] {
-        margin-top: -0.32rem !important;
-        margin-bottom: -0.32rem !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-    }
-
-    [data-testid="element-container"]:has(.answer-button) {
-        margin-top: -0.32rem !important;
-        margin-bottom: -0.32rem !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-    }
-
-    .answer-button {
-        margin: -0.34rem 0 !important;
-        padding: 0 !important;
-        line-height: 0.8 !important;
-    }
-
-    .answer-button div[data-testid="stButton"] {
-        margin: 0 !important;
-        padding: 0 !important;
-        min-height: 0 !important;
-        height: auto !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button {
-        width: 320px !important;
-        max-width: 82vw !important;
-        min-height: 24px !important;
-        height: 28px !important;
-        padding: 0.02rem 0.40rem !important;
-        margin: 0 !important;
-        border-radius: 12px !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.78rem !important;
-        line-height: 0.9 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    @media (max-width: 600px) {
-        .answers-area {
-            max-width: 300px !important;
-            gap: 0 !important;
-        }
-
-        .answers-area [data-testid="element-container"],
-        [data-testid="element-container"]:has(.answer-button) {
-            margin-top: -0.34rem !important;
-            margin-bottom: -0.34rem !important;
-        }
-
-        .answer-button {
-            margin: -0.36rem 0 !important;
-        }
-
-        .answer-button div[data-testid="stButton"] > button {
-            width: 300px !important;
-            max-width: 82vw !important;
-            min-height: 23px !important;
-            height: 27px !important;
-        }
-    }
-
-</style>
+    </style>
     """,
     unsafe_allow_html=True
 )
@@ -918,19 +835,86 @@ elif st.session_state.tela == "questao":
                     unsafe_allow_html=True
                 )
     else:
-        st.markdown('<div class="answers-area">', unsafe_allow_html=True)
-        for opcao in pergunta["opcoes"]:
-            with st.container(border=False):
-                st.markdown('<div class="answer-button">', unsafe_allow_html=True)
-                st.button(
-                    opcao,
-                    key=f"opcao_{indice}_{opcao}",
-                    on_click=selecionar_resposta,
-                    args=(opcao,),
-                    use_container_width=True
-                )
-                st.markdown("</div>", unsafe_allow_html=True)
-        st.markdown("</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <style>
+            /* Radio usado APENAS na tela de respostas */
+            div[role="radiogroup"] {
+                width: 100% !important;
+                max-width: 320px !important;
+                margin: 0.02rem auto 0 auto !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 0.08rem !important;
+            }
+
+            div[role="radiogroup"] label {
+                width: 320px !important;
+                max-width: 82vw !important;
+                min-height: 32px !important;
+                margin: 0 auto !important;
+                padding: 0.18rem 0.55rem !important;
+                border-radius: 13px !important;
+                background: rgba(255,255,255,0.94) !important;
+                border: 1px solid #e5e7eb !important;
+                color: #111827 !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
+            }
+
+            div[role="radiogroup"] label > div:first-child {
+                display: none !important;
+            }
+
+            div[role="radiogroup"] label p {
+                margin: 0 !important;
+                color: #111827 !important;
+                font-size: 0.82rem !important;
+                font-weight: 600 !important;
+                line-height: 1 !important;
+                text-align: center !important;
+            }
+
+            div[role="radiogroup"] label:has(input:checked) {
+                border: 2px solid #58a6ff !important;
+                background: rgba(255,255,255,0.98) !important;
+            }
+
+            @media (max-width: 600px) {
+                div[role="radiogroup"] {
+                    max-width: 300px !important;
+                    gap: 0.06rem !important;
+                }
+
+                div[role="radiogroup"] label {
+                    width: 300px !important;
+                    max-width: 82vw !important;
+                    min-height: 30px !important;
+                }
+
+                div[role="radiogroup"] label p {
+                    font-size: 0.78rem !important;
+                }
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
+        resposta_escolhida = st.radio(
+            "",
+            pergunta["opcoes"],
+            index=None,
+            label_visibility="collapsed",
+            key=f"radio_resposta_{indice}"
+        )
+
+        if resposta_escolhida is not None:
+            selecionar_resposta(resposta_escolhida)
+            st.rerun()
 
     st.markdown('</div>', unsafe_allow_html=True)
 
