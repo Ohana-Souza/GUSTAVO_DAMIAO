@@ -188,14 +188,15 @@ st.markdown(
         width: 100% !important;
     }
 
-    div[role="radiogroup"] {
-        width: 100% !important;
-        max-width: 260px !important;
-        margin: 0.05rem auto 0.2rem auto !important;
+    div[data-testid="stRadio"] {
         display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 0.32rem !important;
+        justify-content: center !important;
+    }
+    
+    div[data-testid="stRadio"] > div {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
     }
 
     div[role="radiogroup"] label {
@@ -360,19 +361,19 @@ st.markdown(
 
     .answers-area {
         max-width: 320px;
-        margin: 0.05rem auto 0 auto;
+        margin: 0 auto 0 auto;
     }
 
     .answer-button {
-        margin: 0.08rem 0 !important;
+        margin: 0.005rem 0 !important;
         padding: 0 !important;
     }
 
     .answer-button div[data-testid="stButton"] > button {
         width: 320px !important;
         max-width: 82vw !important;
-        min-height: 36px !important;
-        padding: 0.24rem 0.6rem !important;
+        min-height: 31px !important;
+        padding: 0.15rem 0.5rem !important;
     }
 
     .answer-button div[data-testid="stButton"] > button p {
