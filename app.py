@@ -500,27 +500,37 @@ st.markdown(
             min-height: 34px !important;
         }
     }
-    
-    /* ===== AJUSTE FINAL REAL: distância entre opções de resposta ===== */
+
+
+    /* ===== AJUSTE FINAL MAIS FORTE: opções bem próximas ===== */
 
     .answers-area {
         max-width: 320px !important;
-        margin: -0.05rem auto 0 auto !important;
+        margin: -0.10rem auto 0 auto !important;
         padding: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.02rem !important;
     }
 
-    /* zera o espaço invisível que o Streamlit coloca ao redor de cada markdown/button */
+    .answers-area [data-testid="element-container"] {
+        margin-top: -0.32rem !important;
+        margin-bottom: -0.32rem !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
     [data-testid="element-container"]:has(.answer-button) {
-        margin-top: -0.18rem !important;
-        margin-bottom: -0.18rem !important;
+        margin-top: -0.32rem !important;
+        margin-bottom: -0.32rem !important;
         padding-top: 0 !important;
         padding-bottom: 0 !important;
     }
 
     .answer-button {
-        margin: -0.18rem 0 !important;
+        margin: -0.34rem 0 !important;
         padding: 0 !important;
-        line-height: 1 !important;
+        line-height: 0.8 !important;
     }
 
     .answer-button div[data-testid="stButton"] {
@@ -533,29 +543,41 @@ st.markdown(
     .answer-button div[data-testid="stButton"] > button {
         width: 320px !important;
         max-width: 82vw !important;
-        min-height: 28px !important;
-        height: 30px !important;
-        padding: 0.04rem 0.45rem !important;
+        min-height: 24px !important;
+        height: 28px !important;
+        padding: 0.02rem 0.40rem !important;
         margin: 0 !important;
-        border-radius: 13px !important;
+        border-radius: 12px !important;
     }
 
     .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.80rem !important;
-        line-height: 1 !important;
+        font-size: 0.78rem !important;
+        line-height: 0.9 !important;
         margin: 0 !important;
+        padding: 0 !important;
     }
 
     @media (max-width: 600px) {
         .answers-area {
             max-width: 300px !important;
+            gap: 0 !important;
+        }
+
+        .answers-area [data-testid="element-container"],
+        [data-testid="element-container"]:has(.answer-button) {
+            margin-top: -0.34rem !important;
+            margin-bottom: -0.34rem !important;
+        }
+
+        .answer-button {
+            margin: -0.36rem 0 !important;
         }
 
         .answer-button div[data-testid="stButton"] > button {
             width: 300px !important;
             max-width: 82vw !important;
-            min-height: 27px !important;
-            height: 29px !important;
+            min-height: 23px !important;
+            height: 27px !important;
         }
     }
 
