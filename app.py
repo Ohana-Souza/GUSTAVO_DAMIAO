@@ -199,7 +199,7 @@ st.markdown(
     }
     /* Selectbox com o mesmo tamanho da caixa "Nível de dificuldade" */
     div[data-testid="stSelectbox"] {
-        max-width: 220px !important;
+        max-width: 180px !important;
         margin: 0 auto !important;
     }
     
@@ -255,12 +255,12 @@ st.markdown(
     
     /* Botões da modalidade */
     div[data-testid="stButton"] > button {
-        width: 220px !important;
+        width: 180px !important;
         max-width: 75vw !important;
     
-        min-height: 34px !important;
+        min-height: 28px !important;
     
-        padding: 0.25rem 0.6rem !important;
+        padding: 0.18rem 0.4rem !important;
     
         font-size: 0.8rem !important;
     
