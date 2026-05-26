@@ -514,7 +514,7 @@ st.markdown(
     }
 
     .mode-button {
-        margin: -0.45rem 0 !important;
+        margin: -0.10rem 0 !important;
         padding: 0 !important;
     }
 
