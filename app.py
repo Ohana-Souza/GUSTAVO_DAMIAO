@@ -85,52 +85,60 @@ st.markdown(
     }
 
     .block-container {
-        max-width: 640px;
-        margin: auto;
+        max-width: 720px;
         padding-top: 0.35rem;
         padding-bottom: 0.35rem;
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        margin: auto;
+    }
+
+    div[data-testid="stVerticalBlock"] > div {
+        gap: 0.12rem !important;
+    }
+
+    div[data-testid="stHorizontalBlock"] {
+        gap: 0.35rem !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     .main-title {
         text-align: center;
-        font-size: clamp(1.7rem, 5vw, 2.35rem);
+        font-size: clamp(1.75rem, 5vw, 2.45rem);
         font-weight: 750;
-        margin: 0.15rem auto 0.10rem auto;
+        margin: 0.2rem auto 0.1rem auto;
         color: #ffffff;
-        text-shadow: 0 3px 12px rgba(0,0,0,0.55);
-        line-height: 1.12;
+        text-shadow: 0 3px 12px rgba(0,0,0,0.60);
+        line-height: 1.1;
     }
 
     .small-title {
         text-align: center;
-        font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+        font-size: clamp(1rem, 3.4vw, 1.25rem);
         font-weight: 850;
-        margin: 0.02rem auto 0.10rem auto;
+        margin: 0.05rem auto 0.22rem auto;
         color: #ffffff;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.55);
+        text-shadow: 0 2px 10px rgba(0,0,0,0.60);
         line-height: 1.15;
-        white-space: normal;
-        overflow: visible;
     }
 
     .subtitle {
         text-align: center;
-        font-size: clamp(0.78rem, 2.5vw, 0.95rem);
+        font-size: clamp(0.75rem, 2.7vw, 0.95rem);
         color: #d5dce8;
         margin: 0 auto 0.65rem auto;
-        line-height: 1.35;
+        line-height: 1.25;
         max-width: 520px;
         text-shadow: 0 2px 8px rgba(0,0,0,0.55);
     }
 
     .fake-label {
         width: fit-content;
-        min-width: 150px;
+        min-width: 145px;
         max-width: 220px;
-        margin: 0.18rem auto 0.08rem auto;
-        padding: 0.30rem 0.70rem;
+        margin: 0.12rem auto 0.08rem auto;
+        padding: 0.28rem 0.65rem;
         border-radius: 12px;
         background: rgba(255,255,255,0.68);
         border: 1px solid rgba(255,255,255,0.30);
@@ -144,27 +152,27 @@ st.markdown(
 
     .motivation {
         text-align: center;
-        font-size: clamp(0.68rem, 2.5vw, 0.85rem);
+        font-size: clamp(0.68rem, 2.5vw, 0.86rem);
         font-weight: 800;
         color: #f0f6fc;
-        margin: 0.08rem auto 0.18rem auto;
+        margin: 0.05rem auto 0.12rem auto;
         padding: 0.32rem 0.62rem;
         max-width: 520px;
         border-radius: 999px;
-        background: rgba(13, 17, 23, 0.54);
+        background: rgba(13, 17, 23, 0.56);
         border: 1px solid rgba(255, 255, 255, 0.12);
         backdrop-filter: blur(7px);
-        line-height: 1.25;
+        line-height: 1.2;
     }
 
     .question-card {
-        max-width: min(600px, 92vw);
-        margin: 0.18rem auto 0.25rem auto;
+        max-width: min(540px, 92vw);
+        margin: 0.12rem auto 0.18rem auto;
         text-align: center;
-        background: rgba(13, 17, 23, 0.74);
+        background: rgba(13, 17, 23, 0.76);
         border: 1px solid rgba(255,255,255,0.14);
-        border-radius: 18px;
-        padding: clamp(0.55rem, 2vw, 0.85rem);
+        border-radius: 16px;
+        padding: 0.62rem 0.75rem;
         box-shadow: 0 8px 22px rgba(0,0,0,0.30);
         color: #f0f6fc;
         backdrop-filter: blur(8px);
@@ -172,19 +180,19 @@ st.markdown(
 
     .question-type {
         text-align: center;
-        font-size: clamp(0.52rem, 2vw, 0.68rem);
+        font-size: clamp(0.50rem, 1.9vw, 0.65rem);
         color: #b8c0cc;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         font-weight: 850;
-        margin-bottom: 0.28rem;
+        margin-bottom: 0.22rem;
     }
 
     .question-text {
         text-align: center;
-        font-size: clamp(0.90rem, 3.5vw, 1.15rem);
+        font-size: clamp(0.88rem, 3.4vw, 1.12rem);
         font-weight: 800;
-        line-height: 1.25;
+        line-height: 1.22;
         color: #ffffff;
         margin: 0;
     }
@@ -193,9 +201,9 @@ st.markdown(
         text-align: center;
         color: #d5dce8;
         font-weight: 800;
-        font-size: clamp(0.65rem, 2.4vw, 0.78rem);
-        margin-top: -0.10rem;
-        margin-bottom: 0.15rem;
+        font-size: clamp(0.62rem, 2.3vw, 0.76rem);
+        margin-top: -0.05rem;
+        margin-bottom: 0.08rem;
     }
 
     div[data-testid="stSelectbox"] {
@@ -233,23 +241,24 @@ st.markdown(
         margin: 0 auto !important;
     }
 
-    /* Espaçamento geral menor */
-    div[data-testid="stVerticalBlock"] > div {
-        gap: 0.18rem;
+    /* Botões */
+    div[data-testid="stButton"] {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
     }
 
-    /* Botão base */
     div[data-testid="stButton"] > button {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
+        min-height: 32px !important;
+        padding: 0.30rem 0.65rem !important;
+        margin: 0.03rem auto !important;
+        border-radius: 13px !important;
         border: 1px solid #e5e7eb !important;
         background: rgba(255,255,255,0.92) !important;
         color: #111827 !important;
-        border-radius: 13px !important;
-        min-height: 32px !important;
-        padding: 0.30rem 0.65rem !important;
+        box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
     }
 
     div[data-testid="stButton"] > button:hover {
@@ -291,23 +300,29 @@ st.markdown(
         line-height: 1 !important;
     }
 
+    .answer-button div[data-testid="stButton"] > button {
+        min-height: 31px !important;
+        padding: 0.28rem 0.58rem !important;
+        margin: 0.02rem auto !important;
+    }
+
     .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.82rem !important;
+        font-size: 0.80rem !important;
         font-weight: 650 !important;
     }
 
     .next-button div[data-testid="stButton"] > button {
-        width: 50px !important;
-        height: 50px !important;
-        min-height: 50px !important;
-        max-width: 50px !important;
+        width: 46px !important;
+        height: 46px !important;
+        min-height: 46px !important;
+        max-width: 46px !important;
         border-radius: 50% !important;
         padding: 0 !important;
         background: #ffffff !important;
     }
 
     .next-button div[data-testid="stButton"] > button p {
-        font-size: 1.45rem !important;
+        font-size: 1.35rem !important;
         font-weight: 900 !important;
         line-height: 1 !important;
     }
@@ -315,25 +330,25 @@ st.markdown(
     .options-wrapper {
         width: 100% !important;
         max-width: 420px !important;
-        margin: 0.10rem auto 0 auto !important;
+        margin: 0.08rem auto 0 auto !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 0.05rem !important;
+        gap: 0 !important;
     }
 
     .option-box {
-        width: min(290px, 76vw) !important;
-        max-width: 290px !important;
-        min-height: 32px !important;
-        margin: 0.08rem auto !important;
+        width: min(280px, 74vw) !important;
+        max-width: 280px !important;
+        min-height: 31px !important;
+        margin: 0.06rem auto !important;
         text-align: center !important;
-        padding: 0.34rem 0.65rem !important;
+        padding: 0.28rem 0.58rem !important;
         border-radius: 13px !important;
         font-size: 0.80rem !important;
         font-weight: 800 !important;
-        line-height: 1.25 !important;
+        line-height: 1.22 !important;
         box-sizing: border-box !important;
         display: flex !important;
         align-items: center !important;
@@ -397,141 +412,16 @@ st.markdown(
 
         .answer-button div[data-testid="stButton"] > button,
         .option-box {
-            width: min(240px, 72vw) !important;
-            max-width: 240px !important;
-            min-height: 30px !important;
-            padding: 0.30rem 0.55rem !important;
-            font-size: 0.76rem !important;
+            min-height: 29px !important;
+            padding: 0.25rem 0.50rem !important;
+            font-size: 0.74rem !important;
         }
 
         .answer-button div[data-testid="stButton"] > button p {
-            font-size: 0.76rem !important;
+            font-size: 0.74rem !important;
         }
     }
-    
-    /* =============================
-       OVERRIDE FINAL: ESPAÇAMENTO COMPACTO
-       ============================= */
-
-    div[data-testid="stVerticalBlock"] > div {
-        gap: 0.02rem !important;
-    }
-
-    div[data-testid="stHorizontalBlock"] {
-        gap: 0.05rem !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-    }
-
-    .mode-button,
-    .answer-button,
-    .start-button,
-    .next-button {
-        margin-top: -0.28rem !important;
-        margin-bottom: -0.28rem !important;
-        padding: 0 !important;
-    }
-
-    .mode-button div[data-testid="stButton"],
-    .answer-button div[data-testid="stButton"],
-    .start-button div[data-testid="stButton"],
-    .next-button div[data-testid="stButton"] {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        padding: 0 !important;
-    }
-
-    .mode-button div[data-testid="stButton"] > button {
-        width: 180px !important;
-        max-width: 72vw !important;
-        min-height: 28px !important;
-        padding: 0.12rem 0.45rem !important;
-        margin: 0 !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button {
-        width: min(290px, 76vw) !important;
-        max-width: 290px !important;
-        min-height: 30px !important;
-        padding: 0.26rem 0.55rem !important;
-        margin: 0 !important;
-    }
-
-    .start-button div[data-testid="stButton"] > button {
-        min-height: 30px !important;
-        padding: 0.22rem 0.60rem !important;
-        margin: 0 !important;
-    }
-
-    .question-card {
-        margin-top: 0.12rem !important;
-        margin-bottom: 0.12rem !important;
-    }
-
-    .motivation {
-        margin-top: 0.05rem !important;
-        margin-bottom: 0.08rem !important;
-    }
-
-    .options-wrapper {
-        margin-top: 0.03rem !important;
-        gap: 0 !important;
-    }
-
-    /* X fixo no canto superior direito da área do app */
-    .fixed-close {
-        position: fixed !important;
-        top: 64px !important;
-        right: 22px !important;
-        z-index: 999999 !important;
-        width: 42px !important;
-        height: 42px !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-    }
-
-    .fixed-close div[data-testid="stButton"] > button {
-        width: 42px !important;
-        height: 42px !important;
-        min-height: 42px !important;
-        max-width: 42px !important;
-        border-radius: 50% !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        background: #ffffff !important;
-    }
-
-    .fixed-close div[data-testid="stButton"] > button p {
-        font-size: 1.2rem !important;
-        font-weight: 900 !important;
-        line-height: 1 !important;
-    }
-
-    @media (max-width: 600px) {
-        .fixed-close {
-            top: 72px !important;
-            right: 12px !important;
-            width: 38px !important;
-            height: 38px !important;
-        }
-
-        .fixed-close div[data-testid="stButton"] > button {
-            width: 38px !important;
-            height: 38px !important;
-            min-height: 38px !important;
-            max-width: 38px !important;
-        }
-
-        .mode-button div[data-testid="stButton"] > button {
-            min-height: 26px !important;
-        }
-
-        .answer-button div[data-testid="stButton"] > button {
-            min-height: 28px !important;
-        }
-    }
-</style>
+    </style>
     """,
     unsafe_allow_html=True
 )
@@ -733,8 +623,6 @@ iniciar_estado()
 if st.session_state.tela == "configuracao":
     st.markdown('<div class="main-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
     st.markdown('<div class="subtitle">GUSTAVO DAMIÃO</div>', unsafe_allow_html=True)
-else:
-    st.markdown('<div class="small-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
 
 vocabulario = carregar_csv(ARQUIVO_VOCABULARIO)
 verbos = carregar_csv(ARQUIVO_VERBOS)
@@ -753,8 +641,8 @@ if st.session_state.tela == "configuracao":
     if "modalidade" not in st.session_state:
         st.session_state.modalidade = "Vocabulário"
 
-    # Centralização estável: botão com largura da coluna central.
-    col1, col2, col3 = st.columns([1.2, 1, 1.2], gap='small')
+    # Centralização estável: todos os botões dentro da coluna central.
+    col1, col2, col3 = st.columns([1.25, 1, 1.25], gap="small")
 
     with col2:
         st.markdown('<div class="mode-button">', unsafe_allow_html=True)
@@ -790,7 +678,7 @@ if st.session_state.tela == "configuracao":
         st.markdown('<div class="fake-label">Nº verbos</div>', unsafe_allow_html=True)
         qtd_verbos = st.slider("", 1, 50, 10, key="slider_verbos", label_visibility="collapsed")
 
-    col1, col2, col3 = st.columns([1.2, 1, 1.2], gap='small')
+    col1, col2, col3 = st.columns([1.25, 1, 1.25], gap="small")
 
     with col2:
         st.markdown('<div class="start-button">', unsafe_allow_html=True)
@@ -822,11 +710,17 @@ if st.session_state.tela == "configuracao":
 
 
 elif st.session_state.tela == "questao":
-    st.markdown('<div class="fixed-close">', unsafe_allow_html=True)
-    if st.button("×", key="fechar_treino"):
-        reiniciar()
-        st.rerun()
-    st.markdown("</div>", unsafe_allow_html=True)
+    # X primeiro, acima do título, à direita.
+    colx1, colx2, colx3 = st.columns([8, 1, 1], gap="small")
+
+    with colx3:
+        st.markdown('<div class="close-button">', unsafe_allow_html=True)
+        if st.button("×", key="fechar_treino", use_container_width=True):
+            reiniciar()
+            st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    st.markdown('<div class="small-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
 
     total = len(st.session_state.teste)
     indice = st.session_state.indice
@@ -851,10 +745,9 @@ elif st.session_state.tela == "questao":
 
     st.markdown('<div class="options-wrapper">', unsafe_allow_html=True)
 
-    for opcao in pergunta["opcoes"]:
-        opcao_html = html.escape(opcao)
-
-        if st.session_state.respondido:
+    if st.session_state.respondido:
+        for opcao in pergunta["opcoes"]:
+            opcao_html = html.escape(opcao)
             texto = html.escape(texto_opcao_respondida(pergunta, opcao))
 
             if opcao == pergunta["resposta"]:
@@ -872,9 +765,11 @@ elif st.session_state.tela == "questao":
                     f'<div class="option-box neutral-box">{texto}</div>',
                     unsafe_allow_html=True
                 )
-        else:
-            col1, col2, col3 = st.columns([1.2, 1, 1.2], gap='small')
-            with col2:
+    else:
+        # Uma única coluna central para TODAS as alternativas.
+        col1, col2, col3 = st.columns([1.3, 1, 1.3], gap="small")
+        with col2:
+            for opcao in pergunta["opcoes"]:
                 st.markdown('<div class="answer-button">', unsafe_allow_html=True)
                 st.button(
                     opcao,
@@ -888,7 +783,7 @@ elif st.session_state.tela == "questao":
     st.markdown('</div>', unsafe_allow_html=True)
 
     if st.session_state.respondido:
-        col1, col2, col3 = st.columns([1.4, 0.35, 1.4], gap='small')
+        col1, col2, col3 = st.columns([1.4, 0.35, 1.4], gap="small")
 
         with col2:
             st.markdown('<div class="next-button">', unsafe_allow_html=True)
