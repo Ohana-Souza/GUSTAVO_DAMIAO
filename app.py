@@ -436,23 +436,25 @@ st.markdown(
     .html-options {
         width: 100%;
         max-width: 340px;
-        margin: 0.08rem auto 0 auto;
+        margin: 0 auto;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.14rem;
+        gap: 0rem !important;
     }
-
     .answer-form {
         width: 100%;
         margin: 0 !important;
         padding: 0 !important;
-        line-height: 1 !important;
+        line-height: 0 !important;
+    }
+    .answer-form button {
+        margin: 0 !important;
     }
 
     .html-answer-button {
         width: 100%;
-        min-height: 38px;
+        min-height: 34px;
         border-radius: 14px;
         border: 1px solid #e5e7eb;
         background: rgba(255,255,255,0.92);
