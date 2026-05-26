@@ -296,74 +296,6 @@ st.markdown(
         border-color: #2563eb !important;
     }
 
-
-    /* ===== BOTÕES DE MODALIDADE: Vocabulário / Verbos / Ambos ===== */
-
-    div[data-testid="stRadio"] {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
-
-    div[data-testid="stRadio"] > div {
-        width: 100% !important;
-    }
-
-    div[role="radiogroup"] {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 0.18rem !important;
-        width: 100% !important;
-    }
-
-    div[role="radiogroup"] label {
-        width: 180px !important;
-        max-width: 72vw !important;
-        min-height: 30px !important;
-
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-
-        margin: 0 auto !important;
-        padding: 0.18rem 0.50rem !important;
-
-        border-radius: 13px !important;
-
-        background: rgba(255,255,255,0.74) !important;
-        border: 1px solid rgba(255,255,255,0.28) !important;
-
-        color: #111827 !important;
-
-        backdrop-filter: blur(8px);
-        box-shadow: 0 5px 16px rgba(0,0,0,0.14) !important;
-
-        transition: 0.2s ease;
-    }
-
-    div[role="radiogroup"] label p {
-        font-size: 0.74rem !important;
-        font-weight: 500 !important;
-        margin: 0 !important;
-        color: #111827 !important;
-    }
-
-    div[role="radiogroup"] label > div:first-child {
-        display: none !important;
-    }
-
-    div[role="radiogroup"] label:has(input:checked) {
-        background: rgba(255,255,255,0.96) !important;
-        border: 2px solid #58a6ff !important;
-    }
-
-    div[role="radiogroup"] label:hover {
-        background: rgba(255,255,255,0.96) !important;
-        border-color: #2563eb !important;
-    }
-
     /* ===== BOTÃO COMMENCER ===== */
     .start-button div[data-testid="stButton"] > button {
         width: 190px !important;
@@ -542,16 +474,6 @@ st.markdown(
             font-size: 0.68rem !important;
         }
 
-
-        div[role="radiogroup"] label {
-            width: 160px !important;
-            min-height: 28px !important;
-        }
-
-        div[role="radiogroup"] label p {
-            font-size: 0.68rem !important;
-        }
-
         .option-box,
         .answer-button div[data-testid="stButton"] > button {
             width: min(300px, 84vw) !important;
@@ -630,224 +552,143 @@ st.markdown(
     }
     
     /* =============================
-       CORREÇÕES FINAIS DE LAYOUT
+       AJUSTE FINAL ROBUSTO
        ============================= */
 
+    /* Evita que colunas globais quebrem layout */
     div[data-testid="column"] {
         align-items: stretch !important;
     }
 
+    /* Compacta a tela de perguntas */
     .small-title {
-        font-size: clamp(0.92rem, 3.6vw, 1.12rem) !important;
-        margin: 0.02rem auto 0.12rem auto !important;
+        font-size: clamp(0.95rem, 3.5vw, 1.15rem) !important;
+        margin: 0.02rem auto 0.10rem auto !important;
         white-space: normal !important;
         overflow: visible !important;
+        line-height: 1.15 !important;
     }
 
     .motivation {
-        margin: 0.12rem auto 0.22rem auto !important;
-        padding: 0.34rem 0.55rem !important;
+        margin: 0.10rem auto 0.18rem auto !important;
+        padding: 0.30rem 0.55rem !important;
+    }
+
+    div[data-testid="stCaptionContainer"] {
+        margin-top: -0.10rem !important;
+        margin-bottom: 0.15rem !important;
     }
 
     .question-card {
         max-width: min(600px, 92vw) !important;
-        margin: 0.22rem auto 0.28rem auto !important;
-        padding: clamp(0.55rem, 2vw, 0.85rem) !important;
+        margin: 0.18rem auto 0.20rem auto !important;
+        padding: clamp(0.50rem, 2vw, 0.80rem) !important;
     }
 
     .options-wrapper {
-        width: 100% !important;
-        max-width: 420px !important;
-        margin: 0.25rem auto 0 auto !important;
-        gap: 0.12rem !important;
+        margin: 0.15rem auto 0 auto !important;
+        gap: 0.05rem !important;
     }
 
     .answer-button div[data-testid="stButton"] > button {
-        width: min(300px, 78vw) !important;
-        max-width: 300px !important;
-        min-height: 36px !important;
-        padding: 0.45rem 0.75rem !important;
-        border-radius: 14px !important;
+        width: min(290px, 76vw) !important;
+        max-width: 290px !important;
+        min-height: 32px !important;
+        padding: 0.34rem 0.65rem !important;
+        margin: 0.02rem auto !important;
+        border-radius: 13px !important;
     }
 
     .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.88rem !important;
+        font-size: 0.80rem !important;
         font-weight: 650 !important;
     }
 
     .option-box {
-        width: min(300px, 78vw) !important;
-        max-width: 300px !important;
-        min-height: 36px !important;
-        padding: 0.45rem 0.75rem !important;
-        margin: 0.14rem auto !important;
-        border-radius: 14px !important;
-        font-size: 0.88rem !important;
-    }
-
-    .close-button div[data-testid="stButton"] {
-        justify-content: flex-end !important;
-    }
-
-    .close-button div[data-testid="stButton"] > button {
-        width: 38px !important;
-        height: 38px !important;
-        min-height: 38px !important;
-        max-width: 38px !important;
-        margin: 0 auto !important;
-    }
-
-    .main-title,
-    .subtitle,
-    .fake-label {
-        text-align: center !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-
-    div[data-testid="stSelectbox"] {
-        max-width: 220px !important;
-        width: 220px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-
-    div[data-testid="stSelectbox"] > div,
-    div[data-testid="stSelectbox"] > div > div {
-        max-width: 220px !important;
-        width: 220px !important;
-    }
-
-    div[data-testid="stRadio"] {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
-
-    div[data-testid="stRadio"] > div {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
-
-    div[role="radiogroup"] {
-        width: 100% !important;
-        max-width: 230px !important;
-        margin: 0.05rem auto 0.22rem auto !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 0.14rem !important;
-    }
-
-    div[role="radiogroup"] label {
-        width: 210px !important;
-        max-width: 76vw !important;
+        width: min(290px, 76vw) !important;
+        max-width: 290px !important;
         min-height: 32px !important;
-        margin: 0 auto !important;
-        padding: 0.18rem 0.55rem !important;
+        padding: 0.34rem 0.65rem !important;
+        margin: 0.08rem auto !important;
         border-radius: 13px !important;
-        background: rgba(255,255,255,0.78) !important;
-        border: 1px solid rgba(255,255,255,0.30) !important;
-        color: #111827 !important;
+        font-size: 0.80rem !important;
+    }
+
+    /* Centralização real dos botões da tela inicial via colunas */
+    .mode-buttons div[data-testid="stButton"] > button,
+    div[data-testid="stButton"] > button {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* Botões de modalidade */
+    button[kind="secondary"] p {
+        margin: 0 !important;
+    }
+
+    /* Ajusta especificamente os botões do topo por texto/posição através do padrão geral */
+    div[data-testid="stButton"] > button {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        box-shadow: 0 5px 16px rgba(0,0,0,0.14) !important;
-        box-sizing: border-box !important;
     }
 
-    div[role="radiogroup"] label > div:first-child {
-        display: none !important;
-    }
-
-    div[role="radiogroup"] label p {
-        font-size: 0.78rem !important;
-        font-weight: 600 !important;
-        margin: 0 !important;
-        color: #111827 !important;
-        text-align: center !important;
-    }
-
-    div[role="radiogroup"] label:has(input:checked) {
-        background: rgba(255,255,255,0.96) !important;
-        border: 2px solid #58a6ff !important;
-    }
-
+    /* Mantém Commencer central sem depender de coluna larga */
     .start-button {
         width: 100% !important;
         display: flex !important;
-        justify-content: center !important;
-        margin-top: 0.25rem !important;
-    }
-
-    .start-button div[data-testid="stButton"] {
         justify-content: center !important;
     }
 
     .start-button div[data-testid="stButton"] > button {
         width: 190px !important;
-        max-width: 75vw !important;
+        max-width: 74vw !important;
         min-height: 34px !important;
     }
 
     @media (max-width: 600px) {
         .block-container {
-            padding-top: 0.15rem !important;
-            padding-left: 0.55rem !important;
-            padding-right: 0.55rem !important;
+            padding-top: 0.10rem !important;
+            padding-left: 0.50rem !important;
+            padding-right: 0.50rem !important;
         }
 
         .main-title {
-            font-size: 1.45rem !important;
+            font-size: 1.42rem !important;
+            line-height: 1.15 !important;
             margin-top: 0.05rem !important;
         }
 
         .subtitle {
             font-size: 0.68rem !important;
-            margin-bottom: 0.45rem !important;
+            margin-bottom: 0.35rem !important;
         }
 
         .fake-label {
-            min-width: 145px !important;
-            max-width: 190px !important;
-            padding: 0.26rem 0.58rem !important;
+            min-width: 140px !important;
+            max-width: 185px !important;
+            padding: 0.25rem 0.55rem !important;
             font-size: 0.68rem !important;
         }
 
         div[data-testid="stSelectbox"],
         div[data-testid="stSelectbox"] > div,
         div[data-testid="stSelectbox"] > div > div {
-            width: 180px !important;
-            max-width: 180px !important;
-        }
-
-        div[role="radiogroup"] {
-            max-width: 190px !important;
-            gap: 0.10rem !important;
-        }
-
-        div[role="radiogroup"] label {
-            width: 170px !important;
-            min-height: 28px !important;
-        }
-
-        div[role="radiogroup"] label p {
-            font-size: 0.66rem !important;
+            width: 178px !important;
+            max-width: 178px !important;
         }
 
         .answer-button div[data-testid="stButton"] > button,
         .option-box {
-            width: min(250px, 76vw) !important;
-            max-width: 250px !important;
-            min-height: 32px !important;
-            padding: 0.36rem 0.6rem !important;
-            font-size: 0.78rem !important;
+            width: min(240px, 72vw) !important;
+            max-width: 240px !important;
+            min-height: 30px !important;
+            padding: 0.30rem 0.55rem !important;
+            font-size: 0.76rem !important;
         }
 
         .answer-button div[data-testid="stButton"] > button p {
-            font-size: 0.78rem !important;
+            font-size: 0.76rem !important;
         }
     }
 </style>
@@ -1072,23 +913,19 @@ if st.session_state.tela == "configuracao":
     if "modalidade" not in st.session_state:
         st.session_state.modalidade = "Vocabulário"
     
-    opcoes_modalidade = ["Vocabulário", "Verbos", "Ambos"]
-    modalidade_atual = "Ambos" if st.session_state.modalidade == "Vocabulário + Verbos" else st.session_state.modalidade
+    st.markdown('<div class="mode-buttons">', unsafe_allow_html=True)
 
-    modalidade_escolhida = st.radio(
-        "",
-        opcoes_modalidade,
-        index=opcoes_modalidade.index(modalidade_atual),
-        horizontal=False,
-        label_visibility="collapsed",
-        key="radio_modalidade"
-    )
-
-    if modalidade_escolhida == "Ambos":
+    if st.button("Vocabulário", key="btn_modo_vocab"):
+        st.session_state.modalidade = "Vocabulário"
+    
+    if st.button("Verbos", key="btn_modo_verbos"):
+        st.session_state.modalidade = "Verbos"
+    
+    if st.button("Ambos", key="btn_modo_ambos"):
         st.session_state.modalidade = "Vocabulário + Verbos"
-    else:
-        st.session_state.modalidade = modalidade_escolhida
-
+    
+    st.markdown("</div>", unsafe_allow_html=True)
+    
     modalidade = st.session_state.modalidade
 
     qtd_vocabulario = 0
