@@ -245,7 +245,6 @@ def iniciar_estado():
         "resposta_selecionada": None,
         "respondido": False,
         "acertos": 0,
-        "nome": "",
     }
 
     for chave, valor in valores_padrao.items():
@@ -295,9 +294,6 @@ verbos = carregar_csv(ARQUIVO_VERBOS)
 if st.session_state.tela == "configuracao":
     st.subheader("Configuração do treino")
 
-    nome = st.text_input("Nome do aluno", value=st.session_state.nome)
-    st.session_state.nome = nome
-
     nivel = st.selectbox("Nível de dificuldade", ["A1", "A2", "B1", "B2", "C1"])
 
     modalidade = st.radio(
@@ -345,8 +341,19 @@ elif st.session_state.tela == "questao":
     indice = st.session_state.indice
     pergunta = st.session_state.teste[indice]
 
-    if st.session_state.nome:
-        st.write(f"Bonjour, **{st.session_state.nome}** 👋")
+    st.markdown(
+        """
+        <div style="
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+            color: #c9d1d9;
+        ">
+            🧠 La pratique quotidienne fait la différence.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.progress((indice + 1) / total)
     st.caption(f"Questão {indice + 1} de {total}")
