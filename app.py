@@ -1,6 +1,8 @@
 import base64
 import csv
 import random
+import html
+from urllib.parse import quote, unquote
 from pathlib import Path
 
 import streamlit as st
@@ -360,6 +362,107 @@ st.markdown(
         border: 1px solid #e5e7eb;
         color: #111827;
     }
+
+
+    /* Centralização real das opções e botões de navegação */
+    div[data-testid="stButton"] {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    div[data-testid="stButton"] > button,
+    div.stButton > button {
+        width: min(320px, 82vw) !important;
+        max-width: 320px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .options-wrapper {
+        width: 100% !important;
+        max-width: 420px !important;
+        margin: 0.45rem auto 0 auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.35rem !important;
+    }
+
+    .answer-link,
+    .option-box {
+        width: min(340px, 82vw) !important;
+        max-width: 340px !important;
+        margin: 0.22rem auto !important;
+        text-align: center !important;
+        padding: 0.65rem 0.9rem !important;
+        border-radius: 16px !important;
+        font-size: clamp(0.9rem, 3vw, 1.05rem) !important;
+        font-weight: 800 !important;
+        line-height: 1.25 !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-decoration: none !important;
+        box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
+    }
+
+    .answer-link {
+        background: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
+        color: #111827 !important;
+    }
+
+    .answer-link:hover {
+        background: #f3f4f6 !important;
+        border-color: #2563eb !important;
+        color: #111827 !important;
+    }
+
+    .correct-box {
+        background: #d7f8df !important;
+        border: 1px solid #37a852 !important;
+        color: #145c25 !important;
+    }
+
+    .wrong-box {
+        background: #ffe0e0 !important;
+        border: 1px solid #d93025 !important;
+        color: #8a1c15 !important;
+    }
+
+    .neutral-box {
+        background: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
+        color: #111827 !important;
+    }
+
+    .next-arrow {
+        width: 48px !important;
+        height: 48px !important;
+        margin: 0.75rem auto 0 auto !important;
+        border-radius: 50% !important;
+        background: #ffffff !important;
+        color: #111827 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-decoration: none !important;
+        font-size: 1.6rem !important;
+        font-weight: 900 !important;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25) !important;
+    }
+
+    .next-arrow:hover {
+        background: #f3f4f6 !important;
+        color: #111827 !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -547,8 +650,19 @@ def proxima_questao():
 # INTERFACE
 # =============================
 iniciar_estado()
+
 if st.query_params.get("cancelar") == "1":
     reiniciar()
+    st.query_params.clear()
+    st.rerun()
+
+if st.session_state.tela == "questao" and st.query_params.get("resposta") and not st.session_state.respondido:
+    selecionar_resposta(unquote(st.query_params.get("resposta")))
+    st.query_params.clear()
+    st.rerun()
+
+if st.session_state.tela == "questao" and st.query_params.get("proxima") == "1" and st.session_state.respondido:
+    proxima_questao()
     st.query_params.clear()
     st.rerun()
 
@@ -634,42 +748,46 @@ elif st.session_state.tela == "questao":
 
     for opcao in pergunta["opcoes"]:
         traducao_opcao = pergunta.get("traducoes_opcoes", {}).get(opcao, "")
-    
+        opcao_html = html.escape(opcao)
+
         if st.session_state.respondido:
             if opcao == pergunta["resposta"]:
                 st.markdown(
-                    f'<div class="option-box correct-box">✓ {opcao}</div>',
+                    f'<div class="option-box correct-box">✓ {opcao_html}</div>',
+                    unsafe_allow_html=True
+                )
+            elif opcao == st.session_state.resposta_selecionada:
+                texto = f'{opcao} = {traducao_opcao}' if traducao_opcao else opcao
+                st.markdown(
+                    f'<div class="option-box wrong-box">✕ {html.escape(texto)}</div>',
                     unsafe_allow_html=True
                 )
             else:
                 texto = f'{opcao} = {traducao_opcao}' if traducao_opcao else opcao
                 st.markdown(
-                    f'<div class="option-box neutral-box">{texto}</div>',
+                    f'<div class="option-box neutral-box">{html.escape(texto)}</div>',
                     unsafe_allow_html=True
                 )
         else:
-            st.button(
-                opcao,
-                key=f"opcao_{indice}_{opcao}",
-                on_click=selecionar_resposta,
-                args=(opcao,)
+            st.markdown(
+                f'<a class="answer-link" href="?resposta={quote(opcao)}">{opcao_html}</a>',
+                unsafe_allow_html=True
             )
 
     st.markdown('</div>', unsafe_allow_html=True)
 
     if st.session_state.respondido:
-        titulo_traducao = "Tradução das outras opções:" if pergunta["tipo"] != "Conjugação" else "Tradução:"
-        
         if pergunta["tipo"] == "Conjugação" and pergunta.get("frase_completa"):
             st.markdown(
-                f'<div class="translation-box"><strong>Frase completa:</strong><br>{pergunta["frase_completa"]}</div>',
+                f'<div class="translation-box"><strong>Frase completa:</strong><br>{html.escape(pergunta["frase_completa"])}</div>',
                 unsafe_allow_html=True
             )
 
-        texto_botao = "Ver resultado" if indice + 1 == total else "Próxima questão"
-        if st.button(texto_botao):
-            proxima_questao()
-            st.rerun()
+        simbolo_botao = "✓" if indice + 1 == total else "→"
+        st.markdown(
+            f'<a class="next-arrow" href="?proxima=1">{simbolo_botao}</a>',
+            unsafe_allow_html=True
+        )
 
 elif st.session_state.tela == "resultado":
     total = len(st.session_state.teste)
