@@ -137,13 +137,13 @@ st.markdown(
     }
 
     .question-card {
-        max-width: 600px;
-        margin: 0.45rem auto 0.55rem auto;
+        max-width: 35000px;
+        margin: 0.30rem auto 0.45rem auto;
         text-align: center;
         background: rgba(13, 17, 23, 0.74);
         border: 1px solid rgba(255,255,255,0.14);
         border-radius: 18px;
-        padding: clamp(0.7rem, 2.6vw, 1rem);
+        padding: clamp(0.6rem, 2.4vw, 1rem);
         box-shadow: 0 8px 22px rgba(0,0,0,0.30);
         color: #f0f6fc;
         backdrop-filter: blur(8px);
@@ -262,7 +262,7 @@ st.markdown(
     
         padding: 0.18rem 0.4rem !important;
     
-        font-size: 0.8rem !important;
+        font-size: 0.6rem !important;
     
         border-radius: 13px !important;
     }
