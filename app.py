@@ -95,7 +95,7 @@ st.markdown(
     }
     /* REMOVE espaço invisível entre widgets */
     div[data-testid="element-container"] {
-        margin-bottom: -0.45rem !important;
+        margin-bottom: 0rem !important;
     }
     
     /* REMOVE espaço do bloco vertical */
@@ -105,7 +105,7 @@ st.markdown(
     
     /* BOTÕES */
     .answer-button {
-        margin: 0.35rem 0 !important;
+        margin: 0.08rem 0 !important;
         padding: 0 !important;
     }
     
@@ -514,7 +514,7 @@ st.markdown(
     }
 
     .mode-button {
-        margin: 0.10rem 0 !important;
+        margin: 0.18rem 0 !important;
         padding: 0 !important;
     }
 
