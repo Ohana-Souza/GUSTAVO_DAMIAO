@@ -434,6 +434,10 @@ st.markdown(
         margin-top: -0.2rem;
         margin-bottom: 0.25rem;
     }
+    /* Reduz espaço entre os botões da modalidade */
+    div[data-testid="stVerticalBlock"] > div:has(div[data-testid="stButton"]) {
+        gap: 0.12rem !important;
+    }
 
     h1, h2, h3, .stSubheader {
         text-align: center;
@@ -728,14 +732,26 @@ if st.session_state.tela == "configuracao":
     
     col1, col2, col3 = st.columns([1,2,1])
     with col2:
+        st.markdown(
+            """
+            <div style="
+                display:flex;
+                flex-direction:column;
+                gap:0.18rem;
+                align-items:center;
+            ">
+            """,
+            unsafe_allow_html=True
+        )
         if st.button("Vocabulário"):
             st.session_state.modalidade = "Vocabulário"
     
         if st.button("Verbos"):
             st.session_state.modalidade = "Verbos"
         
-        if st.button("Vocab. + Verbos"):
+        if st.button("Ambos"):
             st.session_state.modalidade = "Ambos"
+        st.markdown("</div>", unsafe_allow_html=True)
     
     modalidade = st.session_state.modalidade
 
