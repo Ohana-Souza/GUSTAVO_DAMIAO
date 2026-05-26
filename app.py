@@ -718,12 +718,13 @@ if st.session_state.tela == "configuracao":
         qtd_vocabulario = st.slider("", 1, 50, 10, label_visibility="collapsed")
 
     elif modalidade == "Verbos":
-        qtd_verbos = st.slider("Nº de verbos", 1, 50, 10)
+        st.markdown('<div class="fake-label">Verbos</div>', unsafe_allow_html=True)
+        qtd_verbos = st.slider("", 1, 50, 10, label_visibility="collapsed")
     else:
         st.markdown('<div class="fake-label">Nº vocabulário</div>', unsafe_allow_html=True)
         qtd_vocabulario = st.slider("", 1, 50, 10, label_visibility="collapsed")
-        qtd_verbos = st.slider("Nº verbos", 1, 50, 10)
-
+        st.markdown('<div class="fake-label">Nº verbos</div>',unsafe_allow_html=True)
+        qtd_verbos = st.slider("", 1, 50, 10, key="slider_verbos",label_visibility="collapsed")
     col1, col2, col3 = st.columns([1, 2, 1])
 
     with col2:
