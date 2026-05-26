@@ -148,7 +148,17 @@ st.markdown(
         color: #f0f6fc;
         backdrop-filter: blur(8px);
     }
-
+    .config-card {
+        max-width: 600px;
+        margin: 1rem auto;
+        padding: 1.2rem;
+        border-radius: 22px;
+        background: rgba(13, 17, 23, 0.74);
+        border: 1px solid rgba(255,255,255,0.14);
+        box-shadow: 0 8px 22px rgba(0,0,0,0.30);
+        backdrop-filter: blur(8px);
+        color: #f0f6fc;
+    }
     .question-type {
         text-align: center;
         font-size: clamp(0.55rem, 2.1vw, 0.7rem);
@@ -589,7 +599,8 @@ iniciar_estado()
 
 if st.session_state.tela == "configuracao":
     st.markdown('<div class="main-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
-    st.markdown('<div class="subtitle">Vocabulário, conjugação ou os dois — uma questão por vez.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="subtitle">GUSTAVO DAMIÃO</div>', unsafe_allow_html=True)
+    st.markdown('<div class="config-card">', unsafe_allow_html=True)
 else:
     st.markdown('<div class="small-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
 
@@ -597,8 +608,6 @@ vocabulario = carregar_csv(ARQUIVO_VOCABULARIO)
 verbos = carregar_csv(ARQUIVO_VERBOS)
 
 if st.session_state.tela == "configuracao":
-    st.subheader("Configuração do treino")
-
     nivel = st.selectbox("Nível de dificuldade", ["A1", "A2", "B1", "B2", "C1"])
 
     modalidade = st.radio(
@@ -618,7 +627,12 @@ if st.session_state.tela == "configuracao":
         qtd_vocabulario = st.slider("Quantidade de questões de vocabulário", 1, 50, 10)
         qtd_verbos = st.slider("Quantidade de questões de verbos", 1, 50, 10)
 
-    if st.button("Começar treino"):
+    col1, col2, col3 = st.columns([1, 2, 1])
+
+    with col2:
+        iniciar = st.button("Commencer")
+    
+    if iniciar:
         vocabulario_nivel = filtrar_por_nivel(vocabulario, nivel)
         verbos_nivel = filtrar_por_nivel(verbos, nivel)
 
@@ -640,6 +654,9 @@ if st.session_state.tela == "configuracao":
             st.session_state.respondido = False
             st.session_state.tela = "questao"
             st.rerun()
+
+    # FECHA O CARD
+    st.markdown('</div>', unsafe_allow_html=True)
 
 elif st.session_state.tela == "questao":
     colx1, colx2, colx3 = st.columns([8,1,1])
