@@ -189,14 +189,15 @@ st.markdown(
         border: 1px solid #2563eb !important;
     }
     div.stButton > button:disabled {
-        opacity: 0.62;
-        color: #c9d1d9;
-        background: rgba(13, 17, 23, 0.55);
+        opacity: 0.72;
+        color: #111827 !important;
+        background: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
     }
 
     .correct-box,
     .wrong-box {
-        max-width: 600px;
+        max-width: 280px;
         margin: 0.30rem auto;
         text-align: center;
         padding: 0.55rem 0.75rem;
@@ -512,6 +513,11 @@ def proxima_questao():
 # =============================
 iniciar_estado()
 
+if st.query_params.get("cancelar") == "1":
+    reiniciar()
+    st.query_params.clear()
+    st.rerun()
+
 if st.session_state.tela == "configuracao":
     st.markdown('<div class="main-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
     st.markdown('<div class="subtitle">Vocabulário, conjugação ou os dois — uma questão por vez.</div>', unsafe_allow_html=True)
@@ -584,26 +590,34 @@ elif st.session_state.tela == "questao":
 
     st.caption(f"Questão {indice + 1} de {total}")
 
-    st.markdown('<div class="question-card">', unsafe_allow_html=True)
-    st.markdown(f'<div class="question-type">{pergunta["tipo"]}</div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="question-text">{pergunta["pergunta"]}</div>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown(
+        f"""
+        <div class="question-card">
+            <div class="question-type">{pergunta["tipo"]}</div>
+            <div class="question-text">{pergunta["pergunta"]}</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     for opcao in pergunta["opcoes"]:
-        if st.session_state.respondido:
-            if opcao == pergunta["resposta"]:
-                st.markdown(f'<div class="correct-box">✓ {opcao}</div>', unsafe_allow_html=True)
-            elif opcao == st.session_state.resposta_selecionada:
-                st.markdown(f'<div class="wrong-box">✕ {opcao}</div>', unsafe_allow_html=True)
+        col_esq, col_centro, col_dir = st.columns([1, 1.4, 1])
+
+        with col_centro:
+            if st.session_state.respondido:
+                if opcao == pergunta["resposta"]:
+                    st.markdown(f'<div class="correct-box">✓ {opcao}</div>', unsafe_allow_html=True)
+                elif opcao == st.session_state.resposta_selecionada:
+                    st.markdown(f'<div class="wrong-box">✕ {opcao}</div>', unsafe_allow_html=True)
+                else:
+                    st.button(opcao, disabled=True, key=f"opcao_{indice}_{opcao}")
             else:
-                st.button(opcao, disabled=True, key=f"opcao_{indice}_{opcao}")
-        else:
-            st.button(
-                opcao,
-                key=f"opcao_{indice}_{opcao}",
-                on_click=selecionar_resposta,
-                args=(opcao,)
-            )
+                st.button(
+                    opcao,
+                    key=f"opcao_{indice}_{opcao}",
+                    on_click=selecionar_resposta,
+                    args=(opcao,)
+                )
 
     if st.session_state.respondido:
         titulo_traducao = "Tradução das outras opções:" if pergunta["tipo"] != "Conjugação" else "Tradução:"
