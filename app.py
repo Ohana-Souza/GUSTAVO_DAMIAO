@@ -235,7 +235,19 @@ st.markdown(
 
     /* Espaçamento geral menor */
     div[data-testid="stVerticalBlock"] > div {
-        gap: 0.18rem;
+        gap: 0.08rem !important;
+    }
+
+    .mode-button {
+        margin: -0.15rem 0 !important;
+    }
+
+    .answer-button {
+        margin: -0.25rem 0 !important;
+    }
+
+    .answer-button div[data-testid="stButton"] > button {
+        margin: 0 !important;
     }
 
     /* Botão base */
@@ -631,7 +643,7 @@ if st.session_state.tela == "configuracao":
         st.session_state.modalidade = "Vocabulário"
 
     # Centralização estável: botão com largura da coluna central.
-    col1, col2, col3 = st.columns([1, 1, 1])
+    col1, col2, col3 = st.columns([1.2, 1, 1.2], gap='small')
 
     with col2:
         st.markdown('<div class="mode-button">', unsafe_allow_html=True)
@@ -667,7 +679,7 @@ if st.session_state.tela == "configuracao":
         st.markdown('<div class="fake-label">Nº verbos</div>', unsafe_allow_html=True)
         qtd_verbos = st.slider("", 1, 50, 10, key="slider_verbos", label_visibility="collapsed")
 
-    col1, col2, col3 = st.columns([1, 1, 1])
+    col1, col2, col3 = st.columns([1.2, 1, 1.2], gap='small')
 
     with col2:
         st.markdown('<div class="start-button">', unsafe_allow_html=True)
@@ -702,6 +714,18 @@ elif st.session_state.tela == "questao":
     colx1, colx2, colx3 = st.columns([8, 1, 1])
 
     with colx3:
+        st.markdown(
+            """
+            <style>
+            .close-button {
+                position: relative;
+                top: -12px;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
         st.markdown('<div class="close-button">', unsafe_allow_html=True)
         if st.button("×", key="fechar_treino", use_container_width=True):
             reiniciar()
@@ -753,7 +777,7 @@ elif st.session_state.tela == "questao":
                     unsafe_allow_html=True
                 )
         else:
-            col1, col2, col3 = st.columns([1, 1.4, 1])
+            col1, col2, col3 = st.columns([1.2, 1, 1.2], gap='small')
             with col2:
                 st.markdown('<div class="answer-button">', unsafe_allow_html=True)
                 st.button(
