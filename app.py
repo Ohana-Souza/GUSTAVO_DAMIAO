@@ -96,7 +96,7 @@ st.markdown(
     .main-title {
         text-align: center;
         font-size: clamp(1.55rem, 6vw, 2.35rem);
-        font-weight: 850;
+        font-weight: 650;
         margin: 0.2rem auto 0.15rem auto;
         color: #ffffff;
         text-shadow: 0 3px 12px rgba(0,0,0,0.55);
