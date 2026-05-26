@@ -312,20 +312,35 @@ st.markdown(
         }
     }
     .top-close {
-        position: fixed;
-        top: 14px;
-        right: 18px;
-        z-index: 9999;
-    }
-    
-    .top-close + div button {
-        width: 44px !important;
-        min-height: 44px !important;
+        position: fixed !important;
+        top: 86px !important;
+        right: 24px !important;
+        z-index: 999999 !important;
+        width: 46px !important;
+        height: 46px !important;
         border-radius: 50% !important;
         background: #ffffff !important;
         color: #111827 !important;
-        border: 1px solid #e5e7eb !important;
-        font-size: 1.4rem !important;
+        text-decoration: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.35rem !important;
+        font-weight: 800 !important;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25) !important;
+    }
+
+    .options-wrapper {
+        max-width: 320px;
+        margin: 0.25rem auto 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .options-wrapper div[data-testid="column"] {
+        width: 100% !important;
     }
     </style>
     """,
@@ -512,7 +527,6 @@ def proxima_questao():
 # INTERFACE
 # =============================
 iniciar_estado()
-
 if st.query_params.get("cancelar") == "1":
     reiniciar()
     st.query_params.clear()
@@ -573,12 +587,8 @@ if st.session_state.tela == "configuracao":
             st.rerun()
 
 elif st.session_state.tela == "questao":
-    st.markdown('<div class="top-close">', unsafe_allow_html=True)
-    if st.button("×", key="cancelar_x"):
-        reiniciar()
-        st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
-            
+    st.markdown('<a class="top-close" href="?cancelar=1">×</a>', unsafe_allow_html=True)
+
     total = len(st.session_state.teste)
     indice = st.session_state.indice
     pergunta = st.session_state.teste[indice]
@@ -600,24 +610,25 @@ elif st.session_state.tela == "questao":
         unsafe_allow_html=True
     )
 
-    for opcao in pergunta["opcoes"]:
-        col_esq, col_centro, col_dir = st.columns([1, 1.4, 1])
+    st.markdown('<div class="options-wrapper">', unsafe_allow_html=True)
 
-        with col_centro:
-            if st.session_state.respondido:
-                if opcao == pergunta["resposta"]:
-                    st.markdown(f'<div class="correct-box">✓ {opcao}</div>', unsafe_allow_html=True)
-                elif opcao == st.session_state.resposta_selecionada:
-                    st.markdown(f'<div class="wrong-box">✕ {opcao}</div>', unsafe_allow_html=True)
-                else:
-                    st.button(opcao, disabled=True, key=f"opcao_{indice}_{opcao}")
+    for opcao in pergunta["opcoes"]:
+        if st.session_state.respondido:
+            if opcao == pergunta["resposta"]:
+                st.markdown(f'<div class="correct-box">✓ {opcao}</div>', unsafe_allow_html=True)
+            elif opcao == st.session_state.resposta_selecionada:
+                st.markdown(f'<div class="wrong-box">✕ {opcao}</div>', unsafe_allow_html=True)
             else:
-                st.button(
-                    opcao,
-                    key=f"opcao_{indice}_{opcao}",
-                    on_click=selecionar_resposta,
-                    args=(opcao,)
-                )
+                st.button(opcao, disabled=True, key=f"opcao_{indice}_{opcao}")
+        else:
+            st.button(
+                opcao,
+                key=f"opcao_{indice}_{opcao}",
+                on_click=selecionar_resposta,
+                args=(opcao,)
+            )
+
+    st.markdown('</div>', unsafe_allow_html=True)
 
     if st.session_state.respondido:
         titulo_traducao = "Tradução das outras opções:" if pergunta["tipo"] != "Conjugação" else "Tradução:"
