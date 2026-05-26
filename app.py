@@ -197,8 +197,8 @@ st.markdown(
 
     div[data-testid="stButton"] > button,
     div.stButton > button {
-        width: min(320px, 82vw) !important;
-        max-width: 320px !important;
+        width: min(340px, 82vw) !important;
+        max-width: 340px !important;
         min-height: 42px !important;
         margin: 0.22rem auto !important;
         display: flex !important;
@@ -290,6 +290,25 @@ st.markdown(
         backdrop-filter: blur(7px);
     }
 
+    .next-button-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 0.8rem;
+    }
+
+    .next-button-wrapper div[data-testid="stButton"] > button,
+    .next-button-wrapper div.stButton > button {
+        width: 54px !important;
+        height: 54px !important;
+        min-height: 54px !important;
+        max-width: 54px !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        font-size: 1.55rem !important;
+        font-weight: 900 !important;
+    }
+
     div[data-testid="stCaptionContainer"] {
         text-align: center;
         color: #d5dce8;
@@ -349,6 +368,17 @@ st.markdown(
             border-radius: 14px !important;
             padding: 0.55rem 0.75rem !important;
             font-size: 0.92rem !important;
+        }
+
+        .next-button-wrapper div[data-testid="stButton"] > button,
+        .next-button-wrapper div.stButton > button {
+            width: 50px !important;
+            height: 50px !important;
+            min-height: 50px !important;
+            max-width: 50px !important;
+            border-radius: 50% !important;
+            padding: 0 !important;
+            font-size: 1.45rem !important;
         }
 
         .translation-box {
@@ -419,7 +449,8 @@ def pergunta_portugues_para_frances(vocabulario):
         "opcoes": opcoes,
         "resposta": resposta_certa,
         "traducao": "",
-        "traducoes_opcoes": traducoes_opcoes
+        "traducoes_opcoes": traducoes_opcoes,
+        "tempos_opcoes": {}
     }
 
 
@@ -440,7 +471,8 @@ def pergunta_frances_para_portugues(vocabulario):
         "opcoes": opcoes,
         "resposta": resposta_certa,
         "traducao": "",
-        "traducoes_opcoes": traducoes_opcoes
+        "traducoes_opcoes": traducoes_opcoes,
+        "tempos_opcoes": {}
     }
 
 
@@ -456,6 +488,14 @@ def pergunta_conjugacao(verbos):
     ]
     random.shuffle(opcoes)
 
+    tempo_certo = item.get("tempo_resposta", item.get("tempo", "")).strip()
+    tempos_opcoes = {
+        item["resposta_certa"].strip(): tempo_certo,
+        item["opcao_errada_1"].strip(): item.get("tempo_errada_1", item.get("tempo_opcao_errada_1", item.get("tempo", ""))).strip(),
+        item["opcao_errada_2"].strip(): item.get("tempo_errada_2", item.get("tempo_opcao_errada_2", item.get("tempo", ""))).strip(),
+        item["opcao_errada_3"].strip(): item.get("tempo_errada_3", item.get("tempo_opcao_errada_3", item.get("tempo", ""))).strip(),
+    }
+
     return {
         "tipo": "Conjugação",
         "pergunta": f"**({item['tempo']})**\n\n{item['frase_lacuna']}",
@@ -463,7 +503,8 @@ def pergunta_conjugacao(verbos):
         "resposta": resposta_certa,
         "traducao": item.get("traducao_frase", ""),
         "frase_completa": item.get("frase_completa", ""),
-        "traducoes_opcoes": {}
+        "traducoes_opcoes": {},
+        "tempos_opcoes": tempos_opcoes
     }
 
 
@@ -530,6 +571,15 @@ def proxima_questao():
 
     if st.session_state.indice >= len(st.session_state.teste):
         st.session_state.tela = "resultado"
+
+
+def texto_opcao_respondida(pergunta, opcao):
+    if pergunta["tipo"] == "Conjugação" and opcao != pergunta["resposta"]:
+        tempo = pergunta.get("tempos_opcoes", {}).get(opcao, "")
+        return f"{opcao} — {tempo}" if tempo else opcao
+
+    traducao = pergunta.get("traducoes_opcoes", {}).get(opcao, "")
+    return f"{opcao} = {traducao}" if traducao and opcao != pergunta["resposta"] else opcao
 
 
 # =============================
@@ -623,25 +673,24 @@ elif st.session_state.tela == "questao":
     st.markdown('<div class="options-wrapper">', unsafe_allow_html=True)
 
     for opcao in pergunta["opcoes"]:
-        traducao_opcao = pergunta.get("traducoes_opcoes", {}).get(opcao, "")
         opcao_html = html.escape(opcao)
 
         if st.session_state.respondido:
+            texto = html.escape(texto_opcao_respondida(pergunta, opcao))
+
             if opcao == pergunta["resposta"]:
                 st.markdown(
                     f'<div class="option-box correct-box">✓ {opcao_html}</div>',
                     unsafe_allow_html=True
                 )
             elif opcao == st.session_state.resposta_selecionada:
-                texto = f'{opcao} = {traducao_opcao}' if traducao_opcao else opcao
                 st.markdown(
-                    f'<div class="option-box wrong-box">✕ {html.escape(texto)}</div>',
+                    f'<div class="option-box wrong-box">✕ {texto}</div>',
                     unsafe_allow_html=True
                 )
             else:
-                texto = f'{opcao} = {traducao_opcao}' if traducao_opcao else opcao
                 st.markdown(
-                    f'<div class="option-box neutral-box">{html.escape(texto)}</div>',
+                    f'<div class="option-box neutral-box">{texto}</div>',
                     unsafe_allow_html=True
                 )
         else:
@@ -655,16 +704,12 @@ elif st.session_state.tela == "questao":
     st.markdown('</div>', unsafe_allow_html=True)
 
     if st.session_state.respondido:
-        if pergunta["tipo"] == "Conjugação" and pergunta.get("frase_completa"):
-            st.markdown(
-                f'<div class="translation-box"><strong>Frase completa:</strong><br>{html.escape(pergunta["frase_completa"])}</div>',
-                unsafe_allow_html=True
-            )
-
+        st.markdown('<div class="next-button-wrapper">', unsafe_allow_html=True)
         simbolo_botao = "✓" if indice + 1 == total else "→"
         if st.button(simbolo_botao, key=f"proxima_{indice}"):
             proxima_questao()
             st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
 
 elif st.session_state.tela == "resultado":
     total = len(st.session_state.teste)
