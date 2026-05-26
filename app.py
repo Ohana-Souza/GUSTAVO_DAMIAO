@@ -235,19 +235,7 @@ st.markdown(
 
     /* Espaçamento geral menor */
     div[data-testid="stVerticalBlock"] > div {
-        gap: 0.08rem !important;
-    }
-
-    .mode-button {
-        margin: -0.15rem 0 !important;
-    }
-
-    .answer-button {
-        margin: -0.25rem 0 !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button {
-        margin: 0 !important;
+        gap: 0.18rem;
     }
 
     /* Botão base */
@@ -420,7 +408,130 @@ st.markdown(
             font-size: 0.76rem !important;
         }
     }
-    </style>
+    
+    /* =============================
+       OVERRIDE FINAL: ESPAÇAMENTO COMPACTO
+       ============================= */
+
+    div[data-testid="stVerticalBlock"] > div {
+        gap: 0.02rem !important;
+    }
+
+    div[data-testid="stHorizontalBlock"] {
+        gap: 0.05rem !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .mode-button,
+    .answer-button,
+    .start-button,
+    .next-button {
+        margin-top: -0.28rem !important;
+        margin-bottom: -0.28rem !important;
+        padding: 0 !important;
+    }
+
+    .mode-button div[data-testid="stButton"],
+    .answer-button div[data-testid="stButton"],
+    .start-button div[data-testid="stButton"],
+    .next-button div[data-testid="stButton"] {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding: 0 !important;
+    }
+
+    .mode-button div[data-testid="stButton"] > button {
+        width: 180px !important;
+        max-width: 72vw !important;
+        min-height: 28px !important;
+        padding: 0.12rem 0.45rem !important;
+        margin: 0 !important;
+    }
+
+    .answer-button div[data-testid="stButton"] > button {
+        width: min(290px, 76vw) !important;
+        max-width: 290px !important;
+        min-height: 30px !important;
+        padding: 0.26rem 0.55rem !important;
+        margin: 0 !important;
+    }
+
+    .start-button div[data-testid="stButton"] > button {
+        min-height: 30px !important;
+        padding: 0.22rem 0.60rem !important;
+        margin: 0 !important;
+    }
+
+    .question-card {
+        margin-top: 0.12rem !important;
+        margin-bottom: 0.12rem !important;
+    }
+
+    .motivation {
+        margin-top: 0.05rem !important;
+        margin-bottom: 0.08rem !important;
+    }
+
+    .options-wrapper {
+        margin-top: 0.03rem !important;
+        gap: 0 !important;
+    }
+
+    /* X fixo no canto superior direito da área do app */
+    .fixed-close {
+        position: fixed !important;
+        top: 64px !important;
+        right: 22px !important;
+        z-index: 999999 !important;
+        width: 42px !important;
+        height: 42px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .fixed-close div[data-testid="stButton"] > button {
+        width: 42px !important;
+        height: 42px !important;
+        min-height: 42px !important;
+        max-width: 42px !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+    }
+
+    .fixed-close div[data-testid="stButton"] > button p {
+        font-size: 1.2rem !important;
+        font-weight: 900 !important;
+        line-height: 1 !important;
+    }
+
+    @media (max-width: 600px) {
+        .fixed-close {
+            top: 72px !important;
+            right: 12px !important;
+            width: 38px !important;
+            height: 38px !important;
+        }
+
+        .fixed-close div[data-testid="stButton"] > button {
+            width: 38px !important;
+            height: 38px !important;
+            min-height: 38px !important;
+            max-width: 38px !important;
+        }
+
+        .mode-button div[data-testid="stButton"] > button {
+            min-height: 26px !important;
+        }
+
+        .answer-button div[data-testid="stButton"] > button {
+            min-height: 28px !important;
+        }
+    }
+</style>
     """,
     unsafe_allow_html=True
 )
@@ -711,26 +822,11 @@ if st.session_state.tela == "configuracao":
 
 
 elif st.session_state.tela == "questao":
-    colx1, colx2, colx3 = st.columns([8, 1, 1])
-
-    with colx3:
-        st.markdown(
-            """
-            <style>
-            .close-button {
-                position: relative;
-                top: -12px;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-
-        st.markdown('<div class="close-button">', unsafe_allow_html=True)
-        if st.button("×", key="fechar_treino", use_container_width=True):
-            reiniciar()
-            st.rerun()
-        st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown('<div class="fixed-close">', unsafe_allow_html=True)
+    if st.button("×", key="fechar_treino"):
+        reiniciar()
+        st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
 
     total = len(st.session_state.teste)
     indice = st.session_state.indice
@@ -792,7 +888,7 @@ elif st.session_state.tela == "questao":
     st.markdown('</div>', unsafe_allow_html=True)
 
     if st.session_state.respondido:
-        col1, col2, col3 = st.columns([1, 0.35, 1])
+        col1, col2, col3 = st.columns([1.4, 0.35, 1.4], gap='small')
 
         with col2:
             st.markdown('<div class="next-button">', unsafe_allow_html=True)
