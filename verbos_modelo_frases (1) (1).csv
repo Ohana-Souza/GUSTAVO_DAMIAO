@@ -1,0 +1,55 @@
+nivel,verbo,traducao_verbo,tempo,frase_lacuna,frase_completa,traducao_frase,resposta_certa,opcao_errada_1,opcao_errada_2,opcao_errada_3
+A1,être,ser/estar,Futur,Je ................ une bonne étudiante,Je serai une bonne étudiante,Eu serei uma boa estudante,SERAI,SUIS,AI ÉTÉ,SERA
+A1,avoir,ter,Présent,Tu ................ un livre,Tu as un livre,Você tem um livro,AS,AURAS,AVAIS,A
+A2,aller,ir,Passé composé,Nous ................ au musée,Nous sommes allés au musée,Nós fomos ao museu,SOMMES ALLÉS,ALLONS,IRONS,ALLIONS
+B1,faire,fazer,Imparfait,Elle ................ ses devoirs,Elle faisait ses devoirs,Ela fazia seus deveres,FAISAIT,FAIT,FERA,A FAIT
+A1,parler,falar,Présent,Ils ................ français,Ils parlent français,Eles falam francês,PARLENT,PARLES,PARLEZ,PARLONS
+A1,habiter,morar/habitar,Présent,J'................ à Paris,J'habite à Paris,Eu moro em Paris,HABITE,HABITES,HABITONS,HABITENT
+A1,aimer,gostar/amar,Présent,Nous ................ le chocolat,Nous aimons le chocolat,Nós gostamos de chocolate,AIMONS,AIME,AIMER,AIMEZ
+A1,s'appeler,chamar-se,Présent,Comment tu t'................ ?,Comment tu t'appelles ?,Como você se chama?,APPELLES,APPELLE,APPELEZ,APPELLENT
+A1,manger,comer,Présent,Vous ................ une pomme,Vous mangez une pomme,Vocês comem uma maçã,MANGEZ,MANGES,MANGE,MANGENT
+A1,prendre,pegar/tomar,Présent,Je ................ le bus,Je prends le bus,Eu pego o ônibus,PRENDS,PREND,PRENEZ,PRENNENT
+A1,venir,vir,Présent,Tu ................ d'où ?,Tu viens d'où ?,De onde você vem?,VIENS,VIENT,VENEZ,VIENNENT
+A1,vouloir,querer,Présent,Il ................ un café,Il veut un café,Ele quer um café,VEUT,VEUX,VOULONS,VEULENT
+A1,pouvoir,poder,Présent,On ................ entrer ?,On peut entrer ?,A gente pode entrar?,PEUT,PEUX,POUVONS,PEUVENT
+A1,devoir,dever,Présent,Vous ................ partir,Vous devez partir,Vocês devem ir embora,DEVEZ,DOIS,DOIT,DOIVENT
+A2,finir,terminar,Présent,Nous ................ nos devoirs,Nous finissons nos devoirs,Nós terminamos nossos deveres,FINISSONS,FINIT,FINISSEZ,FINISSENT
+A2,partir,partir/sair,Passé composé,Elle ................ hier soir,Elle est partie hier soir,Ela partiu ontem à noite,EST PARTIE,A PARTI,SONT PARTIES,EST PARTI
+A2,voir,ver,Passé composé,J'................ ce film,J'ai vu ce film,Eu vi esse filme,AI VU,AS VU,A VU,AVOIR VU
+A2,lire,ler,Imparfait,"Quand j'étais jeune, je ................ beaucoup","Quand j'étais jeune, je lisais beaucoup","Quando eu era jovem, eu lia muito",LISAIS,LISAIT,LISONS,LURAIS
+A2,écrire,escrever,Présent,Tu ................ une lettre,Tu écris une lettre,Você escreve uma carta,ÉCRIS,ÉCRIT,ÉCRIVEZ,ÉCRIVENT
+A2,boire,beber,Passé composé,Ils ................ du vin,Ils ont bu du vin,Eles beberam vinho,ONT BU,AVAIENT BU,BUVENT,ONT BOIRE
+A2,comprendre,compreender/entender,Présent,Je ne ................ pas,Je ne comprends pas,Eu não entendo,COMPRENDS,COMPREND,COMPRENEZ,COMPRENNENT
+A2,connaître,conhecer,Présent,Vous ................ cette ville ?,Vous connaissez cette ville ?,Vocês conhecem esta cidade?,CONNAISSEZ,CONNAIS,CONNAÎT,CONNAISSENT
+A2,savoir,saber,Futur,"Demain, nous ................ la vérité","Demain, nous saurons la vérité",Amanhã saberemos a verdade,SAURONS,SAVONS,SAURIONS,SAUREZ
+A2,mettre,colocar/vestir,Passé composé,Où as-tu ................ les clés ?,Où as-tu mis les clés ?,Onde você colocou as chaves?,MIS,METTAIT,METS,MIT
+A2,sortir,sair,Passé composé,Nous ................ ensemble,Nous sommes sortis ensemble,Nós saímos juntos,SOMMES SORTIS,AVONS SORTI,SORTONS,SERONS SORTIS
+A2,attendre,esperar,Présent,Elle ................ le train,Elle attend le train,Ela espera o trem,ATTEND,ATTENDS,ATTENDEZ,ATTENDENT
+B1,croire,acreditar/crer,Imparfait,Je ................ qu'il viendrait,Je croyais qu'il viendrait,Eu acreditava que ele viria,CROYAIS,CROIT,CROYONS,CROYAIT
+B1,vivre,viver,Passé composé,Ils ................ en Italie pendant dix ans,Ils ont vécu en Italie pendant dix ans,Eles viveram na Itália por dez anos,ONT VÉCU,VIVAIENT,ONT VIVÉ,VIVRONT
+B1,recevoir,receber,Conditionnel,"Si elle gagnait, elle ................ un prix","Si elle gagnait, elle recevrait un prix","Se ela ganhasse, ela receberia um prêmio",RECEVRAIT,REÇOIT,RECEVRA,RECEVAIT
+B1,ouvrir,abrir,Passé composé,Tu ................ la fenêtre,Tu as ouvert la fenêtre,Você abriu a janela,AS OUVERT,A OUVERT,AS OUVRÉ,OUVRES
+B1,courir,correr,Futur,Ils ................ demain matin,Ils courront demain matin,Eles correrão amanhã de manhã,COURRONT,COURENT,COURERONT,COURRAIENT
+B1,offrir,oferecer/dar de presente,Présent,Nous vous ................ des fleurs,Nous vous offrons des fleurs,Nós lhe oferecemos flores,OFFRONS,OFFREZ,OFFRERONS,OFFRIONS
+B1,conduire,dirigir,Présent,Il ................ prudemment,Il conduit prudemment,Ele dirige prudentemente,CONDUIT,CONDUIS,CONDUISAIT,CONDUISENT
+B1,suivre,seguir,Passé composé,J'................ ce cours l'année dernière,J'ai suivi ce cours l'année dernière,Eu fiz/segui este curso no ano passado,AI SUIVI,AI SUIVÉ,SUIS,SUIVAIS
+B1,plaire,agradar,Présent,Ça me ................ beaucoup,Ça me plaît beaucoup,Isso me agrada muito,PLAÎT,PLAIENT,PLAISAIT,PLAIRA
+B1,mourir,morrer,Passé composé,L'écrivain ................ en 1920,L'écrivain est mort en 1920,O escritor morreu em 1920,EST MORT,A MOURU,EST MOURU,MOURUT
+B1,naître,nascer,Passé composé,Je ................ en France,Je suis né en France,Eu nasci na França,SUIS NÉ,AI NÉ,NAISSAIS,SERAI NÉ
+B1,perdre,perder,Subjonctif,Il faut que tu ne ................ pas espoir,Il faut que tu ne perdes pas espoir,É preciso que você não perca a esperança,PERDES,PERDS,PERDIT,PERDRAIS
+B1,craindre,temer,Présent,Nous ................ le pire,Nous craignons le pire,Nós tememos o pior,CRAIGNONS,CRAINDONS,CRAIGNIONS,CRAIGNENT
+B2,s'asseoir,sentar-se,Présent,Vous ................ sur la chaise,Vous vous asseyez sur la chaise,Vocês se sentam na cadeira,VOUS ASSEYEZ,ASSEYEZ,VOUS ASSOYEZ,VOUS ASSEYENT
+B2,atteindre,atingir/alcançar,Passé composé,Ils ................ leur but,Ils ont atteint leur but,Eles alcançaram seu objetivo,ONT ATTEINT,ONT ATTEINDRE,ATTEIGNAIENT,ATTEINDRAIENT
+B2,résoudre,resolver,Subjonctif,Bien qu'il ................ ce problème,Bien qu'il résolve ce problème,Embora ele resolva esse problema,RÉSOLVE,RÉSOUT,RÉSOLVAIT,RÉSOUDRA
+B2,acquérir,adquirir,Présent,Elle ................ de l'expérience,Elle acquiert de l'expérience,Ela adquire experiência,ACQUIERT,ACQUIRE,ACQUIERA,ACQUIERS
+B2,convaincre,convencer,Passé composé,Tu m'................,Tu m'as convaincu,Você me convenceu,AS CONVAINCU,AS CONVAINQUÉ,CONVAINCS,CONVAINCRAIS
+B2,feindre,fingir,Imparfait,Il ................ de ne pas comprendre,Il feignait de ne pas comprendre,Ele fingia não entender,FEIGNAIT,FEINDRAIT,FEIGNAIENT,FEIGNAIS
+B2,paraître,parecer,Présent,Ce livre ................ demain,Ce livre paraît demain,Este livro sai amanhã,PARAÎT,PARAIENT,PARRAÎT,PARAISSE
+B2,valoir,valer,Conditionnel,Mieux ................ partir maintenant,Mieux vaudrait partir maintenant,Seria melhor partir agora,VAUDRAIT,VAUT,VAUDRA,VALAIT
+B2,plaire,agradar,Subjonctif,Il faut que cela leur ................,Il faut que cela leur plaise,É preciso que isso lhes agrade,PLAISE,PLAÎT,PLAISENT,PLAIRA
+B2,fuir,fugir,Passé composé,Les voleurs ................,Les voleurs ont fui,Os ladrões fugiram,ONT FUI,SONT FUIS,SONT FUIT,ONT FUIT
+B2,détruire,destruir,Imparfait,Le feu ................ la forêt,Le feu détruisait la forêt,O fogo destruía a floresta,DÉTRUISAIT,DÉTRUIRAIT,DÉTRUISAIENT,DÉTRUIT
+B2,joindre,juntar/anexar,Présent,Je ................ un document,Je joins un document,Eu anexo um documento,JOINS,JOINT,JOIGNONS,JOINDRONS
+A1,écouter,escutar/ouvir,Présent,Nous ................ de la musique,Nous écoutons de la musique,Nós escutamos música,ÉCOUTONS,ÉCOUTE,ÉCOUTEZ,ÉCOUTENT
+A2,vendre,vender,Présent,Ils ................ leur voiture,Ils vendent leur voiture,Eles vendem o carro deles,VENDENT,VENDS,VEND,VENDEZ
+B1,produire,produzir,Passé composé,Cette usine ................ beaucoup de voitures,Cette usine a produit beaucoup de voitures,Esta fábrica produziu muitos carros,A PRODUIT,A PRODUI,EST PRODUIT,ONT PRODUIT
