@@ -165,26 +165,33 @@ st.markdown(
         color: #ffffff;
     }
     .fake-label {
-        width: 100%;
-        max-width: 340px;
+        width: fit-content;
+        min-width: 240px;
+        max-width: 300px;
     
-        margin: 0.45rem auto 0.18rem auto;
-        padding: 0.72rem 1rem;
+        margin: 0.35rem auto 0.15rem auto;
+        padding: 0.55rem 1rem;
     
-        border-radius: 16px;
+        border-radius: 14px;
     
-        background: rgba(255,255,255,0.88);
+        background: rgba(255,255,255,0.90);
         border: 1px solid rgba(255,255,255,0.35);
     
         color: #111827;
     
-        font-size: 1rem;
+        font-size: 0.95rem;
         font-weight: 800;
         text-align: center;
     
         backdrop-filter: blur(8px);
     
         box-shadow: 0 5px 18px rgba(0,0,0,0.14);
+    }
+    div[role="radiogroup"] {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 1.2rem !important;
+        flex-wrap: wrap !important;
     }
     .question-type {
         text-align: center;
