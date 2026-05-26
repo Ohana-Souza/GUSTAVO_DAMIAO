@@ -93,7 +93,34 @@ st.markdown(
         padding-right: 0.9rem;
         margin: auto;
     }
-
+    /* REMOVE espaço invisível entre widgets */
+    div[data-testid="element-container"] {
+        margin-bottom: -0.45rem !important;
+    }
+    
+    /* REMOVE espaço do bloco vertical */
+    div[data-testid="stVerticalBlock"] {
+        gap: 0rem !important;
+    }
+    
+    /* BOTÕES */
+    .answer-button {
+        margin: -0.35rem 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* BOTÃO INTERNO */
+    .answer-button div[data-testid="stButton"] > button {
+        min-height: 24px !important;
+        padding: 0rem 0.4rem !important;
+        border-radius: 12px !important;
+    }
+    
+    /* TEXTO */
+    .answer-button div[data-testid="stButton"] > button p {
+        font-size: 0.72rem !important;
+        line-height: 0.8 !important;
+    }
     /* Espaçamento geral controlado, sem margens negativas */
     div[data-testid="stVerticalBlock"] > div {
         gap: 0.24rem !important;
@@ -487,7 +514,7 @@ st.markdown(
     }
 
     .mode-button {
-        margin: -0.03rem 0 !important;
+        margin: -0.45rem 0 !important;
         padding: 0 !important;
     }
 
