@@ -500,7 +500,7 @@ st.markdown(
     }
 
     div[data-testid="stVerticalBlock"] > div {
-        gap: 0.06rem !important;
+        gap: 0.22rem !important;
     }
 
     div[data-testid="stHorizontalBlock"] {
@@ -510,11 +510,11 @@ st.markdown(
     }
 
     [data-testid="element-container"] {
-        margin-bottom: 0rem !important;
+        margin-bottom: 0.12rem !important;
     }
 
     .mode-button {
-        margin: 0.9rem 0 !important;
+        margin: 0rem 0 !important;
         padding: 0 !important;
     }
 
