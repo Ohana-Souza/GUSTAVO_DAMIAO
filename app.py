@@ -2,6 +2,7 @@ import base64
 import csv
 import random
 import html
+from urllib.parse import quote, unquote
 from pathlib import Path
 
 import streamlit as st
@@ -304,14 +305,14 @@ st.markdown(
     }
 
     .answer-button {
-        margin: 0.01rem 0 !important;
+        margin: 0.12rem 0 !important;
         padding: 0 !important;
     }
 
     .answer-button div[data-testid="stButton"] > button {
-        min-height: 36px !important;
-        padding: 0.30rem 0.65rem !important;
-        margin: 0 !important;
+        min-height: 38px !important;
+        padding: 0.36rem 0.70rem !important;
+        margin: 0.02rem auto !important;
         border-radius: 14px !important;
     }
 
@@ -339,25 +340,25 @@ st.markdown(
     .options-wrapper {
         width: 100% !important;
         max-width: 440px !important;
-        margin: 0.02rem auto 0 auto !important;
+        margin: 0.12rem auto 0 auto !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 0.02rem !important;
+        gap: 0.18rem !important;
     }
 
     .option-box {
         width: min(340px, 82vw) !important;
         max-width: 340px !important;
-        min-height: 36px !important;
-        margin: 0.01rem auto !important;
+        min-height: 38px !important;
+        margin: 0.08rem auto !important;
         text-align: center !important;
-        padding: 0.30rem 0.65rem !important;
+        padding: 0.36rem 0.70rem !important;
         border-radius: 14px !important;
-        font-size: 0.88rem !important;
+        font-size: 0.92rem !important;
         font-weight: 800 !important;
-        line-height: 1.12 !important;
+        line-height: 1.18 !important;
         box-sizing: border-box !important;
         display: flex !important;
         align-items: center !important;
@@ -431,36 +432,57 @@ st.markdown(
         }
     }
     
-    /* ===== OVERRIDE FINAL: diminuir espaço entre alternativas ===== */
-    .options-wrapper {
-        margin-top: 0.02rem !important;
-        gap: 0.02rem !important;
+    /* ===== ALTERNATIVAS HTML: espaçamento controlado de verdade ===== */
+    .html-options {
+        width: 100%;
+        max-width: 340px;
+        margin: 0.08rem auto 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.14rem;
     }
 
-    .answer-button {
-        margin-top: 0.01rem !important;
-        margin-bottom: 0.01rem !important;
+    .answer-form {
+        width: 100%;
+        margin: 0 !important;
         padding: 0 !important;
+        line-height: 1 !important;
     }
 
-    .answer-button div[data-testid="stButton"] {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
+    .html-answer-button {
+        width: 100%;
+        min-height: 38px;
+        border-radius: 14px;
+        border: 1px solid #e5e7eb;
+        background: rgba(255,255,255,0.92);
+        color: #111827;
+        font-size: 0.92rem;
+        font-weight: 650;
+        padding: 0.34rem 0.70rem;
+        box-shadow: 0 5px 16px rgba(0,0,0,0.16);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .answer-button div[data-testid="stButton"] > button {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        min-height: 36px !important;
-        padding-top: 0.30rem !important;
-        padding-bottom: 0.30rem !important;
+    .html-answer-button:hover {
+        background: #f3f4f6;
+        border-color: #2563eb;
     }
 
-    .option-box {
-        margin-top: 0.01rem !important;
-        margin-bottom: 0.01rem !important;
+    @media (max-width: 600px) {
+        .html-options {
+            max-width: 300px;
+            gap: 0.10rem;
+        }
+
+        .html-answer-button {
+            min-height: 36px;
+            font-size: 0.84rem;
+            padding: 0.30rem 0.60rem;
+        }
     }
 
 </style>
@@ -662,6 +684,11 @@ def texto_opcao_respondida(pergunta, opcao):
 # =============================
 iniciar_estado()
 
+if st.session_state.tela == "questao" and "resposta" in st.query_params and not st.session_state.respondido:
+    selecionar_resposta(unquote(st.query_params["resposta"]))
+    st.query_params.clear()
+    st.rerun()
+
 if st.session_state.tela == "configuracao":
     st.markdown('<div class="main-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
     st.markdown('<div class="subtitle">GUSTAVO DAMIÃO</div>', unsafe_allow_html=True)
@@ -806,18 +833,17 @@ elif st.session_state.tela == "questao":
                     unsafe_allow_html=True
                 )
     else:
-        col1, col2, col3 = st.columns([1.30, 1, 1.30], gap="small")
-        with col2:
-            for opcao in pergunta["opcoes"]:
-                st.markdown('<div class="answer-button">', unsafe_allow_html=True)
-                st.button(
-                    opcao,
-                    key=f"opcao_{indice}_{opcao}",
-                    on_click=selecionar_resposta,
-                    args=(opcao,),
-                    use_container_width=True
-                )
-                st.markdown("</div>", unsafe_allow_html=True)
+        botoes_html = '<div class="html-options">'
+        for opcao in pergunta["opcoes"]:
+            botoes_html += f"""
+            <form method="get" class="answer-form">
+                <button class="html-answer-button" type="submit" name="resposta" value="{quote(opcao)}">
+                    {html.escape(opcao)}
+                </button>
+            </form>
+            """
+        botoes_html += '</div>'
+        st.markdown(botoes_html, unsafe_allow_html=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
 
