@@ -304,7 +304,7 @@ st.markdown(
     }
 
     .answer-button {
-        margin: -0.1rem 0 !important;
+        margin: 0.01rem 0 !important;
         padding: 0 !important;
     }
 
@@ -351,7 +351,7 @@ st.markdown(
         width: min(340px, 82vw) !important;
         max-width: 340px !important;
         min-height: 38px !important;
-        margin: 0.08rem auto !important;
+        margin: 0.01rem auto !important;
         text-align: center !important;
         padding: 0.36rem 0.70rem !important;
         border-radius: 14px !important;
