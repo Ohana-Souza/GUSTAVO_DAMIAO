@@ -587,11 +587,6 @@ def texto_opcao_respondida(pergunta, opcao):
 # =============================
 iniciar_estado()
 
-if st.query_params.get("cancelar") == "1":
-    reiniciar()
-    st.query_params.clear()
-    st.rerun()
-
 if st.session_state.tela == "configuracao":
     st.markdown('<div class="main-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
     st.markdown('<div class="subtitle">Vocabulário, conjugação ou os dois — uma questão por vez.</div>', unsafe_allow_html=True)
@@ -647,8 +642,13 @@ if st.session_state.tela == "configuracao":
             st.rerun()
 
 elif st.session_state.tela == "questao":
-    st.markdown('<a class="top-close" href="?cancelar=1">×</a>', unsafe_allow_html=True)
+    colx1, colx2, colx3 = st.columns([8,1,1])
 
+    with colx3:
+        if st.button("×", key="fechar_treino"):
+            reiniciar()
+            st.rerun()
+            
     total = len(st.session_state.teste)
     indice = st.session_state.indice
     pergunta = st.session_state.teste[indice]
