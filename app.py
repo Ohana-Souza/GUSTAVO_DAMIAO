@@ -504,7 +504,14 @@ st.markdown(
         align-items: center !important;
     }
     
-/* BOTÕES DA MODALIDADE */
+    /* CENTRALIZA COLUNAS */
+    div[data-testid="column"] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    /* BOTÕES DA MODALIDADE */
     .mode-buttons {
         display: flex !important;
         flex-direction: column !important;
@@ -545,20 +552,16 @@ st.markdown(
     }
     
     /* =============================
-       CORREÇÃO FINAL — BOTÕES DA TELA INICIAL
+       CENTRALIZAÇÃO FINAL — padrão que funcionou no histórico
        ============================= */
 
-    .mode-buttons {
-        width: 100% !important;
-        margin: 0 auto !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 0.10rem !important;
+    /* Não estilizar colunas globalmente: isso quebrava o layout */
+    div[data-testid="column"] {
+        align-items: stretch !important;
     }
 
-    .mode-buttons div[data-testid="stButton"] {
+    /* Centraliza qualquer st.button dentro da coluna */
+    div[data-testid="stButton"] {
         width: 100% !important;
         display: flex !important;
         justify-content: center !important;
@@ -566,36 +569,86 @@ st.markdown(
         margin: 0 !important;
     }
 
-    .mode-buttons div[data-testid="stButton"] > button {
+    div[data-testid="stButton"] > button {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
+        border: 1px solid #e5e7eb !important;
+        background: rgba(255,255,255,0.92) !important;
+        color: #111827 !important;
+    }
+
+    div[data-testid="stButton"] > button p {
+        margin: 0 !important;
+        color: inherit !important;
+    }
+
+    /* Botões da tela inicial: Vocabulário / Verbos / Ambos.
+       Eles ficam centralizados pela coluna col2 do Python. */
+    #btn_modo_vocab, #btn_modo_verbos, #btn_modo_ambos {
+        display: none;
+    }
+
+    div[data-testid="stButton"] > button[kind="secondary"] {
         width: 180px !important;
         max-width: 72vw !important;
         min-height: 30px !important;
         padding: 0.18rem 0.50rem !important;
         border-radius: 13px !important;
-        margin: 0.02rem auto !important;
-        background: rgba(255,255,255,0.74) !important;
-        border: 1px solid rgba(255,255,255,0.28) !important;
-        color: #111827 !important;
-        box-shadow: 0 5px 16px rgba(0,0,0,0.14) !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
     }
 
-    .mode-buttons div[data-testid="stButton"] > button p {
+    div[data-testid="stButton"] > button[kind="secondary"] p {
         font-size: 0.74rem !important;
         font-weight: 500 !important;
         line-height: 1.1 !important;
-        margin: 0 !important;
-        color: #111827 !important;
     }
 
-    .mode-buttons div[data-testid="stButton"] > button:hover {
-        background: rgba(255,255,255,0.96) !important;
-        border-color: #2563eb !important;
+    /* Commencer */
+    .start-button div[data-testid="stButton"] > button {
+        width: 190px !important;
+        max-width: 74vw !important;
+        min-height: 34px !important;
+        padding: 0.28rem 0.70rem !important;
+        border-radius: 13px !important;
+        margin-top: 0.35rem !important;
+        background: rgba(255,255,255,0.95) !important;
     }
 
-    /* Compacta e corrige tela de pergunta */
+    .start-button div[data-testid="stButton"] > button p {
+        font-size: 0.82rem !important;
+        font-weight: 500 !important;
+    }
+
+    /* Alternativas */
+    .answer-button div[data-testid="stButton"] > button {
+        width: min(290px, 76vw) !important;
+        max-width: 290px !important;
+        min-height: 32px !important;
+        padding: 0.34rem 0.65rem !important;
+        margin: 0.02rem auto !important;
+        border-radius: 13px !important;
+        background: #ffffff !important;
+    }
+
+    .answer-button div[data-testid="stButton"] > button p {
+        font-size: 0.80rem !important;
+        font-weight: 650 !important;
+    }
+
+    .option-box {
+        width: min(290px, 76vw) !important;
+        max-width: 290px !important;
+        min-height: 32px !important;
+        padding: 0.34rem 0.65rem !important;
+        margin: 0.08rem auto !important;
+        border-radius: 13px !important;
+        font-size: 0.80rem !important;
+    }
+
+    /* Compacta tela das perguntas */
     .small-title {
         font-size: clamp(0.95rem, 3.5vw, 1.15rem) !important;
         margin: 0.02rem auto 0.10rem auto !important;
@@ -620,37 +673,13 @@ st.markdown(
         gap: 0.05rem !important;
     }
 
-    .answer-button div[data-testid="stButton"] > button {
-        width: min(290px, 76vw) !important;
-        max-width: 290px !important;
-        min-height: 32px !important;
-        padding: 0.34rem 0.65rem !important;
-        margin: 0.02rem auto !important;
-        border-radius: 13px !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.80rem !important;
-        font-weight: 650 !important;
-    }
-
-    .option-box {
-        width: min(290px, 76vw) !important;
-        max-width: 290px !important;
-        min-height: 32px !important;
-        padding: 0.34rem 0.65rem !important;
-        margin: 0.08rem auto !important;
-        border-radius: 13px !important;
-        font-size: 0.80rem !important;
-    }
-
     @media (max-width: 600px) {
-        .mode-buttons div[data-testid="stButton"] > button {
+        div[data-testid="stButton"] > button[kind="secondary"] {
             width: 160px !important;
             min-height: 28px !important;
         }
 
-        .mode-buttons div[data-testid="stButton"] > button p {
+        div[data-testid="stButton"] > button[kind="secondary"] p {
             font-size: 0.68rem !important;
         }
 
