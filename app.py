@@ -689,7 +689,7 @@ if st.session_state.tela == "configuracao":
     qtd_verbos = 0
 
     if modalidade == "Vocabulário":
-        st.markdown('<div class="fake-label">Quantidade de questões de vocabulário</div>', unsafe_allow_html=True)
+        st.markdown('<div class="fake-label">Quantidade de questões</div>', unsafe_allow_html=True)
         qtd_vocabulario = st.slider("", 1, 50, 10, label_visibility="collapsed")
 
     elif modalidade == "Verbos":
