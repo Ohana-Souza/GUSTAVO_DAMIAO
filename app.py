@@ -1,15 +1,28 @@
-import streamlit as st
+import base64
 import csv
 import random
 from pathlib import Path
+
+import streamlit as st
 
 st.set_page_config(
     page_title="Treino de Francês",
     page_icon="🇫🇷",
     layout="centered"
 )
-import base64
 
+# =============================
+# CONFIGURAÇÃO DOS ARQUIVOS
+# =============================
+BASE_DIR = Path(__file__).parent
+ARQUIVO_VOCABULARIO = BASE_DIR / "vocabulario.csv"
+ARQUIVO_VERBOS = BASE_DIR / "verbos.csv"
+CAMINHO_FUNDO = BASE_DIR / "fundo.png"
+
+
+# =============================
+# FUNDO ANIMADO
+# =============================
 def adicionar_fundo_animado(imagem):
     imagem = Path(imagem)
 
@@ -20,55 +33,33 @@ def adicionar_fundo_animado(imagem):
     with open(imagem, "rb") as arquivo:
         encoded = base64.b64encode(arquivo.read()).decode()
 
-    
-
     st.markdown(
         f"""
         <style>
         .stApp {{
             background-color: #0d1117;
+            background-image: url("data:image/png;base64,{encoded}");
+            background-repeat: repeat-x;
+            background-size: auto 100vh;
+            background-position: 0 0;
+            animation: moverFundo 150s linear infinite;
             overflow-x: hidden;
         }}
-    
+
+        @keyframes moverFundo {{
+            from {{ background-position: 0 0; }}
+            to {{ background-position: -2200px 0; }}
+        }}
+
         .stApp::before {{
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 300vw;
-            height: 100vh;
-            background-image:
-                url("data:image/png;base64,{encoded}"),
-                url("data:image/png;base64,{encoded}");                                
-                url("data:image/png;base64,{encoded}");
-                
-            background-repeat:no-repeat;
-            background-size: 103vw 100vh, 103vw 100vh, 103vw 100vh;
-            background-position: 0 0, 100vw 0, 200vw 0;
-            animation: moverFundo 120s linear infinite;
-            opacity: 0.55;
-            z-index: 0;
-            pointer-events: none;
-        }}
-    
-        @keyframes moverFundo {{
-            from {{
-                transform: translateX(0);
-            }}
-            to {{
-                transform: translateX(-100vw);
-            }}
-        }}
-    
-        .stApp::after {{
-            content: "";
-            position: fixed;
             inset: 0;
-            background: rgba(13, 17, 23, 0.45);
+            background: rgba(5, 8, 13, 0.58);
             z-index: 0;
             pointer-events: none;
         }}
-    
+
         .block-container {{
             position: relative;
             z-index: 1;
@@ -78,17 +69,8 @@ def adicionar_fundo_animado(imagem):
         unsafe_allow_html=True
     )
 
-from pathlib import Path
-
-CAMINHO_FUNDO = Path(__file__).parent / "fundo.png"
 
 adicionar_fundo_animado(CAMINHO_FUNDO)
-
-# =============================
-# CONFIGURAÇÃO DOS ARQUIVOS
-# =============================
-ARQUIVO_VOCABULARIO = Path("vocabulario.csv")
-ARQUIVO_VERBOS = Path("verbos.csv")
 
 
 # =============================
@@ -97,93 +79,134 @@ ARQUIVO_VERBOS = Path("verbos.csv")
 st.markdown(
     """
     <style>
+    html, body, [class*="css"] {
+        scroll-behavior: smooth;
+    }
+
+    .block-container {
+        max-width: 640px;
+        padding-top: clamp(0.35rem, 1.5vw, 0.8rem);
+        padding-bottom: 0.35rem;
+        padding-left: clamp(0.7rem, 3vw, 1.2rem);
+        padding-right: clamp(0.7rem, 3vw, 1.2rem);
+        margin: auto;
+    }
+
     .main-title {
         text-align: center;
-        font-size: clamp(1.9rem, 6vw, 2.8rem);
+        font-size: clamp(1.55rem, 6vw, 2.35rem);
         font-weight: 850;
-        margin: 0 auto 0.35rem auto;
-        line-height: 1.1;
-        text-shadow: 0 4px 18px rgba(0,0,0,0.55);
+        margin: 0.2rem auto 0.15rem auto;
+        color: #ffffff;
+        text-shadow: 0 3px 12px rgba(0,0,0,0.55);
+    }
+
+    .small-title {
+        text-align: center;
+        font-size: clamp(0.98rem, 4vw, 1.25rem);
+        font-weight: 850;
+        margin: 0.05rem auto 0.35rem auto;
+        color: #ffffff;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.55);
     }
 
     .subtitle {
         text-align: center;
-        font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-        color: #c9d1d9;
-        margin: 0 auto 1.7rem auto;
-        line-height: 1.4;
+        font-size: clamp(0.82rem, 3vw, 0.98rem);
+        color: #d5dce8;
+        margin: 0 auto 1rem auto;
+        line-height: 1.35;
+        max-width: 520px;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.55);
     }
 
     .motivation {
         text-align: center;
-        font-size: clamp(1rem, 2.8vw, 1.15rem);
-        font-weight: 750;
+        font-size: clamp(0.72rem, 2.7vw, 0.9rem);
+        font-weight: 800;
         color: #f0f6fc;
-        margin: 1.2rem auto 1rem auto;
-        padding: 0.75rem 1rem;
-        max-width: 680px;
-        border-radius: 18px;
-        background: rgba(13, 17, 23, 0.58);
+        margin: 0.25rem auto 0.45rem auto;
+        padding: 0.42rem 0.7rem;
+        max-width: 520px;
+        border-radius: 999px;
+        background: rgba(13, 17, 23, 0.54);
         border: 1px solid rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(6px);
+        backdrop-filter: blur(7px);
+        line-height: 1.25;
     }
 
     .question-card {
-        max-width: 720px;
-        margin: 1.35rem auto 1rem auto;
+        max-width: 600px;
+        margin: 0.45rem auto 0.55rem auto;
         text-align: center;
-        background: rgba(13, 17, 23, 0.82);
+        background: rgba(13, 17, 23, 0.74);
         border: 1px solid rgba(255,255,255,0.14);
-        border-radius: 24px;
-        padding: clamp(1.25rem, 4vw, 2rem);
-        box-shadow: 0 12px 32px rgba(0,0,0,0.38);
+        border-radius: 18px;
+        padding: clamp(0.7rem, 2.6vw, 1rem);
+        box-shadow: 0 8px 22px rgba(0,0,0,0.30);
         color: #f0f6fc;
         backdrop-filter: blur(8px);
     }
 
     .question-type {
         text-align: center;
-        font-size: clamp(0.72rem, 2vw, 0.9rem);
-        color: #aeb6c2;
+        font-size: clamp(0.55rem, 2.1vw, 0.7rem);
+        color: #b8c0cc;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
-        font-weight: 800;
-        margin-bottom: 0.9rem;
+        letter-spacing: 0.05em;
+        font-weight: 850;
+        margin-bottom: 0.35rem;
     }
 
     .question-text {
         text-align: center;
-        font-size: clamp(1.25rem, 4.5vw, 1.7rem);
-        font-weight: 750;
-        line-height: 1.45;
+        font-size: clamp(0.94rem, 3.8vw, 1.2rem);
+        font-weight: 800;
+        line-height: 1.28;
         color: #ffffff;
+        margin: 0;
     }
 
-    .translation-box {
-        max-width: 680px;
-        margin: 1.2rem auto 0 auto;
-        text-align: center;
-        padding: 1rem 1.1rem;
-        border-radius: 18px;
-        background: rgba(13, 17, 23, 0.80);
-        border: 1px solid rgba(255,255,255,0.14);
-        font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+    div.stButton > button {
+        width: 100%;
+        max-width: 600px;
+        min-height: 40px;
+        margin: 0.10rem auto;
+        display: block;
+        border-radius: 14px;
+        padding: 0.45rem 0.75rem;
+        font-weight: 800;
+        font-size: clamp(0.78rem, 3vw, 0.95rem);
+        border: 1px solid rgba(255,255,255,0.18);
+        background: rgba(13, 17, 23, 0.82);
         color: #f0f6fc;
-        line-height: 1.65;
-        backdrop-filter: blur(7px);
+        transition: all 0.16s ease;
+        backdrop-filter: blur(6px);
+    }
+
+    div.stButton > button:hover {
+        border: 1px solid #58a6ff;
+        background: rgba(31, 41, 55, 0.92);
+        transform: translateY(-1px);
+    }
+
+    div.stButton > button:disabled {
+        opacity: 0.62;
+        color: #c9d1d9;
+        background: rgba(13, 17, 23, 0.55);
     }
 
     .correct-box,
     .wrong-box {
-        max-width: 680px;
-        margin: 0.65rem auto;
+        max-width: 600px;
+        margin: 0.30rem auto;
         text-align: center;
-        padding: 0.95rem 1rem;
-        border-radius: 18px;
-        font-size: clamp(1rem, 3vw, 1.12rem);
-        font-weight: 800;
-        line-height: 1.35;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+        padding: 0.55rem 0.75rem;
+        border-radius: 14px;
+        font-size: clamp(0.78rem, 3vw, 0.98rem);
+        font-weight: 850;
+        line-height: 1.25;
+        box-shadow: 0 5px 16px rgba(0,0,0,0.16);
     }
 
     .correct-box {
@@ -198,27 +221,23 @@ st.markdown(
         color: #8a1c15;
     }
 
-    div.stButton > button {
-        width: 100%;
-        max-width: 680px;
-        min-height: 58px;
-        margin: 0.25rem auto;
-        display: block;
-        border-radius: 18px;
-        padding: 0.9rem 1rem;
-        font-weight: 750;
-        font-size: clamp(1rem, 3vw, 1.15rem);
-        border: 1px solid rgba(255,255,255,0.16);
-        background: rgba(13, 17, 23, 0.84);
+    .translation-box {
+        max-width: 600px;
+        margin: 0.45rem auto 0 auto;
+        text-align: center;
+        padding: 0.55rem 0.75rem;
+        border-radius: 14px;
+        background: rgba(13, 17, 23, 0.80);
+        border: 1px solid rgba(255,255,255,0.14);
+        font-size: clamp(0.72rem, 2.6vw, 0.9rem);
         color: #f0f6fc;
-        transition: all 0.2s ease;
-        backdrop-filter: blur(6px);
+        line-height: 1.45;
+        backdrop-filter: blur(7px);
     }
 
-    div.stButton > button:hover {
-        border: 1px solid #58a6ff;
-        background: rgba(31, 41, 55, 0.92);
-        transform: translateY(-1px);
+    .stProgress {
+        margin-top: 0.15rem;
+        margin-bottom: 0.1rem;
     }
 
     .stProgress > div > div > div > div {
@@ -227,30 +246,61 @@ st.markdown(
 
     div[data-testid="stCaptionContainer"] {
         text-align: center;
-        color: #c9d1d9;
-        font-weight: 700;
+        color: #d5dce8;
+        font-weight: 800;
+        font-size: clamp(0.68rem, 2.4vw, 0.82rem);
+        margin-top: -0.2rem;
+        margin-bottom: 0.25rem;
     }
 
-    h3, .stSubheader {
+    h1, h2, h3, .stSubheader {
         text-align: center;
+        color: #ffffff;
+    }
+
+    /* Compacta espaços verticais padrão do Streamlit */
+    div[data-testid="stVerticalBlock"] > div {
+        gap: 0.35rem;
     }
 
     @media (max-width: 600px) {
+        .block-container {
+            max-width: 100%;
+            padding-top: 0.25rem;
+            padding-left: 0.65rem;
+            padding-right: 0.65rem;
+        }
+
+        .small-title {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .motivation {
+            margin-top: 0.15rem;
+            margin-bottom: 0.35rem;
+            padding: 0.36rem 0.55rem;
+        }
+
         .question-card {
-            border-radius: 20px;
-            margin-top: 1rem;
-            padding: 1.15rem;
+            border-radius: 15px;
+            margin: 0.35rem auto 0.4rem auto;
+            padding: 0.62rem;
         }
 
         div.stButton > button {
-            min-height: 54px;
-            border-radius: 16px;
+            min-height: 36px;
+            border-radius: 12px;
+            padding: 0.36rem 0.55rem;
         }
 
         .correct-box,
         .wrong-box,
         .translation-box {
-            border-radius: 16px;
+            border-radius: 12px;
+            padding: 0.45rem 0.55rem;
+            margin-top: 0.24rem;
+            margin-bottom: 0.24rem;
         }
     }
     </style>
@@ -438,8 +488,11 @@ def proxima_questao():
 # =============================
 iniciar_estado()
 
-st.markdown('<div class="main-title">Treino de Francês</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">Vocabulário, conjugação ou os dois — uma questão por vez.</div>', unsafe_allow_html=True)
+if st.session_state.tela == "configuracao":
+    st.markdown('<div class="main-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
+    st.markdown('<div class="subtitle">Vocabulário, conjugação ou os dois — uma questão por vez.</div>', unsafe_allow_html=True)
+else:
+    st.markdown('<div class="small-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
 
 vocabulario = carregar_csv(ARQUIVO_VOCABULARIO)
 verbos = carregar_csv(ARQUIVO_VERBOS)
@@ -507,8 +560,6 @@ elif st.session_state.tela == "questao":
     st.markdown(f'<div class="question-text">{pergunta["pergunta"]}</div>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-    st.write("")
-
     for opcao in pergunta["opcoes"]:
         if st.session_state.respondido:
             if opcao == pergunta["resposta"]:
@@ -526,20 +577,23 @@ elif st.session_state.tela == "questao":
             )
 
     if st.session_state.respondido:
+        titulo_traducao = "Tradução das outras opções:" if pergunta["tipo"] != "Conjugação" else "Tradução:"
         st.markdown(
-            f'<div class="translation-box"><strong>Tradução das outras opções:</strong><br>{pergunta.get("traducao", "")}</div>',
+            f'<div class="translation-box"><strong>{titulo_traducao}</strong><br>{pergunta.get("traducao", "")}</div>',
             unsafe_allow_html=True
         )
 
         if pergunta["tipo"] == "Conjugação" and pergunta.get("frase_completa"):
-            st.info(f"Frase completa: {pergunta['frase_completa']}")
+            st.markdown(
+                f'<div class="translation-box"><strong>Frase completa:</strong><br>{pergunta["frase_completa"]}</div>',
+                unsafe_allow_html=True
+            )
 
         texto_botao = "Ver resultado" if indice + 1 == total else "Próxima questão"
         if st.button(texto_botao):
             proxima_questao()
             st.rerun()
 
-    st.write("")
     if st.button("Cancelar treino"):
         reiniciar()
         st.rerun()
