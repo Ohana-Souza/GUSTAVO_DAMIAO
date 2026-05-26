@@ -235,6 +235,17 @@ st.markdown(
     div[role="option"]:hover {
         background: rgba(88,166,255,0.25) !important;
     }
+    /* Centraliza TODOS os botões */
+    div[data-testid="stButton"] {
+        display: flex !important;
+        justify-content: center !important;
+    }
+    
+    /* Botões da modalidade */
+    div[data-testid="stButton"] > button {
+        width: 320px !important;
+        max-width: 80vw !important;
+    }
     .question-type {
         text-align: center;
         font-size: clamp(0.55rem, 2.1vw, 0.7rem);
@@ -695,14 +706,16 @@ if st.session_state.tela == "configuracao":
     if "modalidade" not in st.session_state:
         st.session_state.modalidade = "Vocabulário"
     
-    if st.button("Vocabulário"):
-        st.session_state.modalidade = "Vocabulário"
-
-    if st.button("Verbos"):
-        st.session_state.modalidade = "Verbos"
+    col1, col2, col3 = st.columns([1,2,1])
+    with col2:
+        if st.button("Vocabulário"):
+            st.session_state.modalidade = "Vocabulário"
     
-    if st.button("Vocab. + Verbos"):
-        st.session_state.modalidade = "Ambos"
+        if st.button("Verbos"):
+            st.session_state.modalidade = "Verbos"
+        
+        if st.button("Vocab. + Verbos"):
+            st.session_state.modalidade = "Ambos"
     
     modalidade = st.session_state.modalidade
 
