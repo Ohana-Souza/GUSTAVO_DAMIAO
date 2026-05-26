@@ -166,18 +166,30 @@ st.markdown(
     }
     .fake-label {
         width: fit-content;
-        min-width: 240px;
-        max-width: 300px;
-        margin: 0.35rem auto 0.15rem auto;
-        padding: 0.55rem 1rem;
-        border-radius: 14px;
+        min-width: 190px;
+        max-width: 240px;
+    
+        margin: 0.18rem auto 0.08rem auto;
+        padding: 0.38rem 0.8rem;
+    
+        border-radius: 12px;
+    
         background: rgba(255,255,255,0.72);
-        border: 1px solid rgba(255,255,255,0.35);
+        border: 1px solid rgba(255,255,255,0.30);
+    
         color: #111827;
-        font-size: 0.95rem;
-        font-weight: 800;
+    
+        font-size: 0.82rem;
+        font-weight: 750;
         text-align: center;
+    
         backdrop-filter: blur(8px);
+    
+        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    /* Espaço menor entre botões */
+    div[data-testid="stButton"] {
+        margin-bottom: -0.35rem !important;
     }
     div[role="radiogroup"] {
         display: flex !important;
@@ -243,8 +255,16 @@ st.markdown(
     
     /* Botões da modalidade */
     div[data-testid="stButton"] > button {
-        width: 320px !important;
-        max-width: 80vw !important;
+        width: 270px !important;
+        max-width: 75vw !important;
+    
+        min-height: 40px !important;
+    
+        padding: 0.35rem 0.7rem !important;
+    
+        font-size: 0.9rem !important;
+    
+        border-radius: 13px !important;
     }
     .question-type {
         text-align: center;
