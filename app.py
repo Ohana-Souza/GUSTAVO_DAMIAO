@@ -10,8 +10,8 @@ st.set_page_config(
 )
 
 PASTA_DADOS = Path("dados")
-ARQUIVO_VOCABULARIO = PASTA_DADOS / "vocabulario.csv"
-ARQUIVO_VERBOS = PASTA_DADOS / "verbos.csv"
+ARQUIVO_VOCABULARIO = Path("vocabulario.csv")
+ARQUIVO_VERBOS = Path("verbos.csv")
 
 
 def carregar_csv(caminho):
