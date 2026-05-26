@@ -30,16 +30,17 @@ st.markdown(
     }
     .subtitle {
         text-align: center;
-        color: #666;
+        color: #9ca3af;
         margin-bottom: 2rem;
     }
     .question-card {
-        background: #ffffff;
-        border: 1px solid #e6e6e6;
-        border-radius: 18px;
-        padding: 26px;
+        background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+        border: 1px solid #30363d;
+        border-radius: 22px;
+        padding: 28px;
         margin-top: 20px;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        color: #f0f6fc;
     }
     .question-type {
         font-size: 0.9rem;
@@ -57,11 +58,12 @@ st.markdown(
     }
     .translation-box {
         padding: 14px 16px;
-        border-radius: 12px;
-        background: #f7f7f7;
-        border: 1px solid #e5e5e5;
+        border-radius: 14px;
+        background: #161b22;
+        border: 1px solid #30363d;
         margin-top: 18px;
         font-size: 1rem;
+        color: #f0f6fc;
     }
     .correct-box {
         padding: 12px 16px;
@@ -83,10 +85,20 @@ st.markdown(
     }
     div.stButton > button {
         width: 100%;
-        border-radius: 12px;
-        padding: 0.75rem 1rem;
+        border-radius: 14px;
+        padding: 0.9rem 1rem;
         font-weight: 700;
-        border: 1px solid #d0d0d0;
+        font-size: 1rem;
+        border: 1px solid #30363d;
+        background: #161b22;
+        color: #f0f6fc;
+        transition: all 0.2s ease;
+    }
+
+    div.stButton > button:hover {
+        border: 1px solid #58a6ff;
+        background: #1f2937;
+        transform: translateY(-1px);
     }
     </style>
     """,
