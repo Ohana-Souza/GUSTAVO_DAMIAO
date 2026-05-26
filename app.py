@@ -65,7 +65,20 @@ def adicionar_fundo_animado(imagem):
             position: relative;
             z-index: 1;
         }}
-        </style>
+        
+    /* Selectbox seta maior e centralizada */
+    div[data-baseweb="select"] svg {
+        width: 22px !important;
+        height: 22px !important;
+        margin-top: 1px !important;
+    }
+
+    div[data-baseweb="select"] {
+        display: flex !important;
+        align-items: center !important;
+    }
+
+</style>
         """,
         unsafe_allow_html=True
     )
@@ -220,7 +233,7 @@ st.markdown(
         align-items: center !important;
         justify-content: center !important;
     
-        gap: 0.12rem !important;
+        gap: 0.18rem !important;
     }
 
     div[role="radiogroup"] label {
@@ -532,18 +545,24 @@ st.markdown(
         position: fixed !important;
         top: 18px !important;
         right: 18px !important;
-        z-index: 999999 !important;
-        width: 38px !important;
-        height: 38px !important;
+        z-index: 99999999 !important;
+
+        width: 42px !important;
+        height: 42px !important;
+
         border-radius: 50% !important;
-        background: #ffffff !important;
-        color: #111827 !important;
-        text-decoration: none !important;
+        background: rgba(255,255,255,0.98) !important;
+
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        font-size: 1.15rem !important;
+
+        color: #111827 !important;
+        text-decoration: none !important;
+
+        font-size: 1.2rem !important;
         font-weight: 900 !important;
+
         box-shadow: 0 6px 18px rgba(0,0,0,0.25) !important;
     }
 
@@ -901,7 +920,7 @@ elif st.session_state.tela == "questao":
                 flex-direction: column !important;
                 align-items: center !important;
                 justify-content: center !important;
-                gap: 0.14rem !important;
+                gap: 0.24rem !important;
             }
 
             div[role="radiogroup"] label {
