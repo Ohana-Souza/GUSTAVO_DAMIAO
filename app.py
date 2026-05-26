@@ -94,7 +94,7 @@ st.markdown(
     }
 
     div[data-testid="stVerticalBlock"] > div {
-        gap: 0.12rem !important;
+        gap: 0.18rem !important;
     }
 
     div[data-testid="stHorizontalBlock"] {
@@ -167,7 +167,7 @@ st.markdown(
 
     .question-card {
         max-width: min(540px, 92vw);
-        margin: 0.12rem auto 0.18rem auto;
+        margin: 0.35rem auto 0.45rem auto;
         text-align: center;
         background: rgba(13, 17, 23, 0.76);
         border: 1px solid rgba(255,255,255,0.14);
@@ -448,7 +448,7 @@ st.markdown(
     }
 
     div[data-testid="stVerticalBlock"] > div {
-        gap: 0 !important;
+        gap: 0.18 !important;
         margin-top: 0 !important;
         margin-bottom: 0 !important;
         padding-top: 0 !important;
@@ -508,7 +508,7 @@ st.markdown(
     }
 
     .answer-button {
-        margin: -0.12rem 0 !important;
+        margin: 0.10rem 0 !important;
         padding: 0 !important;
         line-height: 1 !important;
     }
@@ -545,7 +545,7 @@ st.markdown(
     }
 
     .mode-button {
-        margin: -0.22rem 0 !important;
+        margin: 0.14rem 0 !important;
         padding: 0 !important;
     }
 
