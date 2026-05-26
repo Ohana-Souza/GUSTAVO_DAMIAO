@@ -551,7 +551,7 @@ st.markdown(
         max-width: 520px !important;
     }
     div[data-testid="stButton"] {
-        margin-bottom: -0.55rem !important;
+        margin-bottom: 0rem !important;
     }
 
     div[data-testid="stCaptionContainer"] {
@@ -575,35 +575,34 @@ st.markdown(
         font-size: clamp(0.86rem, 3vw, 1.06rem) !important;
         line-height: 1.14 !important;
     }
-
     .options-wrapper {
         width: 100% !important;
-        max-width: 360px !important;
+        max-width: 380px !important;
         margin: 0.02rem auto 0 auto !important;
-        gap: 0 !important;
     }
-
+    
     .answer-button {
-        margin: -0.20rem 0 !important;
+        margin: 0.02rem 0 !important;
         padding: 0 !important;
     }
-
+    
     .answer-button div[data-testid="stButton"] {
-        margin: 0 !important;
+        margin: 0.02rem 0 !important;
         padding: 0 !important;
     }
-
+    
     .answer-button div[data-testid="stButton"] > button {
-        min-height: 26px !important;
-        padding: 0.05rem 0.45rem !important;
-        margin: 0.01rem auto !important;
+        min-height: 34px !important;
+        padding: 0.20rem 0.55rem !important;
+        margin: 0.08rem auto !important;
         border-radius: 13px !important;
     }
-
+    
     .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.76rem !important;
-        line-height: 1 !important;
+        font-size: 0.82rem !important;
+        line-height: 1.1 !important;
     }
+
 
     .option-box {
         width: min(320px, 80vw) !important;
@@ -867,7 +866,7 @@ if st.session_state.tela == "configuracao":
     if "modalidade" not in st.session_state:
         st.session_state.modalidade = "Vocabulário"
 
-    col1, col2, col3 = st.columns([1.25, 1, 1.25], gap="small")
+    col1, col2, col3 = st.columns([1, 2.2, 1], gap="small")
 
     with col2:
         st.markdown('<div class="mode-button">', unsafe_allow_html=True)
@@ -903,7 +902,7 @@ if st.session_state.tela == "configuracao":
         st.markdown('<div class="fake-label">Nº verbos</div>', unsafe_allow_html=True)
         qtd_verbos = st.slider("", 1, 50, 10, key="slider_verbos", label_visibility="collapsed")
 
-    col1, col2, col3 = st.columns([1.25, 1, 1.25], gap="small")
+    col1, col2, col3 = st.columns([1, 1.8, 1], gap="small")
 
     with col2:
         st.markdown('<div class="start-button">', unsafe_allow_html=True)
