@@ -509,6 +509,113 @@ st.markdown(
             margin-bottom: 0.24rem;
         }
     }
+
+
+    /* =============================
+       CSS SEPARADO POR TIPO DE BOTÃO
+       ============================= */
+
+    /* Botões da tela inicial: Vocabulário / Verbos / Ambos */
+    .mode-buttons div[data-testid="stButton"] {
+        margin-bottom: 0 !important;
+    }
+
+    .mode-buttons div[data-testid="stButton"] > button {
+        width: 170px !important;
+        max-width: 72vw !important;
+        min-height: 30px !important;
+        padding: 0.22rem 0.55rem !important;
+        font-size: 0.72rem !important;
+        border-radius: 12px !important;
+        margin: 0.04rem auto !important;
+        background: rgba(255,255,255,0.82) !important;
+        color: #111827 !important;
+        border: 1px solid rgba(255,255,255,0.40) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.14) !important;
+    }
+
+    .mode-buttons div[data-testid="stButton"] > button:hover {
+        background: rgba(255,255,255,0.96) !important;
+        border-color: #2563eb !important;
+    }
+
+    /* Botão Commencer */
+    .start-button div[data-testid="stButton"] > button {
+        width: 190px !important;
+        max-width: 74vw !important;
+        min-height: 34px !important;
+        padding: 0.28rem 0.7rem !important;
+        font-size: 0.82rem !important;
+        border-radius: 13px !important;
+        margin-top: 0.35rem !important;
+        background: rgba(255,255,255,0.95) !important;
+        color: #111827 !important;
+    }
+
+    /* Botão X */
+    .close-button div[data-testid="stButton"] > button {
+        width: 40px !important;
+        height: 40px !important;
+        min-height: 40px !important;
+        max-width: 40px !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        font-size: 1.25rem !important;
+        font-weight: 900 !important;
+        background: #ffffff !important;
+        color: #111827 !important;
+    }
+
+    /* Botões das alternativas antes de responder */
+    .answer-button div[data-testid="stButton"] > button {
+        width: min(340px, 82vw) !important;
+        max-width: 340px !important;
+        min-height: 42px !important;
+        border-radius: 16px !important;
+        padding: 0.65rem 0.9rem !important;
+        font-size: clamp(0.9rem, 3vw, 1.05rem) !important;
+        font-weight: 800 !important;
+        background: #ffffff !important;
+        color: #111827 !important;
+    }
+
+    /* Botão de próxima questão */
+    .next-button div[data-testid="stButton"] > button {
+        width: 54px !important;
+        height: 54px !important;
+        min-height: 54px !important;
+        max-width: 54px !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        font-size: 1.55rem !important;
+        font-weight: 900 !important;
+        background: #ffffff !important;
+        color: #111827 !important;
+    }
+
+    @media (max-width: 600px) {
+        .mode-buttons div[data-testid="stButton"] > button {
+            width: 160px !important;
+            min-height: 28px !important;
+            font-size: 0.68rem !important;
+        }
+
+        .close-button div[data-testid="stButton"] > button {
+            width: 38px !important;
+            height: 38px !important;
+            min-height: 38px !important;
+            max-width: 38px !important;
+            font-size: 1.15rem !important;
+        }
+
+        .next-button div[data-testid="stButton"] > button {
+            width: 50px !important;
+            height: 50px !important;
+            min-height: 50px !important;
+            max-width: 50px !important;
+            font-size: 1.45rem !important;
+        }
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -732,25 +839,17 @@ if st.session_state.tela == "configuracao":
     
     col1, col2, col3 = st.columns([1,2,1])
     with col2:
-        st.markdown(
-            """
-            <div style="
-                display:flex;
-                flex-direction:column;
-                gap:0.18rem;
-                align-items:center;
-            ">
-            """,
-            unsafe_allow_html=True
-        )
-        if st.button("Vocabulário"):
+        st.markdown('<div class="mode-buttons">', unsafe_allow_html=True)
+
+        if st.button("Vocabulário", key="btn_modo_vocab"):
             st.session_state.modalidade = "Vocabulário"
     
-        if st.button("Verbos"):
+        if st.button("Verbos", key="btn_modo_verbos"):
             st.session_state.modalidade = "Verbos"
         
-        if st.button("Ambos"):
-            st.session_state.modalidade = "Ambos"
+        if st.button("Ambos", key="btn_modo_ambos"):
+            st.session_state.modalidade = "Vocabulário + Verbos"
+
         st.markdown("</div>", unsafe_allow_html=True)
     
     modalidade = st.session_state.modalidade
@@ -773,7 +872,9 @@ if st.session_state.tela == "configuracao":
     col1, col2, col3 = st.columns([1, 2, 1])
 
     with col2:
-        iniciar = st.button("Commencer")
+        st.markdown('<div class="start-button">', unsafe_allow_html=True)
+        iniciar = st.button("Commencer", key="btn_commencer")
+        st.markdown("</div>", unsafe_allow_html=True)
     
     if iniciar:
         vocabulario_nivel = filtrar_por_nivel(vocabulario, nivel)
@@ -803,9 +904,11 @@ elif st.session_state.tela == "questao":
     colx1, colx2, colx3 = st.columns([8,1,1])
 
     with colx3:
+        st.markdown('<div class="close-button">', unsafe_allow_html=True)
         if st.button("×", key="fechar_treino"):
             reiniciar()
             st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
             
     total = len(st.session_state.teste)
     indice = st.session_state.indice
@@ -854,12 +957,14 @@ elif st.session_state.tela == "questao":
         else:
             col1, col2, col3 = st.columns([1, 2, 1])
             with col2:
+                st.markdown('<div class="answer-button">', unsafe_allow_html=True)
                 st.button(
                     opcao,
                     key=f"opcao_{indice}_{opcao}",
                     on_click=selecionar_resposta,
                     args=(opcao,)
                 )
+                st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -867,11 +972,13 @@ elif st.session_state.tela == "questao":
         col1, col2, col3 = st.columns([1,1,1])
         
         with col2:
+            st.markdown('<div class="next-button">', unsafe_allow_html=True)
             simbolo_botao = "✓" if indice + 1 == total else "→"
         
             if st.button(simbolo_botao, key=f"proxima_{indice}"):
                 proxima_questao()
                 st.rerun()
+            st.markdown("</div>", unsafe_allow_html=True)
                 
 elif st.session_state.tela == "resultado":
     total = len(st.session_state.teste)
