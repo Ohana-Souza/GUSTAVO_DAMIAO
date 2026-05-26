@@ -105,7 +105,7 @@ st.markdown(
     
     /* BOTÕES */
     .answer-button {
-        margin: -0.35rem 0 !important;
+        margin: 0.35rem 0 !important;
         padding: 0 !important;
     }
     
