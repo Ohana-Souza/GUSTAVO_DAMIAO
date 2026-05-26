@@ -694,19 +694,15 @@ if st.session_state.tela == "configuracao":
     st.markdown('<div class="fake-label">O que você quer treinar?</div>', unsafe_allow_html=True)
     if "modalidade" not in st.session_state:
         st.session_state.modalidade = "Vocabulário"
-    col1, col2, col3 = st.columns(3)
     
-    with col1:
-        if st.button("Vocabulário"):
-            st.session_state.modalidade = "Vocabulário"
+    if st.button("Vocabulário"):
+    st.session_state.modalidade = "Vocabulário"
+
+    if st.button("Verbos"):
+        st.session_state.modalidade = "Verbos"
     
-    with col2:
-        if st.button("Verbos"):
-            st.session_state.modalidade = "Verbos"
-    
-    with col3:
-        if st.button("Ambos"):
-            st.session_state.modalidade = "Ambos"
+    if st.button("Vocab. + Verbos"):
+        st.session_state.modalidade = "Ambos"
     
     modalidade = st.session_state.modalidade
 
