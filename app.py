@@ -303,7 +303,7 @@ st.markdown(
     .answer-button div[data-testid="stButton"] > button {
         min-height: 31px !important;
         padding: 0.28rem 0.58rem !important;
-        margin: 0.02rem auto !important;
+        margin: 0.08rem auto !important;
     }
 
     .answer-button div[data-testid="stButton"] > button p {
@@ -483,9 +483,9 @@ st.markdown(
     }
 
     .question-card {
-        max-width: min(470px, 90vw) !important;
+        max-width: min(620px, 92vw) !important;
         margin: 0.02rem auto 0.04rem auto !important;
-        padding: 0.32rem 0.50rem !important;
+        padding: 0.55rem 0.8rem !important;
         border-radius: 13px !important;
     }
 
@@ -508,7 +508,7 @@ st.markdown(
     }
 
     .answer-button {
-        margin: -0.36rem 0 !important;
+        margin: -0.12rem 0 !important;
         padding: 0 !important;
         line-height: 1 !important;
     }
@@ -520,28 +520,28 @@ st.markdown(
     }
 
     .answer-button div[data-testid="stButton"] > button {
-        min-height: 24px !important;
-        height: 28px !important;
-        padding: 0.05rem 0.38rem !important;
+        min-height: 38px !important;
+        height: 38px !important;
+        padding: 0.30rem 0.7rem !important;
         margin: 0 auto !important;
-        border-radius: 11px !important;
+        border-radius: 14px !important;
     }
 
     .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.70rem !important;
+        font-size: 0.92rem !important;
         line-height: 1 !important;
         margin: 0 !important;
     }
 
     .option-box {
-        width: min(240px, 68vw) !important;
-        max-width: 240px !important;
-        min-height: 24px !important;
-        margin: 0.02rem auto !important;
-        padding: 0.12rem 0.38rem !important;
-        font-size: 0.70rem !important;
+        width: min(340px, 82vw) !important;
+        max-width: 340px !important;
+        min-height: 38px !important;
+        margin: 0.08rem auto !important;
+        padding: 0.30rem 0.7rem !important;
+        font-size: 0.92rem !important;
         line-height: 1 !important;
-        border-radius: 11px !important;
+        border-radius: 14px !important;
     }
 
     .mode-button {
@@ -565,7 +565,7 @@ st.markdown(
 
     @media (max-width: 600px) {
         .question-card {
-            max-width: min(430px, 90vw) !important;
+            max-width: min(620px, 92vw) !important;
             padding: 0.28rem 0.45rem !important;
         }
 
