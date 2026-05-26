@@ -468,6 +468,35 @@ st.markdown(
         align-items: center;
         justify-content: center;
     }
+    .html-answer-link {
+        width: 100%;
+        max-width: 340px;
+        min-height: 34px;
+        margin: 0.02rem auto;
+        padding: 0.34rem 0.70rem;
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        border-radius: 14px;
+        border: 1px solid #e5e7eb;
+    
+        background: rgba(255,255,255,0.92);
+        color: #111827 !important;
+    
+        font-size: 0.92rem;
+        font-weight: 650;
+        text-decoration: none !important;
+    
+        box-shadow: 0 5px 16px rgba(0,0,0,0.16);
+        box-sizing: border-box;
+    }
+    
+    .html-answer-link:hover {
+        background: #f3f4f6;
+        border-color: #2563eb;
+    }
 
     .html-answer-button:hover {
         background: #f3f4f6;
@@ -834,21 +863,22 @@ elif st.session_state.tela == "questao":
                     f'<div class="option-box neutral-box">{texto}</div>',
                     unsafe_allow_html=True
                 )
-    else:
-        botoes_html = '<div class="html-options">'
-        for opcao in pergunta["opcoes"]:
-            botoes_html += f"""
-            <form method="get" class="answer-form">
-                <button class="html-answer-button" type="submit" name="resposta" value="{quote(opcao)}">
-                    {html.escape(opcao)}
-                </button>
-            </form>
-            """
-        botoes_html += '</div>'
-        st.markdown(botoes_html, unsafe_allow_html=True)
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
+        else:
+            st.markdown('<div class="html-options">', unsafe_allow_html=True)
+    
+            for opcao in pergunta["opcoes"]:
+                resposta_url = quote(opcao)
+    
+                st.markdown(
+                    f"""
+                    <a href="?resposta={resposta_url}" target="_self" class="html-answer-link">
+                        {html.escape(opcao)}
+                    </a>
+                    """,
+                    unsafe_allow_html=True
+                )
+    
+            st.markdown('</div>', unsafe_allow_html=True)
     if st.session_state.respondido:
         col1, col2, col3 = st.columns([1.4, 0.35, 1.4], gap="small")
 
