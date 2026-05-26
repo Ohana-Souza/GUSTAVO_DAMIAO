@@ -696,7 +696,7 @@ if st.session_state.tela == "configuracao":
         st.session_state.modalidade = "Vocabulário"
     
     if st.button("Vocabulário"):
-    st.session_state.modalidade = "Vocabulário"
+        st.session_state.modalidade = "Vocabulário"
 
     if st.button("Verbos"):
         st.session_state.modalidade = "Verbos"
