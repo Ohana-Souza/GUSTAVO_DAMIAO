@@ -65,7 +65,16 @@ def adicionar_fundo_animado(imagem):
             position: relative;
             z-index: 1;
         }}
-        </style>
+        
+    .element-container {
+        margin-bottom: 0rem !important;
+    }
+
+    .stMarkdown {
+        margin-bottom: 0rem !important;
+    }
+
+</style>
         """,
         unsafe_allow_html=True
     )
@@ -94,11 +103,11 @@ st.markdown(
     }
 
     div[data-testid="stVerticalBlock"] > div {
-        gap: 0.12rem !important;
+        gap: 0.02rem !important;
     }
 
     div[data-testid="stHorizontalBlock"] {
-        gap: 0.35rem !important;
+        gap: 0.15rem !important;
         margin-top: 0 !important;
         margin-bottom: 0 !important;
     }
@@ -166,13 +175,13 @@ st.markdown(
     }
 
     .question-card {
-        max-width: min(540px, 92vw);
-        margin: 0.12rem auto 0.18rem auto;
+        max-width: min(520px, 92vw);
+        margin: 0.04rem auto 0.08rem auto;
         text-align: center;
         background: rgba(13, 17, 23, 0.76);
         border: 1px solid rgba(255,255,255,0.14);
-        border-radius: 16px;
-        padding: 0.62rem 0.75rem;
+        border-radius: 14px;
+        padding: 0.42rem 0.60rem;
         box-shadow: 0 8px 22px rgba(0,0,0,0.30);
         color: #f0f6fc;
         backdrop-filter: blur(8px);
@@ -301,14 +310,15 @@ st.markdown(
     }
 
     .answer-button div[data-testid="stButton"] > button {
-        min-height: 31px !important;
-        padding: 0.28rem 0.58rem !important;
-        margin: 0.02rem auto !important;
+        min-height: 26px !important;
+        padding: 0.10rem 0.45rem !important;
+        margin: 0.01rem auto !important;
     }
 
     .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.80rem !important;
+        font-size: 0.72rem !important;
         font-weight: 650 !important;
+        line-height: 1 !important;
     }
 
     .next-button div[data-testid="stButton"] > button {
@@ -330,7 +340,7 @@ st.markdown(
     .options-wrapper {
         width: 100% !important;
         max-width: 420px !important;
-        margin: 0.08rem auto 0 auto !important;
+        margin: 0 auto !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
