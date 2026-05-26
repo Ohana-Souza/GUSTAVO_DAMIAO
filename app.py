@@ -86,7 +86,7 @@ st.markdown(
 
     .block-container {
         max-width: 640px;
-        padding-top: clamp(0.35rem, 1.5vw, 0.8rem);
+        padding-top: clamp(0.25rem, 1.2vw, 0.7rem);
         padding-bottom: 0.35rem;
         padding-left: clamp(0.7rem, 3vw, 1.2rem);
         padding-right: clamp(0.7rem, 3vw, 1.2rem);
@@ -100,22 +100,26 @@ st.markdown(
         margin: 0.2rem auto 0.15rem auto;
         color: #ffffff;
         text-shadow: 0 3px 12px rgba(0,0,0,0.55);
+        line-height: 1.15;
     }
 
     .small-title {
         text-align: center;
-        font-size: clamp(0.98rem, 4vw, 1.25rem);
+        font-size: clamp(0.95rem, 3.5vw, 1.15rem);
         font-weight: 850;
-        margin: 0.05rem auto 0.35rem auto;
+        margin: 0.02rem auto 0.12rem auto;
         color: #ffffff;
         text-shadow: 0 2px 10px rgba(0,0,0,0.55);
+        line-height: 1.15;
+        white-space: normal;
+        overflow: visible;
     }
 
     .subtitle {
         text-align: center;
-        font-size: clamp(0.82rem, 3vw, 0.98rem);
+        font-size: clamp(0.78rem, 3vw, 0.95rem);
         color: #d5dce8;
-        margin: 0 auto 1rem auto;
+        margin: 0 auto 0.8rem auto;
         line-height: 1.35;
         max-width: 520px;
         text-shadow: 0 2px 8px rgba(0,0,0,0.55);
@@ -123,11 +127,11 @@ st.markdown(
 
     .motivation {
         text-align: center;
-        font-size: clamp(0.72rem, 2.7vw, 0.9rem);
+        font-size: clamp(0.68rem, 2.7vw, 0.85rem);
         font-weight: 800;
         color: #f0f6fc;
-        margin: 0.25rem auto 0.45rem auto;
-        padding: 0.42rem 0.7rem;
+        margin: 0.10rem auto 0.20rem auto;
+        padding: 0.32rem 0.62rem;
         max-width: 520px;
         border-radius: 999px;
         background: rgba(13, 17, 23, 0.54);
@@ -137,13 +141,13 @@ st.markdown(
     }
 
     .question-card {
-        max-width: 600px;
-        margin: 0.30rem auto 0.45rem auto;
+        max-width: min(600px, 92vw);
+        margin: 0.20rem auto 0.25rem auto;
         text-align: center;
         background: rgba(13, 17, 23, 0.74);
         border: 1px solid rgba(255,255,255,0.14);
         border-radius: 18px;
-        padding: clamp(0.6rem, 2.4vw, 1rem);
+        padding: clamp(0.55rem, 2vw, 0.85rem);
         box-shadow: 0 8px 22px rgba(0,0,0,0.30);
         color: #f0f6fc;
         backdrop-filter: blur(8px);
@@ -151,62 +155,48 @@ st.markdown(
 
     .question-type {
         text-align: center;
-        font-size: clamp(0.55rem, 2.1vw, 0.7rem);
+        font-size: clamp(0.52rem, 2vw, 0.68rem);
         color: #b8c0cc;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         font-weight: 850;
-        margin-bottom: 0.35rem;
+        margin-bottom: 0.28rem;
     }
 
     .question-text {
         text-align: center;
-        font-size: clamp(0.94rem, 3.8vw, 1.2rem);
+        font-size: clamp(0.90rem, 3.5vw, 1.15rem);
         font-weight: 800;
-        line-height: 1.28;
+        line-height: 1.25;
         color: #ffffff;
         margin: 0;
     }
 
-    .config-card {
-        max-width: 600px;
-        margin: 1rem auto;
-        padding: 1.1rem;
-        border-radius: 24px;
-        background: rgba(255,255,255,0.14);
-        border: 1px solid rgba(255,255,255,0.20);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.22);
-        color: #ffffff;
-    }
-
     .fake-label {
         width: fit-content;
-        min-width: 170px;
-        max-width: 230px;
-        margin: 0.18rem auto 0.08rem auto;
-        padding: 0.32rem 0.72rem;
+        min-width: 150px;
+        max-width: 210px;
+        margin: 0.16rem auto 0.08rem auto;
+        padding: 0.28rem 0.65rem;
         border-radius: 12px;
         background: rgba(255,255,255,0.68);
         border: 1px solid rgba(255,255,255,0.30);
         color: #111827;
-        font-size: 0.78rem;
+        font-size: 0.72rem;
         font-weight: 750;
         text-align: center;
         backdrop-filter: blur(8px);
         box-shadow: 0 4px 12px rgba(0,0,0,0.12);
     }
 
-    /* Selectbox de nível */
     div[data-testid="stSelectbox"] {
-        max-width: 180px !important;
+        max-width: 190px !important;
         margin: 0 auto !important;
     }
 
     div[data-testid="stSelectbox"] > div,
     div[data-testid="stSelectbox"] > div > div {
-        max-width: 180px !important;
+        max-width: 190px !important;
     }
 
     div[data-testid="stSelectbox"] > div > div {
@@ -233,13 +223,30 @@ st.markdown(
         background: rgba(88,166,255,0.25) !important;
     }
 
-    /* Sliders */
     div[data-testid="stSlider"] {
         max-width: 340px !important;
         margin: 0 auto !important;
     }
 
-    /* Base de centralização dos botões */
+    div[data-testid="stCaptionContainer"] {
+        text-align: center;
+        color: #d5dce8;
+        font-weight: 800;
+        font-size: clamp(0.65rem, 2.4vw, 0.78rem);
+        margin-top: -0.10rem;
+        margin-bottom: 0.15rem;
+    }
+
+    h1, h2, h3, .stSubheader {
+        text-align: center;
+        color: #ffffff;
+    }
+
+    div[data-testid="stVerticalBlock"] > div {
+        gap: 0.20rem;
+    }
+
+    /* Base dos botões */
     div[data-testid="stButton"] {
         width: 100% !important;
         display: flex !important;
@@ -249,6 +256,8 @@ st.markdown(
     }
 
     div[data-testid="stButton"] > button {
+        margin-left: auto !important;
+        margin-right: auto !important;
         box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
         border: 1px solid #e5e7eb !important;
         background: rgba(255,255,255,0.92) !important;
@@ -269,41 +278,30 @@ st.markdown(
         color: inherit !important;
     }
 
-    /* ===== BOTÕES DA TELA INICIAL: Vocabulário / Verbos / Ambos ===== */
-    .mode-buttons div[data-testid="stButton"] {
-        margin-bottom: 0.06rem !important;
-    }
-
-    .mode-buttons div[data-testid="stButton"] > button {
+    /* Botões da tela inicial */
+    .mode-button div[data-testid="stButton"] > button {
         width: 180px !important;
         max-width: 72vw !important;
         min-height: 30px !important;
         padding: 0.18rem 0.50rem !important;
         border-radius: 13px !important;
-        margin: 0.03rem auto !important;
         background: rgba(255,255,255,0.74) !important;
         border: 1px solid rgba(255,255,255,0.28) !important;
     }
 
-    .mode-buttons div[data-testid="stButton"] > button p {
+    .mode-button div[data-testid="stButton"] > button p {
         font-size: 0.74rem !important;
         font-weight: 500 !important;
         line-height: 1.1 !important;
     }
 
-    .mode-buttons div[data-testid="stButton"] > button:hover {
-        background: rgba(255,255,255,0.96) !important;
-        border-color: #2563eb !important;
-    }
-
-    /* ===== BOTÃO COMMENCER ===== */
     .start-button div[data-testid="stButton"] > button {
         width: 190px !important;
         max-width: 74vw !important;
         min-height: 34px !important;
         padding: 0.28rem 0.70rem !important;
         border-radius: 13px !important;
-        margin-top: 0.35rem !important;
+        margin-top: 0.30rem !important;
         background: rgba(255,255,255,0.95) !important;
     }
 
@@ -312,51 +310,48 @@ st.markdown(
         font-weight: 500 !important;
     }
 
-    /* ===== BOTÃO X ===== */
     .close-button div[data-testid="stButton"] > button {
-        width: 40px !important;
-        height: 40px !important;
-        min-height: 40px !important;
-        max-width: 40px !important;
+        width: 38px !important;
+        height: 38px !important;
+        min-height: 38px !important;
+        max-width: 38px !important;
         border-radius: 50% !important;
         padding: 0 !important;
         background: #ffffff !important;
     }
 
     .close-button div[data-testid="stButton"] > button p {
-        font-size: 1.25rem !important;
+        font-size: 1.15rem !important;
         font-weight: 900 !important;
         line-height: 1 !important;
     }
 
-    /* ===== BOTÕES DAS ALTERNATIVAS ===== */
     .answer-button div[data-testid="stButton"] > button {
-        width: min(340px, 82vw) !important;
-        max-width: 340px !important;
-        min-height: 42px !important;
-        border-radius: 16px !important;
-        padding: 0.65rem 0.9rem !important;
+        width: min(290px, 76vw) !important;
+        max-width: 290px !important;
+        min-height: 32px !important;
+        padding: 0.34rem 0.65rem !important;
+        border-radius: 13px !important;
         background: #ffffff !important;
     }
 
     .answer-button div[data-testid="stButton"] > button p {
-        font-size: clamp(0.9rem, 3vw, 1.05rem) !important;
-        font-weight: 800 !important;
+        font-size: 0.80rem !important;
+        font-weight: 650 !important;
     }
 
-    /* ===== BOTÃO PRÓXIMA QUESTÃO ===== */
     .next-button div[data-testid="stButton"] > button {
-        width: 54px !important;
-        height: 54px !important;
-        min-height: 54px !important;
-        max-width: 54px !important;
+        width: 50px !important;
+        height: 50px !important;
+        min-height: 50px !important;
+        max-width: 50px !important;
         border-radius: 50% !important;
         padding: 0 !important;
         background: #ffffff !important;
     }
 
     .next-button div[data-testid="stButton"] > button p {
-        font-size: 1.55rem !important;
+        font-size: 1.45rem !important;
         font-weight: 900 !important;
         line-height: 1 !important;
     }
@@ -364,29 +359,29 @@ st.markdown(
     .options-wrapper {
         width: 100% !important;
         max-width: 420px !important;
-        margin: 0.45rem auto 0 auto !important;
+        margin: 0.15rem auto 0 auto !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 0.35rem !important;
+        gap: 0.05rem !important;
     }
 
     .option-box {
-        width: min(340px, 82vw) !important;
-        max-width: 340px !important;
-        margin: 0.22rem auto !important;
+        width: min(290px, 76vw) !important;
+        max-width: 290px !important;
+        min-height: 32px !important;
+        margin: 0.08rem auto !important;
         text-align: center !important;
-        padding: 0.65rem 0.9rem !important;
-        border-radius: 16px !important;
-        font-size: clamp(0.9rem, 3vw, 1.05rem) !important;
+        padding: 0.34rem 0.65rem !important;
+        border-radius: 13px !important;
+        font-size: 0.80rem !important;
         font-weight: 800 !important;
         line-height: 1.25 !important;
         box-sizing: border-box !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        text-decoration: none !important;
         box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
     }
 
@@ -408,279 +403,11 @@ st.markdown(
         color: #111827 !important;
     }
 
-    .translation-box {
-        max-width: 600px;
-        margin: 0.45rem auto 0 auto;
-        text-align: center;
-        padding: 0.55rem 0.75rem;
-        border-radius: 14px;
-        background: rgba(13, 17, 23, 0.80);
-        border: 1px solid rgba(255,255,255,0.14);
-        font-size: clamp(0.72rem, 2.6vw, 0.9rem);
-        color: #f0f6fc;
-        line-height: 1.45;
-        backdrop-filter: blur(7px);
-    }
-
-    div[data-testid="stCaptionContainer"] {
-        text-align: center;
-        color: #d5dce8;
-        font-weight: 800;
-        font-size: clamp(0.68rem, 2.4vw, 0.82rem);
-        margin-top: -0.2rem;
-        margin-bottom: 0.25rem;
-    }
-
-    h1, h2, h3, .stSubheader {
-        text-align: center;
-        color: #ffffff;
-    }
-
-    div[data-testid="stVerticalBlock"] > div {
-        gap: 0.28rem;
-    }
-
     @media (max-width: 600px) {
         .block-container {
-            max-width: 100%;
-            padding-top: 0.25rem;
-            padding-left: 0.65rem;
-            padding-right: 0.65rem;
-        }
-
-        .small-title {
-            font-size: 1rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .motivation {
-            margin-top: 0.15rem;
-            margin-bottom: 0.35rem;
-            padding: 0.36rem 0.55rem;
-        }
-
-        .question-card {
-            border-radius: 15px;
-            margin: 0.35rem auto 0.4rem auto;
-            padding: 0.62rem;
-        }
-
-        .mode-buttons div[data-testid="stButton"] > button {
-            width: 160px !important;
-            min-height: 28px !important;
-        }
-
-        .mode-buttons div[data-testid="stButton"] > button p {
-            font-size: 0.68rem !important;
-        }
-
-        .option-box,
-        .answer-button div[data-testid="stButton"] > button {
-            width: min(300px, 84vw) !important;
-            min-height: 38px !important;
-            border-radius: 14px !important;
-            padding: 0.55rem 0.75rem !important;
-        }
-
-        .close-button div[data-testid="stButton"] > button {
-            width: 38px !important;
-            height: 38px !important;
-            min-height: 38px !important;
-            max-width: 38px !important;
-        }
-
-        .next-button div[data-testid="stButton"] > button {
-            width: 50px !important;
-            height: 50px !important;
-            min-height: 50px !important;
-            max-width: 50px !important;
-        }
-    }
-    /* CENTRALIZA TODOS OS BOTÕES */
-    div[data-testid="stButton"] {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-    }
-    
-    /* CENTRALIZA COLUNAS */
-    div[data-testid="column"] {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-    }
-    
-    /* BOTÕES DA MODALIDADE */
-    .mode-buttons {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 0.15rem !important;
-    }
-    
-    /* BOTÕES DAS RESPOSTAS */
-    .answer-button {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
-    
-    /* BOTÃO START */
-    .start-button {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
-    
-    /* BOTÃO NEXT */
-    .next-button {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
-    .mode-buttons {
-        width: 100% !important;
-        max-width: 260px !important;
-        margin: 0 auto !important;
-    }
-    
-    .mode-buttons div[data-testid="stButton"] {
-        display: flex !important;
-        justify-content: center !important;
-    }
-    
-    /* =============================
-       CENTRALIZAÇÃO FINAL — padrão que funcionou no histórico
-       ============================= */
-
-    /* Não estilizar colunas globalmente: isso quebrava o layout */
-    div[data-testid="column"] {
-        align-items: stretch !important;
-    }
-
-    /* Centraliza qualquer st.button dentro da coluna */
-    div[data-testid="stButton"] {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        margin: 0 !important;
-    }
-
-    div[data-testid="stButton"] > button {
-        margin-left: auto !important;
-        margin-right: auto !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
-        border: 1px solid #e5e7eb !important;
-        background: rgba(255,255,255,0.92) !important;
-        color: #111827 !important;
-    }
-
-    div[data-testid="stButton"] > button p {
-        margin: 0 !important;
-        color: inherit !important;
-    }
-
-    /* Botões da tela inicial: Vocabulário / Verbos / Ambos.
-       Eles ficam centralizados pela coluna col2 do Python. */
-    #btn_modo_vocab, #btn_modo_verbos, #btn_modo_ambos {
-        display: none;
-    }
-
-    div[data-testid="stButton"] > button[kind="secondary"] {
-        width: 180px !important;
-        max-width: 72vw !important;
-        min-height: 30px !important;
-        padding: 0.18rem 0.50rem !important;
-        border-radius: 13px !important;
-    }
-
-    div[data-testid="stButton"] > button[kind="secondary"] p {
-        font-size: 0.74rem !important;
-        font-weight: 500 !important;
-        line-height: 1.1 !important;
-    }
-
-    /* Commencer */
-    .start-button div[data-testid="stButton"] > button {
-        width: 190px !important;
-        max-width: 74vw !important;
-        min-height: 34px !important;
-        padding: 0.28rem 0.70rem !important;
-        border-radius: 13px !important;
-        margin-top: 0.35rem !important;
-        background: rgba(255,255,255,0.95) !important;
-    }
-
-    .start-button div[data-testid="stButton"] > button p {
-        font-size: 0.82rem !important;
-        font-weight: 500 !important;
-    }
-
-    /* Alternativas */
-    .answer-button div[data-testid="stButton"] > button {
-        width: min(290px, 76vw) !important;
-        max-width: 290px !important;
-        min-height: 32px !important;
-        padding: 0.34rem 0.65rem !important;
-        margin: 0.02rem auto !important;
-        border-radius: 13px !important;
-        background: #ffffff !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.80rem !important;
-        font-weight: 650 !important;
-    }
-
-    .option-box {
-        width: min(290px, 76vw) !important;
-        max-width: 290px !important;
-        min-height: 32px !important;
-        padding: 0.34rem 0.65rem !important;
-        margin: 0.08rem auto !important;
-        border-radius: 13px !important;
-        font-size: 0.80rem !important;
-    }
-
-    /* Compacta tela das perguntas */
-    .small-title {
-        font-size: clamp(0.95rem, 3.5vw, 1.15rem) !important;
-        margin: 0.02rem auto 0.10rem auto !important;
-        line-height: 1.15 !important;
-        white-space: normal !important;
-        overflow: visible !important;
-    }
-
-    .motivation {
-        margin: 0.10rem auto 0.18rem auto !important;
-        padding: 0.30rem 0.55rem !important;
-    }
-
-    .question-card {
-        max-width: min(600px, 92vw) !important;
-        margin: 0.18rem auto 0.20rem auto !important;
-        padding: clamp(0.50rem, 2vw, 0.80rem) !important;
-    }
-
-    .options-wrapper {
-        margin: 0.15rem auto 0 auto !important;
-        gap: 0.05rem !important;
-    }
-
-    @media (max-width: 600px) {
-        div[data-testid="stButton"] > button[kind="secondary"] {
-            width: 160px !important;
-            min-height: 28px !important;
-        }
-
-        div[data-testid="stButton"] > button[kind="secondary"] p {
-            font-size: 0.68rem !important;
+            padding-top: 0.10rem !important;
+            padding-left: 0.50rem !important;
+            padding-right: 0.50rem !important;
         }
 
         .main-title {
@@ -700,12 +427,40 @@ st.markdown(
             padding: 0.25rem 0.55rem !important;
             font-size: 0.68rem !important;
         }
+
+        div[data-testid="stSelectbox"],
+        div[data-testid="stSelectbox"] > div,
+        div[data-testid="stSelectbox"] > div > div {
+            width: 178px !important;
+            max-width: 178px !important;
+        }
+
+        .mode-button div[data-testid="stButton"] > button {
+            width: 160px !important;
+            min-height: 28px !important;
+        }
+
+        .mode-button div[data-testid="stButton"] > button p {
+            font-size: 0.68rem !important;
+        }
+
+        .answer-button div[data-testid="stButton"] > button,
+        .option-box {
+            width: min(240px, 72vw) !important;
+            max-width: 240px !important;
+            min-height: 30px !important;
+            padding: 0.30rem 0.55rem !important;
+            font-size: 0.76rem !important;
+        }
+
+        .answer-button div[data-testid="stButton"] > button p {
+            font-size: 0.76rem !important;
+        }
     }
-</style>
+    </style>
     """,
     unsafe_allow_html=True
 )
-
 
 
 # =============================
@@ -918,24 +673,32 @@ if st.session_state.tela == "configuracao":
         ["A1", "A2", "B1", "B2", "C1"],
         label_visibility="collapsed"
     )
-    
+
     st.markdown('<div class="fake-label">O que você quer treinar?</div>', unsafe_allow_html=True)
+
     if "modalidade" not in st.session_state:
         st.session_state.modalidade = "Vocabulário"
-    
-    st.markdown('<div class="mode-buttons">', unsafe_allow_html=True)
 
-    if st.button("Vocabulário", key="btn_modo_vocab"):
-        st.session_state.modalidade = "Vocabulário"
-    
-    if st.button("Verbos", key="btn_modo_verbos"):
-        st.session_state.modalidade = "Verbos"
-    
-    if st.button("Ambos", key="btn_modo_ambos"):
-        st.session_state.modalidade = "Vocabulário + Verbos"
-    
-    st.markdown("</div>", unsafe_allow_html=True)
-    
+    # Padrão que centraliza de forma estável no Streamlit:
+    # cada botão dentro da coluna central.
+    col1, col2, col3 = st.columns([1, 2, 1])
+
+    with col2:
+        st.markdown('<div class="mode-button">', unsafe_allow_html=True)
+        if st.button("Vocabulário", key="btn_modo_vocab"):
+            st.session_state.modalidade = "Vocabulário"
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        st.markdown('<div class="mode-button">', unsafe_allow_html=True)
+        if st.button("Verbos", key="btn_modo_verbos"):
+            st.session_state.modalidade = "Verbos"
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        st.markdown('<div class="mode-button">', unsafe_allow_html=True)
+        if st.button("Ambos", key="btn_modo_ambos"):
+            st.session_state.modalidade = "Vocabulário + Verbos"
+        st.markdown("</div>", unsafe_allow_html=True)
+
     modalidade = st.session_state.modalidade
 
     qtd_vocabulario = 0
@@ -951,15 +714,16 @@ if st.session_state.tela == "configuracao":
     else:
         st.markdown('<div class="fake-label">Nº vocabulário</div>', unsafe_allow_html=True)
         qtd_vocabulario = st.slider("", 1, 50, 10, label_visibility="collapsed")
-        st.markdown('<div class="fake-label">Nº verbos</div>',unsafe_allow_html=True)
-        qtd_verbos = st.slider("", 1, 50, 10, key="slider_verbos",label_visibility="collapsed")
+        st.markdown('<div class="fake-label">Nº verbos</div>', unsafe_allow_html=True)
+        qtd_verbos = st.slider("", 1, 50, 10, key="slider_verbos", label_visibility="collapsed")
+
     col1, col2, col3 = st.columns([1, 2, 1])
 
     with col2:
         st.markdown('<div class="start-button">', unsafe_allow_html=True)
         iniciar = st.button("Commencer", key="btn_commencer")
         st.markdown("</div>", unsafe_allow_html=True)
-    
+
     if iniciar:
         vocabulario_nivel = filtrar_por_nivel(vocabulario, nivel)
         verbos_nivel = filtrar_por_nivel(verbos, nivel)
@@ -985,7 +749,7 @@ if st.session_state.tela == "configuracao":
 
 
 elif st.session_state.tela == "questao":
-    colx1, colx2, colx3 = st.columns([8,1,1])
+    colx1, colx2, colx3 = st.columns([8, 1, 1])
 
     with colx3:
         st.markdown('<div class="close-button">', unsafe_allow_html=True)
@@ -993,7 +757,7 @@ elif st.session_state.tela == "questao":
             reiniciar()
             st.rerun()
         st.markdown("</div>", unsafe_allow_html=True)
-            
+
     total = len(st.session_state.teste)
     indice = st.session_state.indice
     pergunta = st.session_state.teste[indice]
@@ -1053,17 +817,17 @@ elif st.session_state.tela == "questao":
     st.markdown('</div>', unsafe_allow_html=True)
 
     if st.session_state.respondido:
-        col1, col2, col3 = st.columns([1,1,1])
-        
+        col1, col2, col3 = st.columns([1, 1, 1])
+
         with col2:
             st.markdown('<div class="next-button">', unsafe_allow_html=True)
             simbolo_botao = "✓" if indice + 1 == total else "→"
-        
+
             if st.button(simbolo_botao, key=f"proxima_{indice}"):
                 proxima_questao()
                 st.rerun()
             st.markdown("</div>", unsafe_allow_html=True)
-                
+
 elif st.session_state.tela == "resultado":
     total = len(st.session_state.teste)
     acertos = st.session_state.acertos
