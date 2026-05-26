@@ -66,17 +66,6 @@ def adicionar_fundo_animado(imagem):
             z-index: 1;
         }}
         
-    /* Selectbox seta maior e centralizada */
-    div[data-baseweb="select"] svg {
-        width: 22px !important;
-        height: 22px !important;
-        margin-top: 1px !important;
-    }
-
-    div[data-baseweb="select"] {
-        display: flex !important;
-        align-items: center !important;
-    }
 
 </style>
         """,
@@ -570,6 +559,19 @@ st.markdown(
         background: #f3f4f6 !important;
         color: #111827 !important;
         text-decoration: none !important;
+    }
+
+
+    /* Selectbox seta maior e centralizada */
+    div[data-baseweb="select"] svg {
+        width: 22px !important;
+        height: 22px !important;
+        margin-top: 1px !important;
+    }
+
+    div[data-baseweb="select"] {
+        display: flex !important;
+        align-items: center !important;
     }
 
 </style>
