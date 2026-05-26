@@ -496,6 +496,50 @@ st.markdown(
             max-width: 50px !important;
         }
     }
+    /* CENTRALIZA TODOS OS BOTÕES */
+    div[data-testid="stButton"] {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    
+    /* CENTRALIZA COLUNAS */
+    div[data-testid="column"] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    /* BOTÕES DA MODALIDADE */
+    .mode-buttons {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.15rem !important;
+    }
+    
+    /* BOTÕES DAS RESPOSTAS */
+    .answer-button {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+    
+    /* BOTÃO START */
+    .start-button {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+    
+    /* BOTÃO NEXT */
+    .next-button {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -718,7 +762,7 @@ if st.session_state.tela == "configuracao":
     if "modalidade" not in st.session_state:
         st.session_state.modalidade = "Vocabulário"
     
-    col1, col2, col3 = st.columns([1,2,1])
+    col1, col2, col3 = st.columns([1.2,2,1.2])
     with col2:
         st.markdown('<div class="mode-buttons">', unsafe_allow_html=True)
 
