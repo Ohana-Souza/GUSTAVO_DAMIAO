@@ -26,38 +26,37 @@ def adicionar_fundo_animado(imagem):
     st.markdown(
         f"""
         <style>
-
         .stApp {{
-            background-color: #0d1117;
-        }}
-
-        .fundo-animado {{
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 300%;
-            height: 100%;
             background-image: url("data:image/png;base64,{encoded}");
             background-repeat: repeat-x;
             background-size: auto 100%;
-            opacity: 0.10;
-            z-index: -999;
+            background-position: 0 0;
             animation: moverFundo 120s linear infinite;
-            pointer-events: none;
         }}
 
         @keyframes moverFundo {{
             from {{
-                transform: translateX(0);
+                background-position: 0 0;
             }}
             to {{
-                transform: translateX(-33.333%);
+                background-position: -2000px 0;
             }}
         }}
 
-        </style>
+        .stApp::before {{
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 17, 23, 0.78);
+            z-index: 0;
+            pointer-events: none;
+        }}
 
-        <div class="fundo-animado"></div>
+        .block-container {{
+            position: relative;
+            z-index: 1;
+        }}
+        </style>
         """,
         unsafe_allow_html=True
     )
