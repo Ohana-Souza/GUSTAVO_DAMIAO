@@ -151,13 +151,18 @@ st.markdown(
     .config-card {
         max-width: 600px;
         margin: 1rem auto;
-        padding: 1.2rem;
-        border-radius: 22px;
-        background: rgba(13, 17, 23, 0.74);
-        border: 1px solid rgba(255,255,255,0.14);
-        box-shadow: 0 8px 22px rgba(0,0,0,0.30);
-        backdrop-filter: blur(8px);
-        color: #f0f6fc;
+        padding: 1.4rem;
+        border-radius: 24px;
+    
+        background: rgba(255,255,255,0.16);
+        border: 1px solid rgba(255,255,255,0.20);
+    
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    
+        box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+    
+        color: #ffffff;
     }
     .question-type {
         text-align: center;
@@ -600,7 +605,6 @@ iniciar_estado()
 if st.session_state.tela == "configuracao":
     st.markdown('<div class="main-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
     st.markdown('<div class="subtitle">GUSTAVO DAMIÃO</div>', unsafe_allow_html=True)
-    st.markdown('<div class="config-card">', unsafe_allow_html=True)
 else:
     st.markdown('<div class="small-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
 
@@ -655,8 +659,6 @@ if st.session_state.tela == "configuracao":
             st.session_state.tela = "questao"
             st.rerun()
 
-    # FECHA O CARD
-    st.markdown('</div>', unsafe_allow_html=True)
 
 elif st.session_state.tela == "questao":
     colx1, colx2, colx3 = st.columns([8,1,1])
