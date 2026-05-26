@@ -540,6 +540,16 @@ st.markdown(
         display: flex !important;
         justify-content: center !important;
     }
+    .mode-buttons {
+        width: 100% !important;
+        max-width: 260px !important;
+        margin: 0 auto !important;
+    }
+    
+    .mode-buttons div[data-testid="stButton"] {
+        display: flex !important;
+        justify-content: center !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -762,20 +772,18 @@ if st.session_state.tela == "configuracao":
     if "modalidade" not in st.session_state:
         st.session_state.modalidade = "Vocabulário"
     
-    col1, col2, col3 = st.columns([1.2,2,1.2])
-    with col2:
-        st.markdown('<div class="mode-buttons">', unsafe_allow_html=True)
+    st.markdown('<div class="mode-buttons">', unsafe_allow_html=True)
 
-        if st.button("Vocabulário", key="btn_modo_vocab"):
-            st.session_state.modalidade = "Vocabulário"
+    if st.button("Vocabulário", key="btn_modo_vocab"):
+        st.session_state.modalidade = "Vocabulário"
     
-        if st.button("Verbos", key="btn_modo_verbos"):
-            st.session_state.modalidade = "Verbos"
-        
-        if st.button("Ambos", key="btn_modo_ambos"):
-            st.session_state.modalidade = "Vocabulário + Verbos"
-
-        st.markdown("</div>", unsafe_allow_html=True)
+    if st.button("Verbos", key="btn_modo_verbos"):
+        st.session_state.modalidade = "Verbos"
+    
+    if st.button("Ambos", key="btn_modo_ambos"):
+        st.session_state.modalidade = "Vocabulário + Verbos"
+    
+    st.markdown("</div>", unsafe_allow_html=True)
     
     modalidade = st.session_state.modalidade
 
