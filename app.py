@@ -86,36 +86,39 @@ st.markdown(
 
     .block-container {
         max-width: 720px;
-        padding-top: 0.35rem;
-        padding-bottom: 0.35rem;
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
+        padding-top: 0.45rem;
+        padding-bottom: 0.6rem;
+        padding-left: 0.9rem;
+        padding-right: 0.9rem;
         margin: auto;
     }
 
+    /* Espaçamento geral controlado, sem margens negativas */
     div[data-testid="stVerticalBlock"] > div {
-        gap: 0.18rem !important;
+        gap: 0.24rem !important;
     }
 
     div[data-testid="stHorizontalBlock"] {
         gap: 0.35rem !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
+    }
+
+    [data-testid="element-container"] {
+        margin-bottom: 0.08rem !important;
     }
 
     .main-title {
         text-align: center;
-        font-size: clamp(1.75rem, 5vw, 2.45rem);
-        font-weight: 750;
-        margin: 0.2rem auto 0.1rem auto;
+        font-size: clamp(1.65rem, 5vw, 2.35rem);
+        font-weight: 800;
+        margin: 0.20rem auto 0.05rem auto;
         color: #ffffff;
         text-shadow: 0 3px 12px rgba(0,0,0,0.60);
-        line-height: 1.1;
+        line-height: 1.12;
     }
 
     .small-title {
         text-align: center;
-        font-size: clamp(1rem, 3.4vw, 1.25rem);
+        font-size: clamp(1.00rem, 3.4vw, 1.22rem);
         font-weight: 850;
         margin: 0.05rem auto 0.22rem auto;
         color: #ffffff;
@@ -125,7 +128,7 @@ st.markdown(
 
     .subtitle {
         text-align: center;
-        font-size: clamp(0.75rem, 2.7vw, 0.95rem);
+        font-size: clamp(0.78rem, 2.7vw, 0.95rem);
         color: #d5dce8;
         margin: 0 auto 0.65rem auto;
         line-height: 1.25;
@@ -135,16 +138,16 @@ st.markdown(
 
     .fake-label {
         width: fit-content;
-        min-width: 145px;
-        max-width: 220px;
-        margin: 0.12rem auto 0.08rem auto;
-        padding: 0.28rem 0.65rem;
+        min-width: 150px;
+        max-width: 230px;
+        margin: 0.22rem auto 0.10rem auto;
+        padding: 0.32rem 0.72rem;
         border-radius: 12px;
-        background: rgba(255,255,255,0.68);
-        border: 1px solid rgba(255,255,255,0.30);
+        background: rgba(255,255,255,0.72);
+        border: 1px solid rgba(255,255,255,0.32);
         color: #111827;
-        font-size: 0.72rem;
-        font-weight: 750;
+        font-size: 0.74rem;
+        font-weight: 800;
         text-align: center;
         backdrop-filter: blur(8px);
         box-shadow: 0 4px 12px rgba(0,0,0,0.12);
@@ -152,12 +155,12 @@ st.markdown(
 
     .motivation {
         text-align: center;
-        font-size: clamp(0.68rem, 2.5vw, 0.86rem);
+        font-size: clamp(0.70rem, 2.5vw, 0.88rem);
         font-weight: 800;
         color: #f0f6fc;
-        margin: 0.05rem auto 0.12rem auto;
-        padding: 0.32rem 0.62rem;
-        max-width: 520px;
+        margin: 0.10rem auto 0.10rem auto;
+        padding: 0.36rem 0.70rem;
+        max-width: 540px;
         border-radius: 999px;
         background: rgba(13, 17, 23, 0.56);
         border: 1px solid rgba(255, 255, 255, 0.12);
@@ -166,13 +169,13 @@ st.markdown(
     }
 
     .question-card {
-        max-width: min(540px, 92vw);
-        margin: 0.35rem auto 0.45rem auto;
+        max-width: min(620px, 92vw);
+        margin: 0.20rem auto 0.30rem auto;
         text-align: center;
         background: rgba(13, 17, 23, 0.76);
         border: 1px solid rgba(255,255,255,0.14);
         border-radius: 16px;
-        padding: 0.62rem 0.75rem;
+        padding: 0.70rem 0.85rem;
         box-shadow: 0 8px 22px rgba(0,0,0,0.30);
         color: #f0f6fc;
         backdrop-filter: blur(8px);
@@ -180,19 +183,19 @@ st.markdown(
 
     .question-type {
         text-align: center;
-        font-size: clamp(0.50rem, 1.9vw, 0.65rem);
+        font-size: clamp(0.52rem, 1.9vw, 0.68rem);
         color: #b8c0cc;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         font-weight: 850;
-        margin-bottom: 0.22rem;
+        margin-bottom: 0.24rem;
     }
 
     .question-text {
         text-align: center;
-        font-size: clamp(0.88rem, 3.4vw, 1.12rem);
+        font-size: clamp(0.92rem, 3.4vw, 1.18rem);
         font-weight: 800;
-        line-height: 1.22;
+        line-height: 1.23;
         color: #ffffff;
         margin: 0;
     }
@@ -201,33 +204,33 @@ st.markdown(
         text-align: center;
         color: #d5dce8;
         font-weight: 800;
-        font-size: clamp(0.62rem, 2.3vw, 0.76rem);
-        margin-top: -0.05rem;
+        font-size: clamp(0.64rem, 2.3vw, 0.78rem);
+        margin-top: -0.02rem;
         margin-bottom: 0.08rem;
     }
 
     div[data-testid="stSelectbox"] {
-        max-width: 190px !important;
+        max-width: 200px !important;
         margin: 0 auto !important;
     }
 
     div[data-testid="stSelectbox"] > div,
     div[data-testid="stSelectbox"] > div > div {
-        max-width: 190px !important;
+        max-width: 200px !important;
     }
 
     div[data-testid="stSelectbox"] > div > div {
-        background: rgba(255,255,255,0.20) !important;
+        background: rgba(255,255,255,0.22) !important;
         border: 1px solid rgba(255,255,255,0.24) !important;
         border-radius: 14px !important;
         backdrop-filter: blur(8px);
-        min-height: 32px !important;
+        min-height: 34px !important;
     }
 
     div[data-testid="stSelectbox"] * {
         color: white !important;
         font-weight: 700 !important;
-        font-size: 0.82rem !important;
+        font-size: 0.84rem !important;
     }
 
     div[role="listbox"] {
@@ -237,7 +240,7 @@ st.markdown(
     }
 
     div[data-testid="stSlider"] {
-        max-width: 340px !important;
+        max-width: 360px !important;
         margin: 0 auto !important;
     }
 
@@ -251,10 +254,10 @@ st.markdown(
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        min-height: 32px !important;
-        padding: 0.30rem 0.65rem !important;
-        margin: 0.03rem auto !important;
-        border-radius: 13px !important;
+        min-height: 38px !important;
+        padding: 0.42rem 0.75rem !important;
+        margin: 0.06rem auto !important;
+        border-radius: 14px !important;
         border: 1px solid #e5e7eb !important;
         background: rgba(255,255,255,0.92) !important;
         color: #111827 !important;
@@ -270,85 +273,91 @@ st.markdown(
     div[data-testid="stButton"] > button p {
         margin: 0 !important;
         color: inherit !important;
-        font-size: 0.80rem !important;
+        font-size: 0.90rem !important;
         line-height: 1.1 !important;
     }
 
     .mode-button div[data-testid="stButton"] > button p {
-        font-size: 0.76rem !important;
-        font-weight: 500 !important;
+        font-size: 0.82rem !important;
+        font-weight: 600 !important;
     }
 
     .start-button div[data-testid="stButton"] > button p {
-        font-size: 0.82rem !important;
-        font-weight: 500 !important;
+        font-size: 0.86rem !important;
+        font-weight: 550 !important;
     }
 
     .close-button div[data-testid="stButton"] > button {
-        width: 38px !important;
-        height: 38px !important;
-        min-height: 38px !important;
-        max-width: 38px !important;
+        width: 40px !important;
+        height: 40px !important;
+        min-height: 40px !important;
+        max-width: 40px !important;
         border-radius: 50% !important;
         padding: 0 !important;
         background: #ffffff !important;
     }
 
     .close-button div[data-testid="stButton"] > button p {
-        font-size: 1.15rem !important;
+        font-size: 1.18rem !important;
         font-weight: 900 !important;
         line-height: 1 !important;
     }
 
+    .answer-button {
+        margin: 0.12rem 0 !important;
+        padding: 0 !important;
+    }
+
     .answer-button div[data-testid="stButton"] > button {
-        min-height: 31px !important;
-        padding: 0.28rem 0.58rem !important;
-        margin: 0.08rem auto !important;
+        min-height: 38px !important;
+        padding: 0.36rem 0.70rem !important;
+        margin: 0.02rem auto !important;
+        border-radius: 14px !important;
     }
 
     .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.80rem !important;
+        font-size: 0.92rem !important;
         font-weight: 650 !important;
     }
 
     .next-button div[data-testid="stButton"] > button {
-        width: 46px !important;
-        height: 46px !important;
-        min-height: 46px !important;
-        max-width: 46px !important;
+        width: 48px !important;
+        height: 48px !important;
+        min-height: 48px !important;
+        max-width: 48px !important;
         border-radius: 50% !important;
         padding: 0 !important;
         background: #ffffff !important;
     }
 
     .next-button div[data-testid="stButton"] > button p {
-        font-size: 1.35rem !important;
+        font-size: 1.40rem !important;
         font-weight: 900 !important;
         line-height: 1 !important;
     }
 
     .options-wrapper {
         width: 100% !important;
-        max-width: 420px !important;
-        margin: 0.08rem auto 0 auto !important;
+        max-width: 440px !important;
+        margin: 0.12rem auto 0 auto !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 0 !important;
+        gap: 0.18rem !important;
     }
 
     .option-box {
-        width: min(280px, 74vw) !important;
-        max-width: 280px !important;
-        min-height: 31px !important;
-        margin: 0.06rem auto !important;
+        width: min(340px, 82vw) !important;
+        max-width: 340px !important;
+        min-height: 38px !important;
+        margin: 0.08rem auto !important;
         text-align: center !important;
-        padding: 0.28rem 0.58rem !important;
-        border-radius: 13px !important;
-        font-size: 0.80rem !important;
+        padding: 0.36rem 0.70rem !important;
+        border-radius: 14px !important;
+        font-size: 0.92rem !important;
         font-weight: 800 !important;
-        line-height: 1.22 !important;
+        line-height: 1.18 !important;
         box-sizing: border-box !important;
         display: flex !important;
         align-items: center !important;
@@ -376,210 +385,52 @@ st.markdown(
 
     @media (max-width: 600px) {
         .block-container {
-            padding-top: 0.10rem !important;
-            padding-left: 0.50rem !important;
-            padding-right: 0.50rem !important;
+            padding-top: 0.35rem !important;
+            padding-left: 0.60rem !important;
+            padding-right: 0.60rem !important;
         }
 
         .main-title {
-            font-size: 1.42rem !important;
+            font-size: 1.52rem !important;
             line-height: 1.15 !important;
             margin-top: 0.05rem !important;
         }
 
         .subtitle {
-            font-size: 0.68rem !important;
-            margin-bottom: 0.35rem !important;
+            font-size: 0.72rem !important;
+            margin-bottom: 0.45rem !important;
         }
 
         .fake-label {
-            min-width: 140px !important;
-            max-width: 185px !important;
-            padding: 0.25rem 0.55rem !important;
-            font-size: 0.68rem !important;
+            min-width: 145px !important;
+            max-width: 190px !important;
+            padding: 0.28rem 0.58rem !important;
+            font-size: 0.70rem !important;
         }
 
         div[data-testid="stSelectbox"],
         div[data-testid="stSelectbox"] > div,
         div[data-testid="stSelectbox"] > div > div {
-            width: 178px !important;
-            max-width: 178px !important;
+            width: 185px !important;
+            max-width: 185px !important;
         }
 
         div[data-testid="stButton"] > button p {
-            font-size: 0.72rem !important;
+            font-size: 0.82rem !important;
         }
 
         .answer-button div[data-testid="stButton"] > button,
         .option-box {
-            min-height: 29px !important;
-            padding: 0.25rem 0.50rem !important;
-            font-size: 0.74rem !important;
+            min-height: 36px !important;
+            padding: 0.32rem 0.60rem !important;
+            font-size: 0.84rem !important;
         }
 
         .answer-button div[data-testid="stButton"] > button p {
-            font-size: 0.74rem !important;
+            font-size: 0.84rem !important;
         }
     }
-    
-    /* =============================
-       COMPACTAÇÃO FORTE DO STREAMLIT
-       ============================= */
-
-    [data-testid="element-container"] {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-    }
-
-    [data-testid="element-container"]:has(.answer-button),
-    [data-testid="element-container"]:has(.mode-button),
-    [data-testid="element-container"]:has(.start-button),
-    [data-testid="element-container"]:has(.next-button) {
-        margin-top: -0.18rem !important;
-        margin-bottom: -0.18rem !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-    }
-
-    div[data-testid="stVerticalBlock"] {
-        gap: 0 !important;
-    }
-
-    div[data-testid="stVerticalBlock"] > div {
-        gap: 0.18 !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-    }
-
-    div[data-testid="stHorizontalBlock"] {
-        gap: 0.10rem !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-    }
-
-    .small-title {
-        margin: 0 auto 0.05rem auto !important;
-        padding: 0 !important;
-        font-size: clamp(0.95rem, 3.2vw, 1.12rem) !important;
-        line-height: 1.05 !important;
-    }
-
-    .motivation {
-        margin: 0.02rem auto 0.05rem auto !important;
-        padding: 0.24rem 0.50rem !important;
-        line-height: 1.05 !important;
-    }
-
-    div[data-testid="stCaptionContainer"] {
-        margin-top: -0.08rem !important;
-        margin-bottom: -0.04rem !important;
-        padding: 0 !important;
-    }
-
-    .question-card {
-        max-width: min(620px, 92vw) !important;
-        margin: 0.02rem auto 0.04rem auto !important;
-        padding: 0.55rem 0.8rem !important;
-        border-radius: 13px !important;
-    }
-
-    .question-type {
-        margin-bottom: 0.08rem !important;
-        font-size: clamp(0.48rem, 1.8vw, 0.62rem) !important;
-        line-height: 1 !important;
-    }
-
-    .question-text {
-        font-size: clamp(0.80rem, 2.8vw, 1rem) !important;
-        line-height: 1.08 !important;
-        margin: 0 !important;
-    }
-
-    .options-wrapper {
-        margin: 0 auto !important;
-        padding: 0 !important;
-        gap: 0 !important;
-    }
-
-    .answer-button {
-        margin: 0.10rem 0 !important;
-        padding: 0 !important;
-        line-height: 1 !important;
-    }
-
-    .answer-button div[data-testid="stButton"] {
-        margin: 0 !important;
-        padding: 0 !important;
-        min-height: 0 !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button {
-        min-height: 38px !important;
-        height: 38px !important;
-        padding: 0.30rem 0.7rem !important;
-        margin: 0 auto !important;
-        border-radius: 14px !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.92rem !important;
-        line-height: 1 !important;
-        margin: 0 !important;
-    }
-
-    .option-box {
-        width: min(340px, 82vw) !important;
-        max-width: 340px !important;
-        min-height: 38px !important;
-        margin: 0.08rem auto !important;
-        padding: 0.30rem 0.7rem !important;
-        font-size: 0.92rem !important;
-        line-height: 1 !important;
-        border-radius: 14px !important;
-    }
-
-    .mode-button {
-        margin: 0.14rem 0 !important;
-        padding: 0 !important;
-    }
-
-    .mode-button div[data-testid="stButton"] > button {
-        min-height: 26px !important;
-        height: 30px !important;
-        padding: 0.08rem 0.42rem !important;
-    }
-
-    .start-button {
-        margin-top: -0.18rem !important;
-    }
-
-    .stMarkdown {
-        margin-bottom: 0 !important;
-    }
-
-    @media (max-width: 600px) {
-        .question-card {
-            max-width: min(620px, 92vw) !important;
-            padding: 0.28rem 0.45rem !important;
-        }
-
-        .answer-button {
-            margin: -0.40rem 0 !important;
-        }
-
-        .answer-button div[data-testid="stButton"] > button {
-            height: 26px !important;
-            min-height: 22px !important;
-        }
-    }
-
-</style>
+    </style>
     """,
     unsafe_allow_html=True
 )
@@ -799,7 +650,6 @@ if st.session_state.tela == "configuracao":
     if "modalidade" not in st.session_state:
         st.session_state.modalidade = "Vocabulário"
 
-    # Centralização estável: todos os botões dentro da coluna central.
     col1, col2, col3 = st.columns([1.25, 1, 1.25], gap="small")
 
     with col2:
@@ -868,7 +718,6 @@ if st.session_state.tela == "configuracao":
 
 
 elif st.session_state.tela == "questao":
-    # X primeiro, acima do título, à direita.
     colx1, colx2, colx3 = st.columns([8, 1, 1], gap="small")
 
     with colx3:
@@ -924,8 +773,7 @@ elif st.session_state.tela == "questao":
                     unsafe_allow_html=True
                 )
     else:
-        # Uma única coluna central para TODAS as alternativas.
-        col1, col2, col3 = st.columns([1.3, 1, 1.3], gap="small")
+        col1, col2, col3 = st.columns([1.30, 1, 1.30], gap="small")
         with col2:
             for opcao in pergunta["opcoes"]:
                 st.markdown('<div class="answer-button">', unsafe_allow_html=True)
