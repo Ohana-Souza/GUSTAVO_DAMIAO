@@ -10,9 +10,6 @@ st.set_page_config(
 )
 import base64
 
-import base64
-from pathlib import Path
-
 def adicionar_fundo_animado(imagem):
     imagem = Path(imagem)
 
@@ -102,81 +99,159 @@ st.markdown(
     <style>
     .main-title {
         text-align: center;
-        font-size: 2.2rem;
-        font-weight: 800;
-        margin-bottom: 0.2rem;
+        font-size: clamp(1.9rem, 6vw, 2.8rem);
+        font-weight: 850;
+        margin: 0 auto 0.35rem auto;
+        line-height: 1.1;
+        text-shadow: 0 4px 18px rgba(0,0,0,0.55);
     }
+
     .subtitle {
         text-align: center;
-        color: #9ca3af;
-        margin-bottom: 2rem;
+        font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+        color: #c9d1d9;
+        margin: 0 auto 1.7rem auto;
+        line-height: 1.4;
     }
+
+    .motivation {
+        text-align: center;
+        font-size: clamp(1rem, 2.8vw, 1.15rem);
+        font-weight: 750;
+        color: #f0f6fc;
+        margin: 1.2rem auto 1rem auto;
+        padding: 0.75rem 1rem;
+        max-width: 680px;
+        border-radius: 18px;
+        background: rgba(13, 17, 23, 0.58);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(6px);
+    }
+
     .question-card {
-        background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
-        border: 1px solid #30363d;
-        border-radius: 22px;
-        padding: 28px;
-        margin-top: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        max-width: 720px;
+        margin: 1.35rem auto 1rem auto;
+        text-align: center;
+        background: rgba(13, 17, 23, 0.82);
+        border: 1px solid rgba(255,255,255,0.14);
+        border-radius: 24px;
+        padding: clamp(1.25rem, 4vw, 2rem);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.38);
         color: #f0f6fc;
+        backdrop-filter: blur(8px);
     }
+
     .question-type {
-        font-size: 0.9rem;
-        color: #777;
+        text-align: center;
+        font-size: clamp(0.72rem, 2vw, 0.9rem);
+        color: #aeb6c2;
         text-transform: uppercase;
-        letter-spacing: 0.04em;
-        font-weight: 700;
-        margin-bottom: 12px;
+        letter-spacing: 0.06em;
+        font-weight: 800;
+        margin-bottom: 0.9rem;
     }
+
     .question-text {
-        font-size: 1.35rem;
-        font-weight: 650;
-        margin-bottom: 8px;
+        text-align: center;
+        font-size: clamp(1.25rem, 4.5vw, 1.7rem);
+        font-weight: 750;
         line-height: 1.45;
+        color: #ffffff;
     }
+
     .translation-box {
-        padding: 14px 16px;
-        border-radius: 14px;
-        background: #161b22;
-        border: 1px solid #30363d;
-        margin-top: 18px;
-        font-size: 1rem;
+        max-width: 680px;
+        margin: 1.2rem auto 0 auto;
+        text-align: center;
+        padding: 1rem 1.1rem;
+        border-radius: 18px;
+        background: rgba(13, 17, 23, 0.80);
+        border: 1px solid rgba(255,255,255,0.14);
+        font-size: clamp(0.95rem, 2.5vw, 1.05rem);
         color: #f0f6fc;
+        line-height: 1.65;
+        backdrop-filter: blur(7px);
     }
+
+    .correct-box,
+    .wrong-box {
+        max-width: 680px;
+        margin: 0.65rem auto;
+        text-align: center;
+        padding: 0.95rem 1rem;
+        border-radius: 18px;
+        font-size: clamp(1rem, 3vw, 1.12rem);
+        font-weight: 800;
+        line-height: 1.35;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    }
+
     .correct-box {
-        padding: 12px 16px;
-        border-radius: 12px;
         background: #d7f8df;
         border: 1px solid #37a852;
         color: #145c25;
-        font-weight: 700;
-        margin-top: 10px;
     }
+
     .wrong-box {
-        padding: 12px 16px;
-        border-radius: 12px;
         background: #ffe0e0;
         border: 1px solid #d93025;
         color: #8a1c15;
-        font-weight: 700;
-        margin-top: 10px;
     }
+
     div.stButton > button {
         width: 100%;
-        border-radius: 14px;
+        max-width: 680px;
+        min-height: 58px;
+        margin: 0.25rem auto;
+        display: block;
+        border-radius: 18px;
         padding: 0.9rem 1rem;
-        font-weight: 700;
-        font-size: 1rem;
-        border: 1px solid #30363d;
-        background: #161b22;
+        font-weight: 750;
+        font-size: clamp(1rem, 3vw, 1.15rem);
+        border: 1px solid rgba(255,255,255,0.16);
+        background: rgba(13, 17, 23, 0.84);
         color: #f0f6fc;
         transition: all 0.2s ease;
+        backdrop-filter: blur(6px);
     }
 
     div.stButton > button:hover {
         border: 1px solid #58a6ff;
-        background: #1f2937;
+        background: rgba(31, 41, 55, 0.92);
         transform: translateY(-1px);
+    }
+
+    .stProgress > div > div > div > div {
+        background-color: #58a6ff;
+    }
+
+    div[data-testid="stCaptionContainer"] {
+        text-align: center;
+        color: #c9d1d9;
+        font-weight: 700;
+    }
+
+    h3, .stSubheader {
+        text-align: center;
+    }
+
+    @media (max-width: 600px) {
+        .question-card {
+            border-radius: 20px;
+            margin-top: 1rem;
+            padding: 1.15rem;
+        }
+
+        div.stButton > button {
+            min-height: 54px;
+            border-radius: 16px;
+        }
+
+        .correct-box,
+        .wrong-box,
+        .translation-box {
+            border-radius: 16px;
+        }
     }
     </style>
     """,
@@ -363,7 +438,7 @@ def proxima_questao():
 # =============================
 iniciar_estado()
 
-st.markdown('<div class="main-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
+st.markdown('<div class="main-title">Treino de Francês</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">Vocabulário, conjugação ou os dois — uma questão por vez.</div>', unsafe_allow_html=True)
 
 vocabulario = carregar_csv(ARQUIVO_VOCABULARIO)
@@ -420,16 +495,7 @@ elif st.session_state.tela == "questao":
     pergunta = st.session_state.teste[indice]
 
     st.markdown(
-        """
-        <div style="
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.7rem;
-            color: #c9d1d9;
-        ">
-            🧠 La pratique quotidienne fait la différence.
-        </div>
-        """,
+        '<div class="motivation">🇫🇷 La pratique quotidienne fait la différence.</div>',
         unsafe_allow_html=True
     )
 
@@ -446,9 +512,9 @@ elif st.session_state.tela == "questao":
     for opcao in pergunta["opcoes"]:
         if st.session_state.respondido:
             if opcao == pergunta["resposta"]:
-                st.markdown(f'<div class="correct-box">✅ {opcao}</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="correct-box">✓ {opcao}</div>', unsafe_allow_html=True)
             elif opcao == st.session_state.resposta_selecionada:
-                st.markdown(f'<div class="wrong-box">❌ {opcao}</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="wrong-box">✕ {opcao}</div>', unsafe_allow_html=True)
             else:
                 st.button(opcao, disabled=True, key=f"opcao_{indice}_{opcao}")
         else:
