@@ -694,12 +694,14 @@ elif st.session_state.tela == "questao":
                     unsafe_allow_html=True
                 )
         else:
-            st.button(
-                opcao,
-                key=f"opcao_{indice}_{opcao}",
-                on_click=selecionar_resposta,
-                args=(opcao,)
-            )
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col2:
+                st.button(
+                    opcao,
+                    key=f"opcao_{indice}_{opcao}",
+                    on_click=selecionar_resposta,
+                    args=(opcao,)
+                )
 
     st.markdown('</div>', unsafe_allow_html=True)
 
