@@ -63,12 +63,13 @@ def pergunta_frances_para_portugues(vocabulario):
 def pergunta_conjugacao(verbos):
     item = random.choice(verbos)
 
-    resposta_certa = item["conjugacao_certa"]
+    resposta_certa = item["resposta_certa"]
 
     opcoes = [
-        item["conjugacao_certa"],
+        item["resposta_certa"],
         item["opcao_errada_1"],
-        item["opcao_errada_2"]
+        item["opcao_errada_2"],
+        item["opcao_errada_3"]
     ]
 
     random.shuffle(opcoes)
@@ -76,12 +77,13 @@ def pergunta_conjugacao(verbos):
     return {
         "tipo": "Conjugação",
         "pergunta": (
-            f"Complete a conjugação do verbo **{item['verbo']}** "
-            f"no tempo **{item['tempo']}**:\n\n"
-            f"**{item['pronome']} ____**"
+            f"**({item['tempo']})**\n\n"
+            f"{item['frase_lacuna']}"
         ),
         "opcoes": opcoes,
-        "resposta": resposta_certa
+        "resposta": resposta_certa,
+        "traducao": item["traducao_frase"],
+        "frase_completa": item["frase_completa"]
     }
 
 
