@@ -199,9 +199,28 @@ st.markdown(
         justify-content: center !important;
     }
 
+
+    /* Modalidade como botões via radio, centralizado por coluna */
+    div[data-testid="stRadio"] {
+        width: 100% !important;
+    }
+
+    div[data-testid="stRadio"] > div {
+        width: 100% !important;
+    }
+
+    div[role="radiogroup"] {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.32rem !important;
+        margin: 0.05rem auto 0.22rem auto !important;
+    }
+
     div[role="radiogroup"] label {
-        width: 240px !important;
-        max-width: 82vw !important;
+        width: 230px !important;
+        max-width: 100% !important;
         min-height: 38px !important;
         margin: 0 auto !important;
         padding: 0.28rem 0.7rem !important;
@@ -365,19 +384,19 @@ st.markdown(
     }
 
     .answer-button {
-        margin: 0.005rem 0 !important;
+        margin: -0.03rem 0 !important;
         padding: 0 !important;
     }
 
     .answer-button div[data-testid="stButton"] > button {
         width: 320px !important;
         max-width: 82vw !important;
-        min-height: 31px !important;
-        padding: 0.15rem 0.5rem !important;
+        min-height: 30px !important;
+        padding: 0.10rem 0.5rem !important;
     }
 
     .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.84rem !important;
+        font-size: 0.82rem !important;
         line-height: 1 !important;
         font-weight: 600 !important;
     }
@@ -466,6 +485,7 @@ st.markdown(
 
         div[role="radiogroup"] label {
             width: 220px !important;
+            max-width: 100% !important;
             min-height: 36px !important;
         }
 
@@ -704,13 +724,16 @@ if st.session_state.tela == "configuracao":
     opcoes_modo = ["Vocabulário", "Verbos", "Ambos"]
     modo_atual = "Ambos" if st.session_state.modalidade == "Vocabulário + Verbos" else st.session_state.modalidade
 
-    modalidade_escolhida = st.radio(
-        "",
-        opcoes_modo,
-        index=opcoes_modo.index(modo_atual),
-        label_visibility="collapsed",
-        key="radio_modalidade"
-    )
+    col_radio_1, col_radio_2, col_radio_3 = st.columns([1.2, 1, 1.2], gap="small")
+
+    with col_radio_2:
+        modalidade_escolhida = st.radio(
+            "",
+            opcoes_modo,
+            index=opcoes_modo.index(modo_atual),
+            label_visibility="collapsed",
+            key="radio_modalidade"
+        )
 
     st.session_state.modalidade = "Vocabulário + Verbos" if modalidade_escolhida == "Ambos" else modalidade_escolhida
     modalidade = st.session_state.modalidade
