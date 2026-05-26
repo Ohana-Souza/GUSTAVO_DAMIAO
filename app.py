@@ -46,7 +46,7 @@ def adicionar_fundo_animado(imagem):
                 url("data:image/png;base64,{encoded}");
                 
             background-repeat:no-repeat;
-            background-size: 101vw 100vh, 101vw 100vh, 101vw 100vh;
+            background-size: 103vw 100vh, 103vw 100vh, 103vw 100vh;
             background-position: 0 0, 100vw 0, 200vw 0;
             animation: moverFundo 120s linear infinite;
             opacity: 0.55;
