@@ -621,8 +621,6 @@ B1,nublado,nuageux
 B1,chuvoso,pluvieux
 B1,gelado,glacé
 B1,morno,tiède
-```
-
 B2,empresa multinacional,entreprise multinationale
 B2,mercado de trabalho,marché du travail
 B2,processo seletivo,processus de recrutement
@@ -1097,3 +1095,80 @@ C1,intrínseco,intrinsèque
 C1,prejudicial / nocivo,délétère
 C1,mitigar / atenuar,attenuer / mitiger
 C1,corroborar,corroborer
+A2,a chave,la clé
+A2,o dicionário,le dictionnaire
+A2,o animal,l'animal
+A2,o cachorro,le chien
+A2,o gato,le chat
+A2,o pássaro,l'oiseau
+A2,a flor,la fleur
+A2,a árvore,l'arbre
+A2,o jardim,le jardin
+A2,o jornal,le journal
+A2,o espelho,le miroir
+A2,o tapete,le tapis
+A2,a mala,la valise
+A2,a bolsa / sacola,le sac
+A2,o casaco,le manteau
+A2,o chapéu,le chapeau
+A2,os óculos,les lunettes
+A2,o relógio de pulso,la montre
+A2,o presente,le cadeau
+A2,a festa,la fête
+A2,o bolo,le gâteau
+A2,o céu,le ciel
+A2,la lua,la lune
+A2,a estrela,l'étoile
+A2,o rio,le fleuve
+A2,o lago,le lac
+A2,a floresta,la forêt
+A2,a colher,la cuillère
+A2,o garfo,la fourchette
+A2,a faca,le couteau
+A2,o prato,l'assiette
+A2,o copo,le verre
+A2,a garrafa,la bouteille
+A2,a cadeira,la chaise
+A2,a mesa,la table
+A2,a janela,la fenêtre
+A2,a porta,la porte
+C1,a assiduidade,l'assiduité
+C1,a alienação,l'alienation
+C1,a reviravolta / choque,le bouleversement
+C1,a clivagem / divisão,le clivage
+C1,a desilusão / decepção,la déconvenue
+C1,a lealdade / submissão,l'allégeance
+C1,o egocentrismo,l'égocentrisme
+C1,a eloquência,l'éloquence
+C1,a emancipação,l'émancipation
+C1,a integridade,l'intégrité
+C1,a parcialidade,la partialité
+C1,a imparcialidade,l'impartialité
+C1,a prerrogativa,la prérogative
+C1,a reabilitação,la réhabilitation
+C1,o esbulho / espoliação,la spoliation
+C1,o desuso / obsolescência,la désuétude
+C1,a analogia,l'analogie
+C1,o corolário,le corollaire
+C1,a difamação / depreciação,le dénigrement
+C1,o ecletismo,l'éclectisme
+C1,o eufemismo,l'euphémisme
+C1,a égide / proteção,l'égide
+C1,o mimetismo,le mimétisme
+C1,a perenidade,la pérennité
+C1,a quintessência,la quintessence
+C1,o subterfúgio,le subterfuge
+C1,a veracidade,la véracité
+C1,a velhice / degradação,la vétusté
+C1,versátil / instável,versatile
+C1,zeloso,zélé
+C1,a abnegação,l'abnégation
+C1,a condescendência,la condescendance
+C1,a animosidade,l'animosité
+C1,a discrepância,la divergence
+C1,o desfecho / epílogo,l'épilogue
+C1,o apaziguamento,l'apaisement
+C1,o discernimento,le discernement
+C1,efêmero,éphémère
+C1,obsoleto,obsolète
+C1,equitativo,équitable
