@@ -304,7 +304,7 @@ st.markdown(
     }
 
     .answer-button {
-        margin: 0.12rem 0 !important;
+        margin: 0.01rem 0 !important;
         padding: 0 !important;
     }
 
@@ -339,12 +339,12 @@ st.markdown(
     .options-wrapper {
         width: 100% !important;
         max-width: 440px !important;
-        margin: 0.12rem auto 0 auto !important;
+        margin: 0.02rem auto 0 auto !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 0.18rem !important;
+        gap: 0.02rem !important;
     }
 
     .option-box {
