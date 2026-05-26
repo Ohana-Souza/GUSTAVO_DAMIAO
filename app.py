@@ -10,7 +10,16 @@ st.set_page_config(
 )
 import base64
 
+import base64
+from pathlib import Path
+
 def adicionar_fundo_animado(imagem):
+    imagem = Path(imagem)
+
+    if not imagem.exists():
+        st.warning(f"Imagem não encontrada: {imagem}")
+        return
+
     with open(imagem, "rb") as arquivo:
         encoded = base64.b64encode(arquivo.read()).decode()
 
@@ -19,24 +28,22 @@ def adicionar_fundo_animado(imagem):
         <style>
 
         .stApp {{
-            background: #0d1117;
-            overflow: hidden;
+            background-color: #0d1117;
         }}
 
-        .stApp::before {{
-            content: "";
+        .fundo-animado {{
             position: fixed;
             top: 0;
             left: 0;
-            width: 200%;
+            width: 300%;
             height: 100%;
             background-image: url("data:image/png;base64,{encoded}");
             background-repeat: repeat-x;
-            background-size: cover;
-            opacity: 0.08;
-            z-index: -1;
-
+            background-size: auto 100%;
+            opacity: 0.10;
+            z-index: -999;
             animation: moverFundo 120s linear infinite;
+            pointer-events: none;
         }}
 
         @keyframes moverFundo {{
@@ -44,16 +51,22 @@ def adicionar_fundo_animado(imagem):
                 transform: translateX(0);
             }}
             to {{
-                transform: translateX(-50%);
+                transform: translateX(-33.333%);
             }}
         }}
 
         </style>
+
+        <div class="fundo-animado"></div>
         """,
         unsafe_allow_html=True
     )
 
-adicionar_fundo_animado("fundo.png")
+from pathlib import Path
+
+CAMINHO_FUNDO = Path(__file__).parent / "fundo.png"
+
+adicionar_fundo_animado(CAMINHO_FUNDO)
 
 # =============================
 # CONFIGURAÇÃO DOS ARQUIVOS
