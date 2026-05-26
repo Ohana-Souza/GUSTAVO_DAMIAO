@@ -705,8 +705,8 @@ if st.session_state.tela == "configuracao":
             st.session_state.modalidade = "Verbos"
     
     with col3:
-        if st.button("Vocab. + Verbos"):
-            st.session_state.modalidade = "Vocabulário + Verbos"
+        if st.button("Ambos"):
+            st.session_state.modalidade = "Ambos"
     
     modalidade = st.session_state.modalidade
 
