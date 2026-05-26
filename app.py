@@ -706,13 +706,15 @@ elif st.session_state.tela == "questao":
     st.markdown('</div>', unsafe_allow_html=True)
 
     if st.session_state.respondido:
-        st.markdown('<div class="next-button-wrapper">', unsafe_allow_html=True)
-        simbolo_botao = "✓" if indice + 1 == total else "→"
-        if st.button(simbolo_botao, key=f"proxima_{indice}"):
-            proxima_questao()
-            st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
-
+        col1, col2, col3 = st.columns([1,1,1])
+        
+        with col2:
+            simbolo_botao = "✓" if indice + 1 == total else "→"
+        
+            if st.button(simbolo_botao, key=f"proxima_{indice}"):
+                proxima_questao()
+                st.rerun()
+                
 elif st.session_state.tela == "resultado":
     total = len(st.session_state.teste)
     acertos = st.session_state.acertos
