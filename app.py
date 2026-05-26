@@ -521,11 +521,11 @@ st.markdown(
     }
 
     .mode-buttons div[data-testid="stButton"] > button {
-        width: 170px !important;
+        width: 10px !important;
         max-width: 72vw !important;
         min-height: 30px !important;
         padding: 0.22rem 0.55rem !important;
-        font-size: 0.72rem !important;
+        font-size: 0.68rem !important;
         border-radius: 12px !important;
         margin: 0.04rem auto !important;
         background: rgba(255,255,255,0.82) !important;
