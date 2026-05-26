@@ -500,7 +500,9 @@ st.markdown(
             min-height: 34px !important;
         }
     }
-
+    div[data-testid="stVerticalBlock"] div[data-testid="element-container"] {
+        margin-bottom: -0.38rem !important;
+    }
 
     /* ===== AJUSTE FINAL MAIS FORTE: opções bem próximas ===== */
 
@@ -918,15 +920,16 @@ elif st.session_state.tela == "questao":
     else:
         st.markdown('<div class="answers-area">', unsafe_allow_html=True)
         for opcao in pergunta["opcoes"]:
-            st.markdown('<div class="answer-button">', unsafe_allow_html=True)
-            st.button(
-                opcao,
-                key=f"opcao_{indice}_{opcao}",
-                on_click=selecionar_resposta,
-                args=(opcao,),
-                use_container_width=True
-            )
-            st.markdown("</div>", unsafe_allow_html=True)
+            with st.container(border=False):
+                st.markdown('<div class="answer-button">', unsafe_allow_html=True)
+                st.button(
+                    opcao,
+                    key=f"opcao_{indice}_{opcao}",
+                    on_click=selecionar_resposta,
+                    args=(opcao,),
+                    use_container_width=True
+                )
+                st.markdown("</div>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
