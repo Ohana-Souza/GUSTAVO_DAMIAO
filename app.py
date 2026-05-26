@@ -193,6 +193,31 @@ st.markdown(
         gap: 1.2rem !important;
         flex-wrap: wrap !important;
     }
+    /* Selectbox com o mesmo tamanho da caixa "Nível de dificuldade" */
+    div[data-testid="stSelectbox"] {
+        max-width: 300px !important;
+        margin: 0 auto !important;
+    }
+    
+    div[data-testid="stSelectbox"] > div {
+        max-width: 300px !important;
+    }
+    
+    /* Centraliza melhor as opções do radio */
+    div[role="radiogroup"] {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 1.4rem !important;
+        flex-wrap: wrap !important;
+    }
+    
+    div[role="radiogroup"] label {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
     .question-type {
         text-align: center;
         font-size: clamp(0.55rem, 2.1vw, 0.7rem);
@@ -652,8 +677,8 @@ if st.session_state.tela == "configuracao":
     st.markdown('<div class="fake-label">O que você quer treinar?</div>', unsafe_allow_html=True)
     modalidade = st.radio(
         "",
-        ["Vocabulário", "Verbos", "Vocabulário + Verbos"],
-        horizontal=True
+        ["Vocabulário", "Verbos", "Vocabulário + Verbos"],            
+        label_visibility="collapsed"
     )
 
     qtd_vocabulario = 0
