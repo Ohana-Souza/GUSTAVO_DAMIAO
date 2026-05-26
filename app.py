@@ -168,19 +168,31 @@ st.markdown(
         margin: 0;
     }
 
-    div.stButton > button {
+    div.stButton {
         width: 100% !important;
-        max-width: 280px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    div.stButton > button {
+        width: auto !important;
+        min-width: 170px !important;
+        max-width: 360px !important;
         min-height: 42px !important;
         margin: 0.35rem auto !important;
-        display: block !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
         border-radius: 14px !important;
-        padding: 0.5rem 0.8rem !important;
+        padding: 0.5rem 1rem !important;
         font-weight: 700 !important;
         font-size: 0.95rem !important;
         border: 1px solid #e5e7eb !important;
         background: #ffffff !important;
         color: #111827 !important;
+        text-align: center !important;
+        box-shadow: 0 5px 14px rgba(0,0,0,0.18) !important;
     }
     
     div.stButton > button:hover {
@@ -288,18 +300,17 @@ st.markdown(
         }
 
         div.stButton > button {
-            width: 100%;
-            max-width: 260px;
-            min-height: 38px;
-            margin: 0.35rem auto;
-            display: block;
-            border-radius: 14px;
-            padding: 0.45rem 0.7rem;
-            font-weight: 700;
-            font-size: 0.9rem;
-            border: 1px solid #e5e7eb;
-            background: #ffffff;
-            color: #111827;
+            min-width: 145px !important;
+            max-width: 280px !important;
+            min-height: 38px !important;
+            margin: 0.28rem auto !important;
+            border-radius: 14px !important;
+            padding: 0.45rem 0.8rem !important;
+            font-weight: 700 !important;
+            font-size: 0.9rem !important;
+            border: 1px solid #e5e7eb !important;
+            background: #ffffff !important;
+            color: #111827 !important;
         }
 
         .correct-box,
@@ -331,7 +342,8 @@ st.markdown(
     }
 
     .options-wrapper {
-        max-width: 320px;
+        width: 100%;
+        max-width: 380px;
         margin: 0.25rem auto 0 auto;
         display: flex;
         flex-direction: column;
@@ -339,8 +351,23 @@ st.markdown(
         justify-content: center;
     }
 
-    .options-wrapper div[data-testid="column"] {
-        width: 100% !important;
+    .option-box {
+        width: fit-content;
+        min-width: 170px;
+        max-width: 360px;
+        margin: 0.45rem auto;
+        text-align: center;
+        padding: 0.65rem 1rem;
+        border-radius: 16px;
+        font-size: clamp(0.9rem, 3vw, 1.05rem);
+        font-weight: 800;
+        box-shadow: 0 5px 14px rgba(0,0,0,0.18);
+    }
+    
+    .neutral-box {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        color: #111827;
     }
     </style>
     """,
@@ -402,12 +429,18 @@ def pergunta_portugues_para_frances(vocabulario):
                     traducoes_erradas.append(f"{opcao} = {v['portugues']}")
                     break
 
+    traducoes_opcoes = {
+        v["frances"].strip(): v["portugues"].strip()
+        for v in vocabulario
+    }
+
     return {
         "tipo": "Vocabulário — Português → Francês",
         "pergunta": f"Como se diz **{item['portugues']}** em francês?",
         "opcoes": opcoes,
         "resposta": resposta_certa,
-        "traducao": "<br>".join(traducoes_erradas)
+        "traducao": "<br>".join(traducoes_erradas),
+        "traducoes_opcoes": traducoes_opcoes
     }
 
 
@@ -425,13 +458,17 @@ def pergunta_frances_para_portugues(vocabulario):
                 if v["portugues"].strip() == opcao:
                     traducoes_erradas.append(f"{opcao} = {v['frances']}")
                     break
-
+    traducoes_opcoes = {
+        v["portugues"].strip(): v["frances"].strip()
+        for v in vocabulario
+    }
     return {
         "tipo": "Vocabulário — Francês → Português",
         "pergunta": f"O que significa **{item['frances']}** em português?",
         "opcoes": opcoes,
         "resposta": resposta_certa,
-        "traducao": "<br>".join(traducoes_erradas)
+        "traducao": "<br>".join(traducoes_erradas),
+        "traducoes_opcoes": traducoes_opcoes
     }
 
 
@@ -613,13 +650,20 @@ elif st.session_state.tela == "questao":
     st.markdown('<div class="options-wrapper">', unsafe_allow_html=True)
 
     for opcao in pergunta["opcoes"]:
+        traducao_opcao = pergunta.get("traducoes_opcoes", {}).get(opcao, "")
+    
         if st.session_state.respondido:
             if opcao == pergunta["resposta"]:
-                st.markdown(f'<div class="correct-box">✓ {opcao}</div>', unsafe_allow_html=True)
-            elif opcao == st.session_state.resposta_selecionada:
-                st.markdown(f'<div class="wrong-box">✕ {opcao}</div>', unsafe_allow_html=True)
+                st.markdown(
+                    f'<div class="option-box correct-box">✓ {opcao}</div>',
+                    unsafe_allow_html=True
+                )
             else:
-                st.button(opcao, disabled=True, key=f"opcao_{indice}_{opcao}")
+                texto = f'{opcao} = {traducao_opcao}' if traducao_opcao else opcao
+                st.markdown(
+                    f'<div class="option-box neutral-box">{texto}</div>',
+                    unsafe_allow_html=True
+                )
         else:
             st.button(
                 opcao,
@@ -632,11 +676,7 @@ elif st.session_state.tela == "questao":
 
     if st.session_state.respondido:
         titulo_traducao = "Tradução das outras opções:" if pergunta["tipo"] != "Conjugação" else "Tradução:"
-        st.markdown(
-            f'<div class="translation-box"><strong>{titulo_traducao}</strong><br>{pergunta.get("traducao", "")}</div>',
-            unsafe_allow_html=True
-        )
-
+        
         if pergunta["tipo"] == "Conjugação" and pergunta.get("frase_completa"):
             st.markdown(
                 f'<div class="translation-box"><strong>Frase completa:</strong><br>{pergunta["frase_completa"]}</div>',
