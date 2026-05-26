@@ -309,9 +309,9 @@ st.markdown(
     }
 
     .answer-button div[data-testid="stButton"] > button {
-        min-height: 38px !important;
-        padding: 0.36rem 0.70rem !important;
-        margin: 0.02rem auto !important;
+        min-height: 36px !important;
+        padding: 0.30rem 0.65rem !important;
+        margin: 0 !important;
         border-radius: 14px !important;
     }
 
@@ -350,14 +350,14 @@ st.markdown(
     .option-box {
         width: min(340px, 82vw) !important;
         max-width: 340px !important;
-        min-height: 38px !important;
+        min-height: 36px !important;
         margin: 0.01rem auto !important;
         text-align: center !important;
-        padding: 0.36rem 0.70rem !important;
+        padding: 0.30rem 0.65rem !important;
         border-radius: 14px !important;
-        font-size: 0.92rem !important;
+        font-size: 0.88rem !important;
         font-weight: 800 !important;
-        line-height: 1.18 !important;
+        line-height: 1.12 !important;
         box-sizing: border-box !important;
         display: flex !important;
         align-items: center !important;
@@ -430,7 +430,40 @@ st.markdown(
             font-size: 0.84rem !important;
         }
     }
-    </style>
+    
+    /* ===== OVERRIDE FINAL: diminuir espaço entre alternativas ===== */
+    .options-wrapper {
+        margin-top: 0.02rem !important;
+        gap: 0.02rem !important;
+    }
+
+    .answer-button {
+        margin-top: 0.01rem !important;
+        margin-bottom: 0.01rem !important;
+        padding: 0 !important;
+    }
+
+    .answer-button div[data-testid="stButton"] {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .answer-button div[data-testid="stButton"] > button {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        min-height: 36px !important;
+        padding-top: 0.30rem !important;
+        padding-bottom: 0.30rem !important;
+    }
+
+    .option-box {
+        margin-top: 0.01rem !important;
+        margin-bottom: 0.01rem !important;
+    }
+
+</style>
     """,
     unsafe_allow_html=True
 )
