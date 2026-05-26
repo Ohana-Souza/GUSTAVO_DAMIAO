@@ -164,6 +164,28 @@ st.markdown(
     
         color: #ffffff;
     }
+    .fake-label {
+        width: 100%;
+        max-width: 340px;
+    
+        margin: 0.45rem auto 0.18rem auto;
+        padding: 0.72rem 1rem;
+    
+        border-radius: 16px;
+    
+        background: rgba(255,255,255,0.88);
+        border: 1px solid rgba(255,255,255,0.35);
+    
+        color: #111827;
+    
+        font-size: 1rem;
+        font-weight: 800;
+        text-align: center;
+    
+        backdrop-filter: blur(8px);
+    
+        box-shadow: 0 5px 18px rgba(0,0,0,0.14);
+    }
     .question-type {
         text-align: center;
         font-size: clamp(0.55rem, 2.1vw, 0.7rem);
@@ -612,10 +634,17 @@ vocabulario = carregar_csv(ARQUIVO_VOCABULARIO)
 verbos = carregar_csv(ARQUIVO_VERBOS)
 
 if st.session_state.tela == "configuracao":
-    nivel = st.selectbox("Nível de dificuldade", ["A1", "A2", "B1", "B2", "C1"])
+    st.markdown('<div class="fake-label">Nível de dificuldade</div>', unsafe_allow_html=True)
 
+    nivel = st.selectbox(
+        "",
+        ["A1", "A2", "B1", "B2", "C1"],
+        label_visibility="collapsed"
+    )
+    
+    st.markdown('<div class="fake-label">O que você quer treinar?</div>', unsafe_allow_html=True)
     modalidade = st.radio(
-        "O que você quer treinar?",
+        "",
         ["Vocabulário", "Verbos", "Vocabulário + Verbos"],
         horizontal=True
     )
@@ -624,11 +653,14 @@ if st.session_state.tela == "configuracao":
     qtd_verbos = 0
 
     if modalidade == "Vocabulário":
-        qtd_vocabulario = st.slider("Quantidade de questões de vocabulário", 1, 50, 10)
+        st.markdown('<div class="fake-label">Quantidade de questões de vocabulário</div>', unsafe_allow_html=True)
+        qtd_vocabulario = st.slider("", 1, 50, 10, label_visibility="collapsed")
+
     elif modalidade == "Verbos":
         qtd_verbos = st.slider("Quantidade de questões de verbos", 1, 50, 10)
     else:
-        qtd_vocabulario = st.slider("Quantidade de questões de vocabulário", 1, 50, 10)
+        st.markdown('<div class="fake-label">Quantidade de questões de vocabulário</div>', unsafe_allow_html=True)
+        qtd_vocabulario = st.slider("", 1, 50, 10, label_visibility="collapsed")
         qtd_verbos = st.slider("Quantidade de questões de verbos", 1, 50, 10)
 
     col1, col2, col3 = st.columns([1, 2, 1])
