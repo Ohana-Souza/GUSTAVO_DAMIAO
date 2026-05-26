@@ -76,6 +76,7 @@ adicionar_fundo_animado(CAMINHO_FUNDO)
 # =============================
 # ESTILO VISUAL
 # =============================
+
 st.markdown(
     """
     <style>
@@ -168,25 +169,24 @@ st.markdown(
     }
 
     div.stButton > button {
-        width: 100%;
-        max-width: 600px;
-        min-height: 40px;
-        margin: 0.10rem auto;
-        display: block;
-        border-radius: 14px;
-        padding: 0.45rem 0.75rem;
-        font-weight: 800;
-        font-size: clamp(0.78rem, 3vw, 0.95rem);
-        border: 1px solid rgba(255,255,255,0.18);
-        background: rgba(13, 17, 23, 0.82);
-        color: #f0f6fc;
-        transition: all 0.16s ease;
-        backdrop-filter: blur(6px);
+        width: 100% !important;
+        max-width: 280px !important;
+        min-height: 42px !important;
+        margin: 0.35rem auto !important;
+        display: block !important;
+        border-radius: 14px !important;
+        padding: 0.5rem 0.8rem !important;
+        font-weight: 700 !important;
+        font-size: 0.95rem !important;
+        border: 1px solid #e5e7eb !important;
+        background: #ffffff !important;
+        color: #111827 !important;
     }
-
+    
     div.stButton > button:hover {
-        border: 1px solid #2563eb;
-        background: #f3f4f6;
+        background: #f3f4f6 !important;
+        color: #111827 !important;
+        border: 1px solid #2563eb !important;
     }
     div.stButton > button:disabled {
         opacity: 0.62;
@@ -310,10 +310,27 @@ st.markdown(
             margin-bottom: 0.24rem;
         }
     }
+    .top-close {
+        position: fixed;
+        top: 14px;
+        right: 18px;
+        z-index: 9999;
+    }
+    
+    .top-close + div button {
+        width: 44px !important;
+        min-height: 44px !important;
+        border-radius: 50% !important;
+        background: #ffffff !important;
+        color: #111827 !important;
+        border: 1px solid #e5e7eb !important;
+        font-size: 1.4rem !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
 )
+
 
 
 # =============================
@@ -550,11 +567,11 @@ if st.session_state.tela == "configuracao":
             st.rerun()
 
 elif st.session_state.tela == "questao":
-    col1, col2 = st.columns([8, 1])
-    with col2:
-        if st.button("✕", key="cancelar_x"):
-            reiniciar()
-            st.rerun()
+    st.markdown('<div class="top-close">', unsafe_allow_html=True)
+    if st.button("×", key="cancelar_x"):
+        reiniciar()
+        st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
             
     total = len(st.session_state.teste)
     indice = st.session_state.indice
