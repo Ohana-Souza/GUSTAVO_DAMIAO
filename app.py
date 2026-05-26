@@ -305,17 +305,19 @@ st.markdown(
     }
 
     .top-actions {
-        position: fixed;
-        top: 18px;
-        right: 20px;
-        z-index: 999999;
+        position: fixed !important;
+        top: 18px !important;
+        right: 18px !important;
+        z-index: 999999 !important;
+        width: 38px !important;
+        height: 38px !important;
     }
 
     .top-actions div[data-testid="stButton"] > button {
         width: 38px !important;
         height: 38px !important;
-        min-height: 42px !important;
-        max-width: 42px !important;
+        min-height: 38px !important;
+        max-width: 38px !important;
         border-radius: 50% !important;
         padding: 0 !important;
         background: #ffffff !important;
@@ -505,7 +507,27 @@ st.markdown(
             min-height: 34px !important;
         }
     }
-    </style>
+    
+    /* Correção final: radio da tela inicial separado das respostas */
+    div[data-testid="stRadio"] {
+        width: 100% !important;
+    }
+
+    div[data-testid="stRadio"] > div {
+        width: 100% !important;
+    }
+
+    div[role="radiogroup"] {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .answers-area div[role="radiogroup"] {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+</style>
     """,
     unsafe_allow_html=True
 )
@@ -844,19 +866,25 @@ elif st.session_state.tela == "questao":
             """
             <style>
             /* Radio usado APENAS na tela de respostas */
-            div[role="radiogroup"] {
+            .answers-area {
+                max-width: 340px !important;
+                margin: 0.10rem auto 0 auto !important;
+                padding: 0 !important;
+            }
+
+            .answers-area div[role="radiogroup"] {
                 width: 100% !important;
-                max-width: 320px !important;
-                margin: 0.02rem auto 0 auto !important;
+                max-width: 340px !important;
+                margin: 0 auto !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
-                gap: 0.08rem !important;
+                justify-content: center !important;
+                gap: 0.14rem !important;
             }
 
-            div[role="radiogroup"] label {
-                width: 320px !important;
-                max-width: 82vw !important;
+            .answers-area div[role="radiogroup"] label {
+                width: min(320px, 82vw) !important;
                 min-height: 32px !important;
                 margin: 0 auto !important;
                 padding: 0.18rem 0.55rem !important;
@@ -870,11 +898,11 @@ elif st.session_state.tela == "questao":
                 box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
             }
 
-            div[role="radiogroup"] label > div:first-child {
+            .answers-area div[role="radiogroup"] label > div:first-child {
                 display: none !important;
             }
 
-            div[role="radiogroup"] label p {
+            .answers-area div[role="radiogroup"] label p {
                 margin: 0 !important;
                 color: #111827 !important;
                 font-size: 0.82rem !important;
@@ -883,24 +911,27 @@ elif st.session_state.tela == "questao":
                 text-align: center !important;
             }
 
-            div[role="radiogroup"] label:has(input:checked) {
+            .answers-area div[role="radiogroup"] label:has(input:checked) {
                 border: 2px solid #58a6ff !important;
                 background: rgba(255,255,255,0.98) !important;
             }
 
             @media (max-width: 600px) {
-                div[role="radiogroup"] {
+                .answers-area {
                     max-width: 300px !important;
-                    gap: 0.06rem !important;
                 }
 
-                div[role="radiogroup"] label {
-                    width: 300px !important;
-                    max-width: 82vw !important;
+                .answers-area div[role="radiogroup"] {
+                    max-width: 300px !important;
+                    gap: 0.12rem !important;
+                }
+
+                .answers-area div[role="radiogroup"] label {
+                    width: min(300px, 82vw) !important;
                     min-height: 30px !important;
                 }
 
-                div[role="radiogroup"] label p {
+                .answers-area div[role="radiogroup"] label p {
                     font-size: 0.78rem !important;
                 }
             }
@@ -909,6 +940,8 @@ elif st.session_state.tela == "questao":
             unsafe_allow_html=True
         )
 
+        st.markdown('<div class="answers-area">', unsafe_allow_html=True)
+
         resposta_escolhida = st.radio(
             "",
             pergunta["opcoes"],
@@ -916,6 +949,8 @@ elif st.session_state.tela == "questao":
             label_visibility="collapsed",
             key=f"radio_resposta_{indice}"
         )
+
+        st.markdown('</div>', unsafe_allow_html=True)
 
         if resposta_escolhida is not None:
             selecionar_resposta(resposta_escolhida)
