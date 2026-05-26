@@ -523,6 +523,9 @@ st.markdown(
         padding: 0.26rem 0.58rem !important;
         max-width: 520px !important;
     }
+    div[data-testid="stButton"] {
+        margin-bottom: -0.55rem !important;
+    }
 
     div[data-testid="stCaptionContainer"] {
         margin-top: -0.05rem !important;
@@ -554,7 +557,7 @@ st.markdown(
     }
 
     .answer-button {
-        margin: -0.03rem 0 !important;
+        margin: -0.20rem 0 !important;
         padding: 0 !important;
     }
 
@@ -564,14 +567,14 @@ st.markdown(
     }
 
     .answer-button div[data-testid="stButton"] > button {
-        min-height: 32px !important;
-        padding: 0.22rem 0.58rem !important;
+        min-height: 26px !important;
+        padding: 0.05rem 0.45rem !important;
         margin: 0.01rem auto !important;
         border-radius: 13px !important;
     }
 
     .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.82rem !important;
+        font-size: 0.76rem !important;
         line-height: 1 !important;
     }
 
