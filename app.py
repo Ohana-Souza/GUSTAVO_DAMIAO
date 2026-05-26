@@ -1,802 +1,197 @@
-import base64
-import csv
-import random
-import html
-from urllib.parse import quote, unquote
-from pathlib import Path
 
 import streamlit as st
 
-st.set_page_config(
-    page_title="Treino de Francês",
-    page_icon="🇫🇷",
-    layout="centered"
-)
+st.set_page_config(page_title="FR Treino de Francês", page_icon="🇫🇷", layout="centered")
 
-# =============================
-# CONFIGURAÇÃO DOS ARQUIVOS
-# =============================
-BASE_DIR = Path(__file__).parent
-ARQUIVO_VOCABULARIO = BASE_DIR / "vocabulario.csv"
-ARQUIVO_VERBOS = BASE_DIR / "verbos.csv"
-CAMINHO_FUNDO = BASE_DIR / "fundo.png"
+# =========================
+# CSS
+# =========================
+st.markdown("""
+<style>
 
+.stApp{
+    background:#0d1117;
+}
 
-# =============================
-# FUNDO ANIMADO
-# =============================
-def adicionar_fundo_animado(imagem):
-    imagem = Path(imagem)
+.main-title{
+    text-align:center;
+    color:white;
+    font-size:2.1rem;
+    font-weight:800;
+    margin-bottom:0.5rem;
+}
 
-    if not imagem.exists():
-        st.warning(f"Imagem não encontrada: {imagem}")
-        return
+.question-card{
+    max-width:700px;
+    margin:auto;
+    background:rgba(10,10,10,0.72);
+    border-radius:22px;
+    padding:1.2rem;
+    text-align:center;
+    color:white;
+    margin-top:1rem;
+    margin-bottom:1rem;
+}
 
-    with open(imagem, "rb") as arquivo:
-        encoded = base64.b64encode(arquivo.read()).decode()
+.question-type{
+    font-size:0.78rem;
+    opacity:0.8;
+    margin-bottom:0.4rem;
+    font-weight:700;
+}
 
-    st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-color: #0d1117;
-            background-image: url("data:image/png;base64,{encoded}");
-            background-repeat: repeat-x;
-            background-size: auto 100vh;
-            background-position: 0 0;
-            animation: moverFundo 150s linear infinite;
-            overflow-x: hidden;
-        }}
+.question-text{
+    font-size:1.8rem;
+    font-weight:800;
+}
 
-        @keyframes moverFundo {{
-            from {{ background-position: 0 0; }}
-            to {{ background-position: -2200px 0; }}
-        }}
+.option-box{
+    width:100%;
+    max-width:320px;
+    margin:0.45rem auto;
+    padding:0.9rem;
+    border-radius:16px;
+    text-align:center;
+    font-weight:700;
+    font-size:1.05rem;
+}
 
-        .stApp::before {{
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: rgba(5, 8, 13, 0.58);
-            z-index: 0;
-            pointer-events: none;
-        }}
+.correct-box{
+    background:#d7f8df;
+    color:#145c25;
+    border:1px solid #37a852;
+}
 
-        .block-container {{
-            position: relative;
-            z-index: 1;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+.wrong-box{
+    background:#ffe0e0;
+    color:#8a1c15;
+    border:1px solid #d93025;
+}
 
+.neutral-box{
+    background:white;
+    color:#111827;
+    border:1px solid #e5e7eb;
+}
 
-adicionar_fundo_animado(CAMINHO_FUNDO)
+div[data-testid="stButton"]{
+    display:flex !important;
+    justify-content:center !important;
+    width:100% !important;
+}
 
+div[data-testid="stButton"] > button{
+    width:100% !important;
+    max-width:320px !important;
+    background:white !important;
+    color:#111827 !important;
+    border-radius:16px !important;
+    border:1px solid #e5e7eb !important;
+    font-weight:700 !important;
+}
 
-# =============================
-# ESTILO VISUAL
-# =============================
+.top-close{
+    position:fixed;
+    top:18px;
+    right:18px;
+    width:44px;
+    height:44px;
+    background:white;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#111827;
+    text-decoration:none;
+    font-size:1.5rem;
+    font-weight:800;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# =========================
+# Dados fake
+# =========================
+pergunta = {
+    "tipo":"VOCABULÁRIO — PORTUGUÊS ➜ FRANCÊS",
+    "pergunta":"Como se diz **responsável** em francês?",
+    "opcoes":["responsable","optionnel","obligatoire","simple"],
+    "resposta":"responsable",
+    "traducoes_opcoes":{
+        "optionnel":"opcional",
+        "obligatoire":"obrigatório",
+        "simple":"simples"
+    }
+}
+
+# =========================
+# Estado
+# =========================
+if "respondido" not in st.session_state:
+    st.session_state.respondido = False
+
+if "resposta" not in st.session_state:
+    st.session_state.resposta = None
+
+def selecionar(opcao):
+    st.session_state.respondido = True
+    st.session_state.resposta = opcao
+
+# =========================
+# Interface
+# =========================
+st.markdown('<a class="top-close" href="#">×</a>', unsafe_allow_html=True)
+
+st.markdown('<div class="main-title">🇫🇷 FR Treino de Francês</div>', unsafe_allow_html=True)
 
 st.markdown(
-    """
-    <style>
-    html, body, [class*="css"] {
-        scroll-behavior: smooth;
-    }
-
-    .block-container {
-        max-width: 640px;
-        padding-top: clamp(0.35rem, 1.5vw, 0.8rem);
-        padding-bottom: 0.35rem;
-        padding-left: clamp(0.7rem, 3vw, 1.2rem);
-        padding-right: clamp(0.7rem, 3vw, 1.2rem);
-        margin: auto;
-    }
-
-    .main-title {
-        text-align: center;
-        font-size: clamp(1.55rem, 6vw, 2.35rem);
-        font-weight: 850;
-        margin: 0.2rem auto 0.15rem auto;
-        color: #ffffff;
-        text-shadow: 0 3px 12px rgba(0,0,0,0.55);
-    }
-
-    .small-title {
-        text-align: center;
-        font-size: clamp(0.98rem, 4vw, 1.25rem);
-        font-weight: 850;
-        margin: 0.05rem auto 0.35rem auto;
-        color: #ffffff;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.55);
-    }
-
-    .subtitle {
-        text-align: center;
-        font-size: clamp(0.82rem, 3vw, 0.98rem);
-        color: #d5dce8;
-        margin: 0 auto 1rem auto;
-        line-height: 1.35;
-        max-width: 520px;
-        text-shadow: 0 2px 8px rgba(0,0,0,0.55);
-    }
-
-    .motivation {
-        text-align: center;
-        font-size: clamp(0.72rem, 2.7vw, 0.9rem);
-        font-weight: 800;
-        color: #f0f6fc;
-        margin: 0.25rem auto 0.45rem auto;
-        padding: 0.42rem 0.7rem;
-        max-width: 520px;
-        border-radius: 999px;
-        background: rgba(13, 17, 23, 0.54);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(7px);
-        line-height: 1.25;
-    }
-
-    .question-card {
-        max-width: 600px;
-        margin: 0.45rem auto 0.55rem auto;
-        text-align: center;
-        background: rgba(13, 17, 23, 0.74);
-        border: 1px solid rgba(255,255,255,0.14);
-        border-radius: 18px;
-        padding: clamp(0.7rem, 2.6vw, 1rem);
-        box-shadow: 0 8px 22px rgba(0,0,0,0.30);
-        color: #f0f6fc;
-        backdrop-filter: blur(8px);
-    }
-
-    .question-type {
-        text-align: center;
-        font-size: clamp(0.55rem, 2.1vw, 0.7rem);
-        color: #b8c0cc;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        font-weight: 850;
-        margin-bottom: 0.35rem;
-    }
-
-    .question-text {
-        text-align: center;
-        font-size: clamp(0.94rem, 3.8vw, 1.2rem);
-        font-weight: 800;
-        line-height: 1.28;
-        color: #ffffff;
-        margin: 0;
-    }
-
-    div.stButton > button {
-        width: 100% !important;
-        max-width: 280px !important;
-        min-height: 42px !important;
-        margin: 0.35rem auto !important;
-        display: block !important;
-        border-radius: 14px !important;
-        padding: 0.5rem 0.8rem !important;
-        font-weight: 700 !important;
-        font-size: 0.95rem !important;
-        border: 1px solid #e5e7eb !important;
-        background: #ffffff !important;
-        color: #111827 !important;
-    }
-    
-    div.stButton > button:hover {
-        background: #f3f4f6 !important;
-        color: #111827 !important;
-        border: 1px solid #2563eb !important;
-    }
-    div.stButton > button:disabled {
-        opacity: 0.72;
-        color: #111827 !important;
-        background: #ffffff !important;
-        border: 1px solid #e5e7eb !important;
-    }
-
-    .correct-box,
-    .wrong-box {
-        max-width: 280px;
-        margin: 0.30rem auto;
-        text-align: center;
-        padding: 0.55rem 0.75rem;
-        border-radius: 14px;
-        font-size: clamp(0.78rem, 3vw, 0.98rem);
-        font-weight: 850;
-        line-height: 1.25;
-        box-shadow: 0 5px 16px rgba(0,0,0,0.16);
-    }
-
-    .correct-box {
-        background: #d7f8df;
-        border: 1px solid #37a852;
-        color: #145c25;
-    }
-
-    .wrong-box {
-        background: #ffe0e0;
-        border: 1px solid #d93025;
-        color: #8a1c15;
-    }
-
-    .translation-box {
-        max-width: 600px;
-        margin: 0.45rem auto 0 auto;
-        text-align: center;
-        padding: 0.55rem 0.75rem;
-        border-radius: 14px;
-        background: rgba(13, 17, 23, 0.80);
-        border: 1px solid rgba(255,255,255,0.14);
-        font-size: clamp(0.72rem, 2.6vw, 0.9rem);
-        color: #f0f6fc;
-        line-height: 1.45;
-        backdrop-filter: blur(7px);
-    }
-
-    .stProgress {
-        margin-top: 0.15rem;
-        margin-bottom: 0.1rem;
-    }
-
-    .stProgress > div > div > div > div {
-        background-color: #58a6ff;
-    }
-
-    div[data-testid="stCaptionContainer"] {
-        text-align: center;
-        color: #d5dce8;
-        font-weight: 800;
-        font-size: clamp(0.68rem, 2.4vw, 0.82rem);
-        margin-top: -0.2rem;
-        margin-bottom: 0.25rem;
-    }
-
-    h1, h2, h3, .stSubheader {
-        text-align: center;
-        color: #ffffff;
-    }
-
-    /* Compacta espaços verticais padrão do Streamlit */
-    div[data-testid="stVerticalBlock"] > div {
-        gap: 0.35rem;
-    }
-
-    @media (max-width: 600px) {
-        .block-container {
-            max-width: 100%;
-            padding-top: 0.25rem;
-            padding-left: 0.65rem;
-            padding-right: 0.65rem;
-        }
-
-        .small-title {
-            font-size: 1rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .motivation {
-            margin-top: 0.15rem;
-            margin-bottom: 0.35rem;
-            padding: 0.36rem 0.55rem;
-        }
-
-        .question-card {
-            border-radius: 15px;
-            margin: 0.35rem auto 0.4rem auto;
-            padding: 0.62rem;
-        }
-
-        div.stButton > button,
-        div[data-testid="stButton"] > button {
-            width: min(260px, 86vw) !important;
-            min-height: 38px !important;
-            margin: 0.35rem auto !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            border-radius: 14px !important;
-            padding: 0.45rem 0.7rem !important;
-            font-weight: 700 !important;
-            font-size: 0.9rem !important;
-            border: 1px solid #e5e7eb !important;
-            background: #ffffff !important;
-            color: #111827 !important;
-        }
-
-        .correct-box,
-        .wrong-box,
-        .translation-box {
-            border-radius: 12px;
-            padding: 0.45rem 0.55rem;
-            margin-top: 0.24rem;
-            margin-bottom: 0.24rem;
-        }
-    }
-    .top-close {
-        position: fixed !important;
-        top: 86px !important;
-        right: 24px !important;
-        z-index: 999999 !important;
-        width: 46px !important;
-        height: 46px !important;
-        border-radius: 50% !important;
-        background: #ffffff !important;
-        color: #111827 !important;
-        text-decoration: none !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        font-size: 1.35rem !important;
-        font-weight: 800 !important;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.25) !important;
-    }
-
-    .options-wrapper {
-        max-width: 320px;
-        margin: 0.25rem auto 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .options-wrapper div[data-testid="column"] {
-        width: 100% !important;
-    }
-
-    .option-box {
-        max-width: 360px;
-        margin: 0.45rem auto;
-        text-align: center;
-        padding: 0.65rem 0.9rem;
-        border-radius: 16px;
-        font-size: clamp(0.9rem, 3vw, 1.05rem);
-        font-weight: 800;
-    }
-    
-    .neutral-box {
-        background: #ffffff;
-        border: 1px solid #e5e7eb;
-        color: #111827;
-    }
-
-
-    /* Centralização real das opções e botões de navegação */
-    div[data-testid="stButton"] {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-    }
-
-    div[data-testid="stButton"] > button,
-    div.stButton > button {
-        width: min(320px, 82vw) !important;
-        max-width: 320px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-
-    .options-wrapper {
-        width: 100% !important;
-        max-width: 420px !important;
-        margin: 0.45rem auto 0 auto !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 0.35rem !important;
-    }
-
-    .answer-link,
-    .option-box {
-        width: min(340px, 82vw) !important;
-        max-width: 340px !important;
-        margin: 0.22rem auto !important;
-        text-align: center !important;
-        padding: 0.65rem 0.9rem !important;
-        border-radius: 16px !important;
-        font-size: clamp(0.9rem, 3vw, 1.05rem) !important;
-        font-weight: 800 !important;
-        line-height: 1.25 !important;
-        box-sizing: border-box !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        text-decoration: none !important;
-        box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
-    }
-
-    .answer-link {
-        background: #ffffff !important;
-        border: 1px solid #e5e7eb !important;
-        color: #111827 !important;
-    }
-
-    .answer-link:hover {
-        background: #f3f4f6 !important;
-        border-color: #2563eb !important;
-        color: #111827 !important;
-    }
-
-    .correct-box {
-        background: #d7f8df !important;
-        border: 1px solid #37a852 !important;
-        color: #145c25 !important;
-    }
-
-    .wrong-box {
-        background: #ffe0e0 !important;
-        border: 1px solid #d93025 !important;
-        color: #8a1c15 !important;
-    }
-
-    .neutral-box {
-        background: #ffffff !important;
-        border: 1px solid #e5e7eb !important;
-        color: #111827 !important;
-    }
-
-    .next-arrow {
-        width: 48px !important;
-        height: 48px !important;
-        margin: 0.75rem auto 0 auto !important;
-        border-radius: 50% !important;
-        background: #ffffff !important;
-        color: #111827 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        text-decoration: none !important;
-        font-size: 1.6rem !important;
-        font-weight: 900 !important;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.25) !important;
-    }
-
-    .next-arrow:hover {
-        background: #f3f4f6 !important;
-        color: #111827 !important;
-    }
-    </style>
+    f"""
+    <div class="question-card">
+        <div class="question-type">{pergunta["tipo"]}</div>
+        <div class="question-text">{pergunta["pergunta"]}</div>
+    </div>
     """,
     unsafe_allow_html=True
 )
 
-
-
-# =============================
-# FUNÇÕES DE DADOS
-# =============================
-def carregar_csv(caminho):
-    if not caminho.exists():
-        st.error(f"Arquivo não encontrado: {caminho}")
-        st.stop()
-
-    with open(caminho, "r", encoding="utf-8-sig", newline="") as arquivo:
-        leitor = csv.DictReader(arquivo)
-        return list(leitor)
-
-
-def filtrar_por_nivel(dados, nivel):
-    return [item for item in dados if item.get("nivel", "").strip().upper() == nivel]
-
-
-def gerar_opcoes(resposta_certa, lista_opcoes, quantidade=4):
-    resposta_certa = str(resposta_certa).strip()
-    lista_limpa = []
-
-    for op in lista_opcoes:
-        op = str(op).strip()
-        if op and op not in lista_limpa:
-            lista_limpa.append(op)
-
-    opcoes_erradas = [op for op in lista_limpa if op != resposta_certa]
-    qtd_erradas = min(quantidade - 1, len(opcoes_erradas))
-
-    opcoes = random.sample(opcoes_erradas, qtd_erradas)
-    opcoes.append(resposta_certa)
-    random.shuffle(opcoes)
-    return opcoes
-
-
-# =============================
-# GERAÇÃO DE PERGUNTAS
-# =============================
-def pergunta_portugues_para_frances(vocabulario):
-    item = random.choice(vocabulario)
-    resposta_certa = item["frances"].strip()
-    todas = [v["frances"].strip() for v in vocabulario]
-
-    opcoes = gerar_opcoes(resposta_certa, todas)
-
-    traducoes_opcoes = {
-        v["frances"].strip(): v["portugues"].strip()
-        for v in vocabulario
-    }
-
-    return {
-        "tipo": "Vocabulário — Português → Francês",
-        "pergunta": f"Como se diz **{item['portugues']}** em francês?",
-        "opcoes": opcoes,
-        "resposta": resposta_certa,
-        "traducao": "",
-        "traducoes_opcoes": traducoes_opcoes
-    }
-
-
-def pergunta_frances_para_portugues(vocabulario):
-    item = random.choice(vocabulario)
-    resposta_certa = item["portugues"].strip()
-    todas = [v["portugues"].strip() for v in vocabulario]
-
-    opcoes = gerar_opcoes(resposta_certa, todas)
-
-    traducoes_erradas = []
-    for opcao in opcoes:
-        if opcao != resposta_certa:
-            for v in vocabulario:
-                if v["portugues"].strip() == opcao:
-                    traducoes_erradas.append(f"{opcao} = {v['frances']}")
-                    break
-    traducoes_opcoes = {
-        v["portugues"].strip(): v["frances"].strip()
-        for v in vocabulario
-    }
-    return {
-        "tipo": "Vocabulário — Francês → Português",
-        "pergunta": f"O que significa **{item['frances']}** em português?",
-        "opcoes": opcoes,
-        "resposta": resposta_certa,
-        "traducao": "",
-        "traducoes_opcoes": traducoes_opcoes
-    }
-
-
-def pergunta_conjugacao(verbos):
-    item = random.choice(verbos)
-
-    resposta_certa = item["resposta_certa"].strip()
-
-    opcoes = [
-        item["resposta_certa"].strip(),
-        item["opcao_errada_1"].strip(),
-        item["opcao_errada_2"].strip(),
-        item["opcao_errada_3"].strip(),
-    ]
-    random.shuffle(opcoes)
-
-    return {
-        "tipo": "Conjugação",
-        "pergunta": f"**({item['tempo']})**\n\n{item['frase_lacuna']}",
-        "opcoes": opcoes,
-        "resposta": resposta_certa,
-        "traducao": item.get("traducao_frase", ""),
-        "frase_completa": item.get("frase_completa", "")
-    }
-
-
-def gerar_teste(vocabulario, verbos, qtd_vocabulario, qtd_verbos, modalidade):
-    perguntas = []
-
-    if modalidade in ["Vocabulário", "Vocabulário + Verbos"]:
-        for _ in range(qtd_vocabulario):
-            tipo = random.choice(["pt_fr", "fr_pt"])
-            if tipo == "pt_fr":
-                perguntas.append(pergunta_portugues_para_frances(vocabulario))
-            else:
-                perguntas.append(pergunta_frances_para_portugues(vocabulario))
-
-    if modalidade in ["Verbos", "Vocabulário + Verbos"]:
-        for _ in range(qtd_verbos):
-            perguntas.append(pergunta_conjugacao(verbos))
-
-    random.shuffle(perguntas)
-    return perguntas
-
-
-# =============================
-# CONTROLE DE ESTADO
-# =============================
-def iniciar_estado():
-    valores_padrao = {
-        "tela": "configuracao",
-        "teste": [],
-        "indice": 0,
-        "resposta_selecionada": None,
-        "respondido": False,
-        "acertos": 0,
-    }
-
-    for chave, valor in valores_padrao.items():
-        if chave not in st.session_state:
-            st.session_state[chave] = valor
-
-
-def reiniciar():
-    st.session_state.tela = "configuracao"
-    st.session_state.teste = []
-    st.session_state.indice = 0
-    st.session_state.resposta_selecionada = None
-    st.session_state.respondido = False
-    st.session_state.acertos = 0
-
-
-def selecionar_resposta(opcao):
-    if not st.session_state.respondido:
-        st.session_state.resposta_selecionada = opcao
-        st.session_state.respondido = True
-
-        pergunta = st.session_state.teste[st.session_state.indice]
-        if opcao == pergunta["resposta"]:
-            st.session_state.acertos += 1
-
-
-def proxima_questao():
-    st.session_state.indice += 1
-    st.session_state.resposta_selecionada = None
-    st.session_state.respondido = False
-
-    if st.session_state.indice >= len(st.session_state.teste):
-        st.session_state.tela = "resultado"
-
-
-# =============================
-# INTERFACE
-# =============================
-iniciar_estado()
-
-if st.query_params.get("cancelar") == "1":
-    reiniciar()
-    st.query_params.clear()
-    st.rerun()
-
-if st.session_state.tela == "questao" and st.query_params.get("resposta") and not st.session_state.respondido:
-    selecionar_resposta(unquote(st.query_params.get("resposta")))
-    st.query_params.clear()
-    st.rerun()
-
-if st.session_state.tela == "questao" and st.query_params.get("proxima") == "1" and st.session_state.respondido:
-    proxima_questao()
-    st.query_params.clear()
-    st.rerun()
-
-if st.session_state.tela == "configuracao":
-    st.markdown('<div class="main-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
-    st.markdown('<div class="subtitle">Vocabulário, conjugação ou os dois — uma questão por vez.</div>', unsafe_allow_html=True)
-else:
-    st.markdown('<div class="small-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
-
-vocabulario = carregar_csv(ARQUIVO_VOCABULARIO)
-verbos = carregar_csv(ARQUIVO_VERBOS)
-
-if st.session_state.tela == "configuracao":
-    st.subheader("Configuração do treino")
-
-    nivel = st.selectbox("Nível de dificuldade", ["A1", "A2", "B1", "B2", "C1"])
-
-    modalidade = st.radio(
-        "O que você quer treinar?",
-        ["Vocabulário", "Verbos", "Vocabulário + Verbos"],
-        horizontal=True
-    )
-
-    qtd_vocabulario = 0
-    qtd_verbos = 0
-
-    if modalidade == "Vocabulário":
-        qtd_vocabulario = st.slider("Quantidade de questões de vocabulário", 1, 50, 10)
-    elif modalidade == "Verbos":
-        qtd_verbos = st.slider("Quantidade de questões de verbos", 1, 50, 10)
-    else:
-        qtd_vocabulario = st.slider("Quantidade de questões de vocabulário", 1, 50, 10)
-        qtd_verbos = st.slider("Quantidade de questões de verbos", 1, 50, 10)
-
-    if st.button("Começar treino"):
-        vocabulario_nivel = filtrar_por_nivel(vocabulario, nivel)
-        verbos_nivel = filtrar_por_nivel(verbos, nivel)
-
-        if modalidade in ["Vocabulário", "Vocabulário + Verbos"] and len(vocabulario_nivel) < 4:
-            st.error("É necessário ter pelo menos 4 palavras cadastradas para esse nível.")
-        elif modalidade in ["Verbos", "Vocabulário + Verbos"] and len(verbos_nivel) < 1:
-            st.error("É necessário ter pelo menos 1 verbo cadastrado para esse nível.")
-        else:
-            st.session_state.teste = gerar_teste(
-                vocabulario_nivel,
-                verbos_nivel,
-                qtd_vocabulario,
-                qtd_verbos,
-                modalidade
-            )
-            st.session_state.indice = 0
-            st.session_state.acertos = 0
-            st.session_state.resposta_selecionada = None
-            st.session_state.respondido = False
-            st.session_state.tela = "questao"
-            st.rerun()
-
-elif st.session_state.tela == "questao":
-    st.markdown('<a class="top-close" href="?cancelar=1">×</a>', unsafe_allow_html=True)
-
-    total = len(st.session_state.teste)
-    indice = st.session_state.indice
-    pergunta = st.session_state.teste[indice]
-
-    st.markdown(
-        '<div class="motivation">🇫🇷 La pratique quotidienne fait la différence.</div>',
-        unsafe_allow_html=True
-    )
-
-    st.caption(f"Questão {indice + 1} de {total}")
-
-    st.markdown(
-        f"""
-        <div class="question-card">
-            <div class="question-type">{pergunta["tipo"]}</div>
-            <div class="question-text">{pergunta["pergunta"]}</div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown('<div class="options-wrapper">', unsafe_allow_html=True)
-
-    for opcao in pergunta["opcoes"]:
-        traducao_opcao = pergunta.get("traducoes_opcoes", {}).get(opcao, "")
-        opcao_html = html.escape(opcao)
-
-        if st.session_state.respondido:
-            if opcao == pergunta["resposta"]:
-                st.markdown(
-                    f'<div class="option-box correct-box">✓ {opcao_html}</div>',
-                    unsafe_allow_html=True
-                )
-            elif opcao == st.session_state.resposta_selecionada:
-                texto = f'{opcao} = {traducao_opcao}' if traducao_opcao else opcao
-                st.markdown(
-                    f'<div class="option-box wrong-box">✕ {html.escape(texto)}</div>',
-                    unsafe_allow_html=True
-                )
-            else:
-                texto = f'{opcao} = {traducao_opcao}' if traducao_opcao else opcao
-                st.markdown(
-                    f'<div class="option-box neutral-box">{html.escape(texto)}</div>',
-                    unsafe_allow_html=True
-                )
-        else:
-            st.markdown(
-                f'<a class="answer-link" href="?resposta={quote(opcao)}">{opcao_html}</a>',
-                unsafe_allow_html=True
-            )
-
-    st.markdown('</div>', unsafe_allow_html=True)
+for opcao in pergunta["opcoes"]:
 
     if st.session_state.respondido:
-        if pergunta["tipo"] == "Conjugação" and pergunta.get("frase_completa"):
+
+        if opcao == pergunta["resposta"]:
+
             st.markdown(
-                f'<div class="translation-box"><strong>Frase completa:</strong><br>{html.escape(pergunta["frase_completa"])}</div>',
+                f'<div class="option-box correct-box">✓ {opcao}</div>',
                 unsafe_allow_html=True
             )
 
-        simbolo_botao = "✓" if indice + 1 == total else "→"
-        st.markdown(
-            f'<a class="next-arrow" href="?proxima=1">{simbolo_botao}</a>',
-            unsafe_allow_html=True
+        elif opcao == st.session_state.resposta:
+
+            st.markdown(
+                f'<div class="option-box wrong-box">✕ {opcao}</div>',
+                unsafe_allow_html=True
+            )
+
+        else:
+
+            traducao = pergunta["traducoes_opcoes"].get(opcao, "")
+
+            texto = f"{opcao} = {traducao}" if traducao else opcao
+
+            st.markdown(
+                f'<div class="option-box neutral-box">{texto}</div>',
+                unsafe_allow_html=True
+            )
+
+    else:
+
+        st.button(
+            opcao,
+            key=opcao,
+            on_click=selecionar,
+            args=(opcao,)
         )
 
-elif st.session_state.tela == "resultado":
-    total = len(st.session_state.teste)
-    acertos = st.session_state.acertos
-
-    st.success("Treino finalizado!")
-    st.header(f"Pontuação: {acertos}/{total}")
-    st.write(f"Aproveitamento: **{(acertos / total) * 100:.1f}%**")
-
-    if st.button("Fazer novo treino"):
-        reiniciar()
-        st.rerun()
+if st.session_state.respondido:
+    st.button("→")
