@@ -137,7 +137,7 @@ st.markdown(
     }
 
     .question-card {
-        max-width: 35000px;
+        max-width: 600px;
         margin: 0.30rem auto 0.45rem auto;
         text-align: center;
         background: rgba(13, 17, 23, 0.74);
@@ -148,124 +148,7 @@ st.markdown(
         color: #f0f6fc;
         backdrop-filter: blur(8px);
     }
-    .config-card {
-        max-width: 600px;
-        margin: 1rem auto;
-        padding: 1.4rem;
-        border-radius: 24px;
-    
-        background: rgba(255,255,255,0.16);
-        border: 1px solid rgba(255,255,255,0.20);
-    
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-    
-        box-shadow: 0 10px 30px rgba(0,0,0,0.22);
-    
-        color: #ffffff;
-    }
-    .fake-label {
-        width: fit-content;
-        min-width: 190px;
-        max-width: 240px;
-    
-        margin: 0.18rem auto 0.08rem auto;
-        padding: 0.38rem 0.8rem;
-    
-        border-radius: 12px;
-    
-        background: rgba(255,255,255,0.72);
-        border: 1px solid rgba(255,255,255,0.30);
-    
-        color: #111827;
-    
-        font-size: 0.82rem;
-        font-weight: 750;
-        text-align: center;
-    
-        backdrop-filter: blur(8px);
-    
-        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    }
-    /* Espaço menor entre botões */
-    div[data-testid="stButton"] {
-        margin-bottom: -0.35rem !important;
-    }
-    div[role="radiogroup"] {
-        display: flex !important;
-        justify-content: center !important;
-        gap: 1.2rem !important;
-        flex-wrap: wrap !important;
-    }
-    /* Selectbox com o mesmo tamanho da caixa "Nível de dificuldade" */
-    div[data-testid="stSelectbox"] {
-        max-width: 180px !important;
-        margin: 0 auto !important;
-    }
-    
-    div[data-testid="stSelectbox"] > div {
-        max-width: 300px !important;
-    }
-    
-    /* Centraliza melhor as opções do radio */
-    div[role="radiogroup"] {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        gap: 1.4rem !important;
-        flex-wrap: wrap !important;
-    }
-    
-    div[role="radiogroup"] label {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-    }
-    /* Caixa do select */
-    div[data-testid="stSelectbox"] > div > div {
-        background: rgba(255,255,255,0.18) !important;
-        border: 1px solid rgba(255,255,255,0.22) !important;
-        border-radius: 16px !important;
-        backdrop-filter: blur(8px);
-    }
-    
-    /* Texto do select */
-    div[data-testid="stSelectbox"] * {
-        color: white !important;
-        font-weight: 700 !important;
-    }
-    
-    /* Menu dropdown aberto */
-    div[role="listbox"] {
-        background: rgba(20,20,28,0.92) !important;
-        border-radius: 14px !important;
-        border: 1px solid rgba(255,255,255,0.15) !important;
-    }
-    
-    /* Hover das opções */
-    div[role="option"]:hover {
-        background: rgba(88,166,255,0.25) !important;
-    }
-    /* Centraliza TODOS os botões */
-    div[data-testid="stButton"] {
-        display: flex !important;
-        justify-content: center !important;
-    }
-    
-    /* Botões da modalidade */
-    div[data-testid="stButton"] > button {
-        width: 180px !important;
-        max-width: 75vw !important;
-    
-        min-height: 28px !important;
-    
-        padding: 0.18rem 0.4rem !important;
-    
-        font-size: 0.6rem !important;
-    
-        border-radius: 13px !important;
-    }
+
     .question-type {
         text-align: center;
         font-size: clamp(0.55rem, 2.1vw, 0.7rem);
@@ -285,65 +168,197 @@ st.markdown(
         margin: 0;
     }
 
-    .top-close {
-        position: fixed !important;
-        top: 86px !important;
-        right: 24px !important;
-        z-index: 999999 !important;
-        width: 46px !important;
-        height: 46px !important;
-        border-radius: 50% !important;
-        background: #ffffff !important;
-        color: #111827 !important;
-        text-decoration: none !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        font-size: 1.35rem !important;
-        font-weight: 800 !important;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.25) !important;
+    .config-card {
+        max-width: 600px;
+        margin: 1rem auto;
+        padding: 1.1rem;
+        border-radius: 24px;
+        background: rgba(255,255,255,0.14);
+        border: 1px solid rgba(255,255,255,0.20);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+        color: #ffffff;
     }
 
-    /* Centralização real dos botões do Streamlit */
+    .fake-label {
+        width: fit-content;
+        min-width: 170px;
+        max-width: 230px;
+        margin: 0.18rem auto 0.08rem auto;
+        padding: 0.32rem 0.72rem;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.68);
+        border: 1px solid rgba(255,255,255,0.30);
+        color: #111827;
+        font-size: 0.78rem;
+        font-weight: 750;
+        text-align: center;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    /* Selectbox de nível */
+    div[data-testid="stSelectbox"] {
+        max-width: 180px !important;
+        margin: 0 auto !important;
+    }
+
+    div[data-testid="stSelectbox"] > div,
+    div[data-testid="stSelectbox"] > div > div {
+        max-width: 180px !important;
+    }
+
+    div[data-testid="stSelectbox"] > div > div {
+        background: rgba(255,255,255,0.20) !important;
+        border: 1px solid rgba(255,255,255,0.24) !important;
+        border-radius: 14px !important;
+        backdrop-filter: blur(8px);
+        min-height: 32px !important;
+    }
+
+    div[data-testid="stSelectbox"] * {
+        color: white !important;
+        font-weight: 700 !important;
+        font-size: 0.82rem !important;
+    }
+
+    div[role="listbox"] {
+        background: rgba(20,20,28,0.92) !important;
+        border-radius: 14px !important;
+        border: 1px solid rgba(255,255,255,0.15) !important;
+    }
+
+    div[role="option"]:hover {
+        background: rgba(88,166,255,0.25) !important;
+    }
+
+    /* Sliders */
+    div[data-testid="stSlider"] {
+        max-width: 340px !important;
+        margin: 0 auto !important;
+    }
+
+    /* Base de centralização dos botões */
     div[data-testid="stButton"] {
         width: 100% !important;
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
+        margin: 0 !important;
     }
 
-    div[data-testid="stButton"] > button,
-    div.stButton > button {
-        width: min(340px, 82vw) !important;
-        max-width: 340px !important;
-        min-height: 42px !important;
-        margin: 0.22rem auto !important;
+    div[data-testid="stButton"] > button {
+        box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
+        border: 1px solid #e5e7eb !important;
+        background: rgba(255,255,255,0.92) !important;
+        color: #111827 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        border-radius: 16px !important;
-        padding: 0.65rem 0.9rem !important;
-        font-weight: 800 !important;
-        font-size: clamp(0.9rem, 3vw, 1.05rem) !important;
-        border: 1px solid #e5e7eb !important;
-        background: #ffffff !important;
-        color: #111827 !important;
-        box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
     }
 
-    div[data-testid="stButton"] > button:hover,
-    div.stButton > button:hover {
+    div[data-testid="stButton"] > button:hover {
         background: #f3f4f6 !important;
         color: #111827 !important;
         border-color: #2563eb !important;
     }
 
-    div[data-testid="stButton"] > button:disabled,
-    div.stButton > button:disabled {
-        opacity: 0.72 !important;
-        color: #111827 !important;
+    div[data-testid="stButton"] > button p {
+        margin: 0 !important;
+        color: inherit !important;
+    }
+
+    /* ===== BOTÕES DA TELA INICIAL: Vocabulário / Verbos / Ambos ===== */
+    .mode-buttons div[data-testid="stButton"] {
+        margin-bottom: 0.06rem !important;
+    }
+
+    .mode-buttons div[data-testid="stButton"] > button {
+        width: 180px !important;
+        max-width: 72vw !important;
+        min-height: 30px !important;
+        padding: 0.18rem 0.50rem !important;
+        border-radius: 13px !important;
+        margin: 0.03rem auto !important;
+        background: rgba(255,255,255,0.74) !important;
+        border: 1px solid rgba(255,255,255,0.28) !important;
+    }
+
+    .mode-buttons div[data-testid="stButton"] > button p {
+        font-size: 0.74rem !important;
+        font-weight: 500 !important;
+        line-height: 1.1 !important;
+    }
+
+    .mode-buttons div[data-testid="stButton"] > button:hover {
+        background: rgba(255,255,255,0.96) !important;
+        border-color: #2563eb !important;
+    }
+
+    /* ===== BOTÃO COMMENCER ===== */
+    .start-button div[data-testid="stButton"] > button {
+        width: 190px !important;
+        max-width: 74vw !important;
+        min-height: 34px !important;
+        padding: 0.28rem 0.70rem !important;
+        border-radius: 13px !important;
+        margin-top: 0.35rem !important;
+        background: rgba(255,255,255,0.95) !important;
+    }
+
+    .start-button div[data-testid="stButton"] > button p {
+        font-size: 0.82rem !important;
+        font-weight: 500 !important;
+    }
+
+    /* ===== BOTÃO X ===== */
+    .close-button div[data-testid="stButton"] > button {
+        width: 40px !important;
+        height: 40px !important;
+        min-height: 40px !important;
+        max-width: 40px !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
         background: #ffffff !important;
-        border: 1px solid #e5e7eb !important;
+    }
+
+    .close-button div[data-testid="stButton"] > button p {
+        font-size: 1.25rem !important;
+        font-weight: 900 !important;
+        line-height: 1 !important;
+    }
+
+    /* ===== BOTÕES DAS ALTERNATIVAS ===== */
+    .answer-button div[data-testid="stButton"] > button {
+        width: min(340px, 82vw) !important;
+        max-width: 340px !important;
+        min-height: 42px !important;
+        border-radius: 16px !important;
+        padding: 0.65rem 0.9rem !important;
+        background: #ffffff !important;
+    }
+
+    .answer-button div[data-testid="stButton"] > button p {
+        font-size: clamp(0.9rem, 3vw, 1.05rem) !important;
+        font-weight: 800 !important;
+    }
+
+    /* ===== BOTÃO PRÓXIMA QUESTÃO ===== */
+    .next-button div[data-testid="stButton"] > button {
+        width: 54px !important;
+        height: 54px !important;
+        min-height: 54px !important;
+        max-width: 54px !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+    }
+
+    .next-button div[data-testid="stButton"] > button p {
+        font-size: 1.55rem !important;
+        font-weight: 900 !important;
+        line-height: 1 !important;
     }
 
     .options-wrapper {
@@ -407,25 +422,6 @@ st.markdown(
         backdrop-filter: blur(7px);
     }
 
-    .next-button-wrapper {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-top: 0.8rem;
-    }
-
-    .next-button-wrapper div[data-testid="stButton"] > button,
-    .next-button-wrapper div.stButton > button {
-        width: 54px !important;
-        height: 54px !important;
-        min-height: 54px !important;
-        max-width: 54px !important;
-        border-radius: 50% !important;
-        padding: 0 !important;
-        font-size: 1.55rem !important;
-        font-weight: 900 !important;
-    }
-
     div[data-testid="stCaptionContainer"] {
         text-align: center;
         color: #d5dce8;
@@ -434,10 +430,6 @@ st.markdown(
         margin-top: -0.2rem;
         margin-bottom: 0.25rem;
     }
-    /* Reduz espaço entre os botões da modalidade */
-    div[data-testid="stVerticalBlock"] > div:has(div[data-testid="stButton"]) {
-        gap: 0.12rem !important;
-    }
 
     h1, h2, h3, .stSubheader {
         text-align: center;
@@ -445,7 +437,7 @@ st.markdown(
     }
 
     div[data-testid="stVerticalBlock"] > div {
-        gap: 0.35rem;
+        gap: 0.28rem;
     }
 
     @media (max-width: 600px) {
@@ -473,142 +465,21 @@ st.markdown(
             padding: 0.62rem;
         }
 
-        .top-close {
-            top: 78px !important;
-            right: 14px !important;
-            width: 40px !important;
-            height: 40px !important;
-            font-size: 1.2rem !important;
+        .mode-buttons div[data-testid="stButton"] > button {
+            width: 160px !important;
+            min-height: 28px !important;
+        }
+
+        .mode-buttons div[data-testid="stButton"] > button p {
+            font-size: 0.68rem !important;
         }
 
         .option-box,
-        div[data-testid="stButton"] > button,
-        div.stButton > button {
+        .answer-button div[data-testid="stButton"] > button {
             width: min(300px, 84vw) !important;
             min-height: 38px !important;
             border-radius: 14px !important;
             padding: 0.55rem 0.75rem !important;
-            font-size: 0.92rem !important;
-        }
-
-        .next-button-wrapper div[data-testid="stButton"] > button,
-        .next-button-wrapper div.stButton > button {
-            width: 50px !important;
-            height: 50px !important;
-            min-height: 50px !important;
-            max-width: 50px !important;
-            border-radius: 50% !important;
-            padding: 0 !important;
-            font-size: 1.45rem !important;
-        }
-
-        .translation-box {
-            border-radius: 12px;
-            padding: 0.45rem 0.55rem;
-            margin-top: 0.24rem;
-            margin-bottom: 0.24rem;
-        }
-    }
-
-
-    /* =============================
-       CSS SEPARADO POR TIPO DE BOTÃO
-       ============================= */
-
-    /* Botões da tela inicial: Vocabulário / Verbos / Ambos */
-    .mode-buttons div[data-testid="stButton"] {
-        margin-bottom: 0 !important;
-    }
-
-    .mode-buttons div[data-testid="stButton"] > button {
-        width: 220px !important;
-        max-width: 76vw !important;
-    
-        min-height: 34px !important;
-    
-        padding: 0.22rem 0.7rem !important;
-    
-        border-radius: 14px !important;
-    
-        margin: 0.08rem auto !important;
-    
-        background: rgba(255,255,255,0.72) !important;
-    
-        border: 1px solid rgba(255,255,255,0.25) !important;
-    
-        color: #111827 !important;
-    }
-    
-    /* TEXTO INTERNO */
-    .mode-buttons div[data-testid="stButton"] > button p {
-        font-size: 0.72rem !important;
-        font-weight: 400 !important;
-    }
-
-    .mode-buttons div[data-testid="stButton"] > button:hover {
-        background: rgba(255,255,255,0.96) !important;
-        border-color: #2563eb !important;
-    }
-
-    /* Botão Commencer */
-    .start-button div[data-testid="stButton"] > button {
-        width: 190px !important;
-        max-width: 74vw !important;
-        min-height: 34px !important;
-        padding: 0.28rem 0.7rem !important;
-        font-size: 0.82rem !important;
-        border-radius: 13px !important;
-        margin-top: 0.35rem !important;
-        background: rgba(255,255,255,0.95) !important;
-        color: #111827 !important;
-    }
-
-    /* Botão X */
-    .close-button div[data-testid="stButton"] > button {
-        width: 40px !important;
-        height: 40px !important;
-        min-height: 40px !important;
-        max-width: 40px !important;
-        border-radius: 50% !important;
-        padding: 0 !important;
-        font-size: 1.25rem !important;
-        font-weight: 900 !important;
-        background: #ffffff !important;
-        color: #111827 !important;
-    }
-
-    /* Botões das alternativas antes de responder */
-    .answer-button div[data-testid="stButton"] > button {
-        width: min(340px, 82vw) !important;
-        max-width: 340px !important;
-        min-height: 42px !important;
-        border-radius: 16px !important;
-        padding: 0.65rem 0.9rem !important;
-        font-size: clamp(0.9rem, 3vw, 1.05rem) !important;
-        font-weight: 800 !important;
-        background: #ffffff !important;
-        color: #111827 !important;
-    }
-
-    /* Botão de próxima questão */
-    .next-button div[data-testid="stButton"] > button {
-        width: 54px !important;
-        height: 54px !important;
-        min-height: 54px !important;
-        max-width: 54px !important;
-        border-radius: 50% !important;
-        padding: 0 !important;
-        font-size: 1.55rem !important;
-        font-weight: 900 !important;
-        background: #ffffff !important;
-        color: #111827 !important;
-    }
-
-    @media (max-width: 600px) {
-        .mode-buttons div[data-testid="stButton"] > button {
-            width: 160px !important;
-            min-height: 28px !important;
-            font-size: 0.68rem !important;
         }
 
         .close-button div[data-testid="stButton"] > button {
@@ -616,7 +487,6 @@ st.markdown(
             height: 38px !important;
             min-height: 38px !important;
             max-width: 38px !important;
-            font-size: 1.15rem !important;
         }
 
         .next-button div[data-testid="stButton"] > button {
@@ -624,13 +494,13 @@ st.markdown(
             height: 50px !important;
             min-height: 50px !important;
             max-width: 50px !important;
-            font-size: 1.45rem !important;
         }
     }
     </style>
     """,
     unsafe_allow_html=True
 )
+
 
 
 # =============================
