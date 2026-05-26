@@ -35,7 +35,7 @@ def adicionar_fundo_animado(imagem):
         encoded = base64.b64encode(arquivo.read()).decode()
 
     st.markdown(
-        f"""
+        """
         <style>
         .stApp {{
             background-color: #0d1117;
