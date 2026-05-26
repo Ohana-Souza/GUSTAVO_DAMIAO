@@ -431,88 +431,122 @@ st.markdown(
             font-size: 0.84rem !important;
         }
     }
-    
-    /* ===== ALTERNATIVAS HTML: espaçamento controlado de verdade ===== */
-    .html-options {
-        width: 100%;
-        max-width: 340px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0rem !important;
+
+    /* ===== AJUSTE FINAL: tela inicial e alternativas ===== */
+
+    .block-container {
+        padding-top: 0.25rem !important;
     }
-    .answer-form {
-        width: 100%;
+
+    .main-title {
+        margin: 0.05rem auto 0.02rem auto !important;
+        line-height: 1.05 !important;
+    }
+
+    .subtitle {
+        margin: 0 auto 0.35rem auto !important;
+    }
+
+    .fake-label {
+        margin: 0.10rem auto 0.04rem auto !important;
+        padding: 0.25rem 0.60rem !important;
+    }
+
+    div[data-testid="stVerticalBlock"] > div {
+        gap: 0.10rem !important;
+    }
+
+    div[data-testid="stHorizontalBlock"] {
+        gap: 0.18rem !important;
+    }
+
+    [data-testid="element-container"] {
+        margin-bottom: 0.02rem !important;
+    }
+
+    .mode-button {
+        margin: 0.02rem 0 !important;
+        padding: 0 !important;
+    }
+
+    .mode-button div[data-testid="stButton"] > button {
+        min-height: 32px !important;
+        padding: 0.20rem 0.55rem !important;
+        margin: 0.01rem auto !important;
+    }
+
+    .start-button div[data-testid="stButton"] > button {
+        min-height: 34px !important;
+        padding: 0.24rem 0.60rem !important;
+        margin-top: 0.10rem !important;
+    }
+
+    .motivation {
+        margin: 0.06rem auto 0.06rem auto !important;
+        padding: 0.28rem 0.60rem !important;
+    }
+
+    .question-card {
+        max-width: min(560px, 92vw) !important;
+        margin: 0.10rem auto 0.14rem auto !important;
+        padding: 0.55rem 0.75rem !important;
+    }
+
+    .options-wrapper {
+        width: 100% !important;
+        max-width: 360px !important;
+        margin: 0.04rem auto 0 auto !important;
+        gap: 0 !important;
+    }
+
+    .answer-button {
+        margin: 0.015rem 0 !important;
+        padding: 0 !important;
+    }
+
+    .answer-button div[data-testid="stButton"] {
         margin: 0 !important;
         padding: 0 !important;
-        line-height: 0 !important;
-    }
-    .answer-form button {
-        margin: 0 !important;
     }
 
-    .html-answer-button {
-        width: 100%;
-        min-height: 34px;
-        border-radius: 14px;
-        border: 1px solid #e5e7eb;
-        background: rgba(255,255,255,0.92);
-        color: #111827;
-        font-size: 0.92rem;
-        font-weight: 650;
-        padding: 0.34rem 0.70rem;
-        box-shadow: 0 5px 16px rgba(0,0,0,0.16);
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .html-answer-link {
-        width: 100%;
-        max-width: 340px;
-        min-height: 34px;
-        margin: 0.02rem auto;
-        padding: 0.34rem 0.70rem;
-    
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    
-        border-radius: 14px;
-        border: 1px solid #e5e7eb;
-    
-        background: rgba(255,255,255,0.92);
-        color: #111827 !important;
-    
-        font-size: 0.92rem;
-        font-weight: 650;
-        text-decoration: none !important;
-    
-        box-shadow: 0 5px 16px rgba(0,0,0,0.16);
-        box-sizing: border-box;
-    }
-    
-    .html-answer-link:hover {
-        background: #f3f4f6;
-        border-color: #2563eb;
+    .answer-button div[data-testid="stButton"] > button {
+        min-height: 34px !important;
+        padding: 0.24rem 0.65rem !important;
+        margin: 0.01rem auto !important;
+        border-radius: 13px !important;
     }
 
-    .html-answer-button:hover {
-        background: #f3f4f6;
-        border-color: #2563eb;
+    .answer-button div[data-testid="stButton"] > button p {
+        font-size: 0.86rem !important;
+        line-height: 1 !important;
+    }
+
+    .option-box {
+        width: min(320px, 80vw) !important;
+        max-width: 320px !important;
+        min-height: 34px !important;
+        margin: 0.02rem auto !important;
+        padding: 0.24rem 0.65rem !important;
+        font-size: 0.86rem !important;
     }
 
     @media (max-width: 600px) {
-        .html-options {
-            max-width: 300px;
-            gap: 0.10rem;
+        .main-title {
+            font-size: 1.45rem !important;
         }
 
-        .html-answer-button {
-            min-height: 36px;
-            font-size: 0.84rem;
-            padding: 0.30rem 0.60rem;
+        .subtitle {
+            margin-bottom: 0.25rem !important;
+        }
+
+        .mode-button div[data-testid="stButton"] > button {
+            min-height: 30px !important;
+        }
+
+        .answer-button div[data-testid="stButton"] > button,
+        .option-box {
+            min-height: 32px !important;
+            padding: 0.22rem 0.55rem !important;
         }
     }
 
@@ -715,11 +749,6 @@ def texto_opcao_respondida(pergunta, opcao):
 # =============================
 iniciar_estado()
 
-if st.session_state.tela == "questao" and "resposta" in st.query_params and not st.session_state.respondido:
-    selecionar_resposta(unquote(st.query_params["resposta"]))
-    st.query_params.clear()
-    st.rerun()
-
 if st.session_state.tela == "configuracao":
     st.markdown('<div class="main-title">🇫🇷 Treino de Francês</div>', unsafe_allow_html=True)
     st.markdown('<div class="subtitle">GUSTAVO DAMIÃO</div>', unsafe_allow_html=True)
@@ -863,22 +892,22 @@ elif st.session_state.tela == "questao":
                     f'<div class="option-box neutral-box">{texto}</div>',
                     unsafe_allow_html=True
                 )
-        else:
-            st.markdown('<div class="html-options">', unsafe_allow_html=True)
-    
+    else:
+        col1, col2, col3 = st.columns([1.25, 1, 1.25], gap="small")
+        with col2:
             for opcao in pergunta["opcoes"]:
-                resposta_url = quote(opcao)
-    
-                st.markdown(
-                    f"""
-                    <a href="?resposta={resposta_url}" target="_self" class="html-answer-link">
-                        {html.escape(opcao)}
-                    </a>
-                    """,
-                    unsafe_allow_html=True
+                st.markdown('<div class="answer-button">', unsafe_allow_html=True)
+                st.button(
+                    opcao,
+                    key=f"opcao_{indice}_{opcao}",
+                    on_click=selecionar_resposta,
+                    args=(opcao,),
+                    use_container_width=True
                 )
-    
-            st.markdown('</div>', unsafe_allow_html=True)
+                st.markdown("</div>", unsafe_allow_html=True)
+
+    st.markdown('</div>', unsafe_allow_html=True)
+
     if st.session_state.respondido:
         col1, col2, col3 = st.columns([1.4, 0.35, 1.4], gap="small")
 
