@@ -211,11 +211,16 @@ st.markdown(
 
     div[role="radiogroup"] {
         width: 100% !important;
+        max-width: 340px !important;
+    
+        margin: 0.12rem auto 0 auto !important;
+    
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        gap: 0.32rem !important;
-        margin: 0.05rem auto 0.22rem auto !important;
+        justify-content: center !important;
+    
+        gap: 0.12rem !important;
     }
 
     div[role="radiogroup"] label {
@@ -301,14 +306,14 @@ st.markdown(
 
     .top-actions {
         position: fixed;
-        top: 72px;
+        top: 18px;
         right: 20px;
         z-index: 999999;
     }
 
     .top-actions div[data-testid="stButton"] > button {
-        width: 42px !important;
-        height: 42px !important;
+        width: 38px !important;
+        height: 38px !important;
         min-height: 42px !important;
         max-width: 42px !important;
         border-radius: 50% !important;
