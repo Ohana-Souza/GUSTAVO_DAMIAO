@@ -521,17 +521,28 @@ st.markdown(
     }
 
     .mode-buttons div[data-testid="stButton"] > button {
-        width: 10px !important;
-        max-width: 72vw !important;
-        min-height: 26px !important;
-        padding: 0.18rem 0.45rem !important;
-        font-size: 0.01rem !important;
-        border-radius: 12px !important;
-        margin: 0.04rem auto !important;
-        background: rgba(255,255,255,0.82) !important;
+        width: 220px !important;
+        max-width: 76vw !important;
+    
+        min-height: 34px !important;
+    
+        padding: 0.22rem 0.7rem !important;
+    
+        border-radius: 14px !important;
+    
+        margin: 0.08rem auto !important;
+    
+        background: rgba(255,255,255,0.72) !important;
+    
+        border: 1px solid rgba(255,255,255,0.25) !important;
+    
         color: #111827 !important;
-        border: 1px solid rgba(255,255,255,0.40) !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.14) !important;
+    }
+    
+    /* TEXTO INTERNO */
+    .mode-buttons div[data-testid="stButton"] > button p {
+        font-size: 0.72rem !important;
+        font-weight: 400 !important;
     }
 
     .mode-buttons div[data-testid="stButton"] > button:hover {
