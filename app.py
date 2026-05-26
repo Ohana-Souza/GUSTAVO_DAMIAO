@@ -384,19 +384,19 @@ st.markdown(
     }
 
     .answer-button {
-        margin: -0.03rem 0 !important;
+        margin: -0.14rem 0 !important;
         padding: 0 !important;
     }
 
     .answer-button div[data-testid="stButton"] > button {
         width: 320px !important;
         max-width: 82vw !important;
-        min-height: 30px !important;
-        padding: 0.10rem 0.5rem !important;
+        min-height: 28px !important;
+        padding: 0.02rem 0.45rem !important;
     }
 
     .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.82rem !important;
+        font-size: 0.80rem !important;
         line-height: 1 !important;
         font-weight: 600 !important;
     }
