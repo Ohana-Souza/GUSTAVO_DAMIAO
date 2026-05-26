@@ -149,12 +149,22 @@ def pergunta_portugues_para_frances(vocabulario):
     resposta_certa = item["frances"].strip()
     todas = [v["frances"].strip() for v in vocabulario]
 
+    opcoes = gerar_opcoes(resposta_certa, todas)
+
+    traducoes_erradas = []
+    for opcao in opcoes:
+        if opcao != resposta_certa:
+            for v in vocabulario:
+                if v["frances"].strip() == opcao:
+                    traducoes_erradas.append(f"{opcao} = {v['portugues']}")
+                    break
+
     return {
         "tipo": "Vocabulário — Português → Francês",
         "pergunta": f"Como se diz **{item['portugues']}** em francês?",
-        "opcoes": gerar_opcoes(resposta_certa, todas),
+        "opcoes": opcoes,
         "resposta": resposta_certa,
-        "traducao": f"{item['portugues']} = {item['frances']}"
+        "traducao": "<br>".join(traducoes_erradas)
     }
 
 
@@ -163,12 +173,22 @@ def pergunta_frances_para_portugues(vocabulario):
     resposta_certa = item["portugues"].strip()
     todas = [v["portugues"].strip() for v in vocabulario]
 
+    opcoes = gerar_opcoes(resposta_certa, todas)
+
+    traducoes_erradas = []
+    for opcao in opcoes:
+        if opcao != resposta_certa:
+            for v in vocabulario:
+                if v["portugues"].strip() == opcao:
+                    traducoes_erradas.append(f"{opcao} = {v['frances']}")
+                    break
+
     return {
         "tipo": "Vocabulário — Francês → Português",
         "pergunta": f"O que significa **{item['frances']}** em português?",
-        "opcoes": gerar_opcoes(resposta_certa, todas),
+        "opcoes": opcoes,
         "resposta": resposta_certa,
-        "traducao": f"{item['frances']} = {item['portugues']}"
+        "traducao": "<br>".join(traducoes_erradas)
     }
 
 
@@ -356,7 +376,7 @@ elif st.session_state.tela == "questao":
 
     if st.session_state.respondido:
         st.markdown(
-            f'<div class="translation-box"><strong>Tradução:</strong> {pergunta.get("traducao", "")}</div>',
+            f'<div class="translation-box"><strong>Tradução das outras opções:</strong><br>{pergunta.get("traducao", "")}</div>',
             unsafe_allow_html=True
         )
 
