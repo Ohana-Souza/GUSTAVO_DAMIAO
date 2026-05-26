@@ -74,7 +74,7 @@ def adicionar_fundo_animado(imagem):
         margin-bottom: 0rem !important;
     }
 
-</style>
+    </style>
         """,
         unsafe_allow_html=True
     )
