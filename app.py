@@ -432,75 +432,129 @@ st.markdown(
         }
     }
 
-    /* ===== AJUSTE FINAL: tela inicial e alternativas ===== */
-
+    /* ===== AJUSTE FINAL BALANCEADO ===== */
     .block-container {
-        padding-top: 0.25rem !important;
+        padding-top: 1.05rem !important;
+        padding-bottom: 0.35rem !important;
+        max-width: 720px !important;
     }
 
     .main-title {
-        margin: 0.05rem auto 0.02rem auto !important;
-        line-height: 1.05 !important;
+        margin-top: 0.65rem !important;
+        margin-bottom: 0.02rem !important;
+        font-size: clamp(1.35rem, 4.2vw, 2.05rem) !important;
+        line-height: 1.08 !important;
     }
 
     .subtitle {
-        margin: 0 auto 0.35rem auto !important;
+        margin: 0 auto 0.32rem auto !important;
+        font-size: clamp(0.68rem, 2.4vw, 0.86rem) !important;
     }
 
     .fake-label {
-        margin: 0.10rem auto 0.04rem auto !important;
-        padding: 0.25rem 0.60rem !important;
+        margin: 0.08rem auto 0.04rem auto !important;
+        padding: 0.22rem 0.58rem !important;
+        font-size: 0.68rem !important;
+        min-width: 135px !important;
+        max-width: 190px !important;
+    }
+
+    div[data-testid="stSelectbox"] {
+        max-width: 185px !important;
+    }
+
+    div[data-testid="stSelectbox"] > div,
+    div[data-testid="stSelectbox"] > div > div {
+        max-width: 185px !important;
+    }
+
+    div[data-testid="stSelectbox"] > div > div {
+        min-height: 30px !important;
     }
 
     div[data-testid="stVerticalBlock"] > div {
-        gap: 0.10rem !important;
+        gap: 0.06rem !important;
     }
 
     div[data-testid="stHorizontalBlock"] {
-        gap: 0.18rem !important;
+        gap: 0.16rem !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     [data-testid="element-container"] {
-        margin-bottom: 0.02rem !important;
+        margin-bottom: 0rem !important;
     }
 
     .mode-button {
-        margin: 0.02rem 0 !important;
+        margin: -0.03rem 0 !important;
         padding: 0 !important;
     }
 
     .mode-button div[data-testid="stButton"] > button {
-        min-height: 32px !important;
-        padding: 0.20rem 0.55rem !important;
+        min-height: 30px !important;
+        padding: 0.18rem 0.55rem !important;
         margin: 0.01rem auto !important;
     }
 
+    .mode-button div[data-testid="stButton"] > button p {
+        font-size: 0.76rem !important;
+    }
+
     .start-button div[data-testid="stButton"] > button {
-        min-height: 34px !important;
-        padding: 0.24rem 0.60rem !important;
+        min-height: 32px !important;
+        padding: 0.22rem 0.60rem !important;
         margin-top: 0.10rem !important;
     }
 
+    div[data-testid="stSlider"] {
+        margin-top: -0.08rem !important;
+        margin-bottom: -0.02rem !important;
+    }
+
+    .small-title {
+        margin: 0.02rem auto 0.08rem auto !important;
+        font-size: clamp(0.95rem, 3.2vw, 1.14rem) !important;
+        line-height: 1.06 !important;
+    }
+
     .motivation {
-        margin: 0.06rem auto 0.06rem auto !important;
-        padding: 0.28rem 0.60rem !important;
+        margin: 0.03rem auto 0.06rem auto !important;
+        padding: 0.26rem 0.58rem !important;
+        max-width: 520px !important;
+    }
+
+    div[data-testid="stCaptionContainer"] {
+        margin-top: -0.05rem !important;
+        margin-bottom: 0.02rem !important;
     }
 
     .question-card {
         max-width: min(560px, 92vw) !important;
-        margin: 0.10rem auto 0.14rem auto !important;
-        padding: 0.55rem 0.75rem !important;
+        margin: 0.08rem auto 0.10rem auto !important;
+        padding: 0.52rem 0.70rem !important;
+        border-radius: 14px !important;
+    }
+
+    .question-type {
+        margin-bottom: 0.12rem !important;
+        font-size: clamp(0.50rem, 1.8vw, 0.64rem) !important;
+    }
+
+    .question-text {
+        font-size: clamp(0.86rem, 3vw, 1.06rem) !important;
+        line-height: 1.14 !important;
     }
 
     .options-wrapper {
         width: 100% !important;
         max-width: 360px !important;
-        margin: 0.04rem auto 0 auto !important;
+        margin: 0.02rem auto 0 auto !important;
         gap: 0 !important;
     }
 
     .answer-button {
-        margin: 0.015rem 0 !important;
+        margin: -0.03rem 0 !important;
         padding: 0 !important;
     }
 
@@ -510,43 +564,56 @@ st.markdown(
     }
 
     .answer-button div[data-testid="stButton"] > button {
-        min-height: 34px !important;
-        padding: 0.24rem 0.65rem !important;
+        min-height: 32px !important;
+        padding: 0.22rem 0.58rem !important;
         margin: 0.01rem auto !important;
         border-radius: 13px !important;
     }
 
     .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.86rem !important;
+        font-size: 0.82rem !important;
         line-height: 1 !important;
     }
 
     .option-box {
         width: min(320px, 80vw) !important;
         max-width: 320px !important;
-        min-height: 34px !important;
-        margin: 0.02rem auto !important;
-        padding: 0.24rem 0.65rem !important;
-        font-size: 0.86rem !important;
+        min-height: 32px !important;
+        margin: 0.01rem auto !important;
+        padding: 0.22rem 0.58rem !important;
+        font-size: 0.82rem !important;
+        line-height: 1.05 !important;
     }
 
     @media (max-width: 600px) {
+        .block-container {
+            padding-top: 0.85rem !important;
+            padding-left: 0.55rem !important;
+            padding-right: 0.55rem !important;
+        }
+
         .main-title {
-            font-size: 1.45rem !important;
+            font-size: 1.34rem !important;
+            margin-top: 0.48rem !important;
         }
 
         .subtitle {
-            margin-bottom: 0.25rem !important;
+            margin-bottom: 0.22rem !important;
         }
 
-        .mode-button div[data-testid="stButton"] > button {
-            min-height: 30px !important;
+        .fake-label {
+            font-size: 0.64rem !important;
+            padding: 0.20rem 0.50rem !important;
         }
 
         .answer-button div[data-testid="stButton"] > button,
         .option-box {
-            min-height: 32px !important;
-            padding: 0.22rem 0.55rem !important;
+            min-height: 30px !important;
+            padding: 0.20rem 0.50rem !important;
+        }
+
+        .answer-button div[data-testid="stButton"] > button p {
+            font-size: 0.78rem !important;
         }
     }
 
