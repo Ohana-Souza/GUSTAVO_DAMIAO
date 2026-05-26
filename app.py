@@ -23,35 +23,53 @@ def adicionar_fundo_animado(imagem):
     with open(imagem, "rb") as arquivo:
         encoded = base64.b64encode(arquivo.read()).decode()
 
+    
+
     st.markdown(
         f"""
         <style>
         .stApp {{
-            background-image: url("data:image/png;base64,{encoded}");
-            background-repeat: repeat-x;
-            background-size: auto 100%;
-            background-position: 0 0;
-            animation: moverFundo 120s linear infinite;
+            background-color: #0d1117;
+            overflow-x: hidden;
         }}
-
-        @keyframes moverFundo {{
-            from {{
-                background-position: 0 0;
-            }}
-            to {{
-                background-position: -2000px 0;
-            }}
-        }}
-
+    
         .stApp::before {{
             content: "";
             position: fixed;
-            inset: 0;
-            background: rgba(13, 17, 23, 0.78);
+            top: 0;
+            left: 0;
+            width: 200vw;
+            height: 100vh;
+            background-image:
+                url("data:image/png;base64,{encoded}"),
+                url("data:image/png;base64,{encoded}");
+            background-repeat: no-repeat, no-repeat;
+            background-size: 100vw 100vh, 100vw 100vh;
+            background-position: 0 0, 100vw 0;
+            animation: moverFundo 120s linear infinite;
+            opacity: 0.55;
             z-index: 0;
             pointer-events: none;
         }}
-
+    
+        @keyframes moverFundo {{
+            from {{
+                transform: translateX(0);
+            }}
+            to {{
+                transform: translateX(-100vw);
+            }}
+        }}
+    
+        .stApp::after {{
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 17, 23, 0.45);
+            z-index: 0;
+            pointer-events: none;
+        }}
+    
         .block-container {{
             position: relative;
             z-index: 1;
