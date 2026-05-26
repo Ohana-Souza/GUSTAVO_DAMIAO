@@ -8,6 +8,52 @@ st.set_page_config(
     page_icon="🇫🇷",
     layout="centered"
 )
+import base64
+
+def adicionar_fundo_animado(imagem):
+    with open(imagem, "rb") as arquivo:
+        encoded = base64.b64encode(arquivo.read()).decode()
+
+    st.markdown(
+        f"""
+        <style>
+
+        .stApp {{
+            background: #0d1117;
+            overflow: hidden;
+        }}
+
+        .stApp::before {{
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background-image: url("data:image/png;base64,{encoded}");
+            background-repeat: repeat-x;
+            background-size: cover;
+            opacity: 0.08;
+            z-index: -1;
+
+            animation: moverFundo 120s linear infinite;
+        }}
+
+        @keyframes moverFundo {{
+            from {{
+                transform: translateX(0);
+            }}
+            to {{
+                transform: translateX(-50%);
+            }}
+        }}
+
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+adicionar_fundo_animado("fundo.png")
 
 # =============================
 # CONFIGURAÇÃO DOS ARQUIVOS
