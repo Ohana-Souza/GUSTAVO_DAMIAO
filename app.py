@@ -384,19 +384,19 @@ st.markdown(
     }
 
     .answer-button {
-        margin: -0.14rem 0 !important;
+        margin: -0.03rem 0 !important;
         padding: 0 !important;
     }
 
     .answer-button div[data-testid="stButton"] > button {
         width: 320px !important;
         max-width: 82vw !important;
-        min-height: 28px !important;
-        padding: 0.02rem 0.45rem !important;
+        min-height: 30px !important;
+        padding: 0.10rem 0.5rem !important;
     }
 
     .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.80rem !important;
+        font-size: 0.82rem !important;
         line-height: 1 !important;
         font-weight: 600 !important;
     }
@@ -500,7 +500,66 @@ st.markdown(
             min-height: 34px !important;
         }
     }
-    </style>
+    
+    /* ===== AJUSTE FINAL REAL: distância entre opções de resposta ===== */
+
+    .answers-area {
+        max-width: 320px !important;
+        margin: -0.05rem auto 0 auto !important;
+        padding: 0 !important;
+    }
+
+    /* zera o espaço invisível que o Streamlit coloca ao redor de cada markdown/button */
+    [data-testid="element-container"]:has(.answer-button) {
+        margin-top: -0.18rem !important;
+        margin-bottom: -0.18rem !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .answer-button {
+        margin: -0.18rem 0 !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+    }
+
+    .answer-button div[data-testid="stButton"] {
+        margin: 0 !important;
+        padding: 0 !important;
+        min-height: 0 !important;
+        height: auto !important;
+    }
+
+    .answer-button div[data-testid="stButton"] > button {
+        width: 320px !important;
+        max-width: 82vw !important;
+        min-height: 28px !important;
+        height: 30px !important;
+        padding: 0.04rem 0.45rem !important;
+        margin: 0 !important;
+        border-radius: 13px !important;
+    }
+
+    .answer-button div[data-testid="stButton"] > button p {
+        font-size: 0.80rem !important;
+        line-height: 1 !important;
+        margin: 0 !important;
+    }
+
+    @media (max-width: 600px) {
+        .answers-area {
+            max-width: 300px !important;
+        }
+
+        .answer-button div[data-testid="stButton"] > button {
+            width: 300px !important;
+            max-width: 82vw !important;
+            min-height: 27px !important;
+            height: 29px !important;
+        }
+    }
+
+</style>
     """,
     unsafe_allow_html=True
 )
