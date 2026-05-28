@@ -101,7 +101,7 @@ st.markdown(
     }
 
     div[data-testid="stVerticalBlock"] > div {
-        gap: 0.08rem !important;
+        gap: 0.05rem !important;
     }
 
     [data-testid="element-container"] {
