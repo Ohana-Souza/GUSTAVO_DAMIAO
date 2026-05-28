@@ -101,7 +101,7 @@ st.markdown(
     }
 
     div[data-testid="stVerticalBlock"] > div {
-        gap: 0.05rem !important;
+        gap: 0.18rem !important;
     }
 
     [data-testid="element-container"] {
@@ -114,8 +114,7 @@ st.markdown(
         font-size: clamp(1.45rem, 4.5vw, 2.15rem);
         font-weight: 850;
         line-height: 1.1;
-        margin-top: 2.2rem !important;
-        margin-bottom: 0.06rem !important;
+        margin: 0.45rem auto 0.06rem auto;
         text-shadow: 0 3px 12px rgba(0,0,0,0.65);
     }
 
@@ -525,6 +524,96 @@ st.markdown(
         .st-key-answer-buttons {
             width: 300px !important;
             max-width: 82vw !important;
+        }
+    }
+
+
+    /* =============================
+       AJUSTES FINAIS - CELULAR E ESPAÇAMENTO
+       ============================= */
+
+    /* Garante que as respostas já corrigidas tenham EXATAMENTE a mesma lógica
+       visual dos botões de alternativa antes de responder. */
+    .options-wrapper,
+    .st-key-answer-buttons {
+        width: 320px !important;
+        max-width: 82vw !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-sizing: border-box !important;
+    }
+
+    .st-key-answer-buttons div[data-testid="stButton"] {
+        width: 100% !important;
+        margin: 0.05rem 0 !important;
+        padding: 0 !important;
+    }
+
+    .st-key-answer-buttons div[data-testid="stButton"] > button,
+    .option-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 34px !important;
+        margin: 0.05rem 0 !important;
+        padding: 0.14rem 0.55rem !important;
+        border-radius: 13px !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    .st-key-answer-buttons div[data-testid="stButton"] > button p,
+    .option-box {
+        font-size: 0.82rem !important;
+        line-height: 1.05 !important;
+        font-weight: 700 !important;
+    }
+
+    /* O título não descia no celular porque o espaço real vem do padding do
+       container principal do Streamlit, não só da margem do .main-title/.small-title. */
+    @media (max-width: 600px) {
+        .block-container {
+            padding-top: 2.15rem !important;
+        }
+
+        .main-title {
+            margin-top: 0.75rem !important;
+            margin-bottom: 0.04rem !important;
+            font-size: 1.35rem !important;
+        }
+
+        .small-title {
+            margin-top: 0.95rem !important;
+            margin-bottom: 0.08rem !important;
+            font-size: 1.08rem !important;
+        }
+
+        .subtitle {
+            margin-bottom: 0.28rem !important;
+        }
+
+        div[data-testid="stVerticalBlock"] > div {
+            gap: 0.08rem !important;
+        }
+
+        .fake-label {
+            margin-top: 0.08rem !important;
+            margin-bottom: 0.04rem !important;
+        }
+
+        .options-wrapper,
+        .st-key-answer-buttons {
+            width: 300px !important;
+            max-width: 82vw !important;
+        }
+
+        .st-key-answer-buttons div[data-testid="stButton"] > button,
+        .option-box {
+            min-height: 34px !important;
+            margin: 0.045rem 0 !important;
+            padding: 0.14rem 0.50rem !important;
         }
     }
 
