@@ -116,16 +116,21 @@ st.markdown(
         line-height: 1.1;
         margin: 0.45rem auto 0.06rem auto;
         text-shadow: 0 3px 12px rgba(0,0,0,0.65);
+    
+        /* NOVO */
+        position: relative !important;
+        transform: translateY(24px) !important;
     }
+
 
     .subtitle {
         text-align: center;
-        color: #d5dce8;
-        font-size: clamp(0.72rem, 2.5vw, 0.9rem);
-        margin: 0 auto 0.55rem auto;
-        text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+    
+        /* NOVO */
+        position: relative !important;
+        transform: translateY(24px) !important;
     }
-
+    
     .small-title {
         text-align: center;
         color: #ffffff;
@@ -614,6 +619,98 @@ st.markdown(
             min-height: 34px !important;
             margin: 0.045rem 0 !important;
             padding: 0.14rem 0.50rem !important;
+        }
+    }
+
+
+    /* =============================
+       CORREÇÃO FINAL GERADA
+       - título desce também no PC
+       - respostas e opções ficam com mesmo espaçamento
+       ============================= */
+
+    .block-container {
+        padding-top: 2.45rem !important;
+    }
+
+    .main-title,
+    .subtitle {
+        transform: none !important;
+        position: relative !important;
+    }
+
+    .main-title {
+        margin-top: 0.85rem !important;
+        margin-bottom: 0.05rem !important;
+    }
+
+    .subtitle {
+        margin-bottom: 0.32rem !important;
+    }
+
+    .small-title {
+        margin-top: 1.05rem !important;
+        margin-bottom: 0.08rem !important;
+    }
+
+    .options-wrapper,
+    .st-key-answer-buttons {
+        width: 320px !important;
+        max-width: 82vw !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: block !important;
+        box-sizing: border-box !important;
+    }
+
+    .st-key-answer-buttons div[data-testid="stButton"],
+    .st-key-answer-buttons div[data-testid="stButton"] > button,
+    .option-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 34px !important;
+        margin: 0.05rem 0 !important;
+        padding: 0.14rem 0.55rem !important;
+        border-radius: 13px !important;
+        box-sizing: border-box !important;
+    }
+
+    .st-key-answer-buttons div[data-testid="stButton"] > button {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .option-box {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    @media (max-width: 600px) {
+        .block-container {
+            padding-top: 2.15rem !important;
+        }
+
+        .main-title {
+            margin-top: 0.75rem !important;
+            margin-bottom: 0.04rem !important;
+        }
+
+        .small-title {
+            margin-top: 0.95rem !important;
+            margin-bottom: 0.08rem !important;
+        }
+
+        .subtitle {
+            margin-bottom: 0.28rem !important;
+        }
+
+        .options-wrapper,
+        .st-key-answer-buttons {
+            width: 300px !important;
+            max-width: 82vw !important;
         }
     }
 
