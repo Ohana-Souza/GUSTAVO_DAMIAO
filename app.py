@@ -469,7 +469,7 @@ st.markdown(
 
     .st-key-mode-buttons div[data-testid="stButton"] > button {
         min-height: 38px !important;
-        margin: 0.02rem 0 !important;
+        margin: 0.005rem 0 !important;
         padding: 0.28rem 0.7rem !important;
     }
 
