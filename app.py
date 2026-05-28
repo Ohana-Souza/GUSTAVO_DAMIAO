@@ -820,7 +820,7 @@ if st.session_state.tela == "configuracao":
 
 #    col_radio_1, col_radio_2, col_radio_3 = st.columns([1.2, 1, 1.2], gap="small")
 
-    with col_radio_2:
+    
         modalidade_escolhida = st.radio(
             "",
             opcoes_modo,
@@ -995,7 +995,7 @@ elif st.session_state.tela == "questao":
 
     #    col_resp_1, col_resp_2, col_resp_3 = st.columns([1.2,1,1.2], gap="small")
 
-        with col_resp_2:
+     
             resposta_escolhida = st.radio(
                 "",
                 pergunta["opcoes"],
