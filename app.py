@@ -101,7 +101,7 @@ st.markdown(
     }
 
     div[data-testid="stVerticalBlock"] > div {
-        gap: 0.18rem !important;
+        gap: 0.08rem !important;
     }
 
     [data-testid="element-container"] {
@@ -114,7 +114,8 @@ st.markdown(
         font-size: clamp(1.45rem, 4.5vw, 2.15rem);
         font-weight: 850;
         line-height: 1.1;
-        margin: 0.45rem auto 0.06rem auto;
+        margin-top: 0.45rem !important;
+        margin-bottom: 0.06rem !important;
         text-shadow: 0 3px 12px rgba(0,0,0,0.65);
     }
 
