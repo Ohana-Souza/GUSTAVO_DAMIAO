@@ -119,7 +119,7 @@ st.markdown(
     
         /* NOVO */
         position: relative !important;
-        transform: translateY(40px) !important;
+        transform: translateY(80px) !important;
     }
 
 
@@ -128,7 +128,7 @@ st.markdown(
     
         /* NOVO */
         position: relative !important;
-        transform: translateY(40px) !important;
+        transform: translateY(80px) !important;
     }
     
     .small-title {
