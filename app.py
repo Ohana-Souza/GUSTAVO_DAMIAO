@@ -86,13 +86,18 @@ st.markdown(
         scroll-behavior: smooth;
     }
 
+    .stApp {
+        overflow-x: hidden !important;
+    }
+
     .block-container {
         max-width: 620px !important;
         padding-top: 1.25rem !important;
         padding-bottom: 0.6rem !important;
         padding-left: 0.85rem !important;
         padding-right: 0.85rem !important;
-        margin: auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 
     div[data-testid="stVerticalBlock"] > div {
@@ -174,89 +179,20 @@ st.markdown(
         font-size: 0.84rem !important;
     }
 
+    div[data-baseweb="select"] {
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    div[data-baseweb="select"] svg {
+        width: 22px !important;
+        height: 22px !important;
+        margin-top: 1px !important;
+    }
+
     div[role="listbox"] {
         background: rgba(20,20,28,0.92) !important;
         border-radius: 14px !important;
-    }
-
-    /* Modalidade como botões via radio */
-    div[data-testid="stRadio"] {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
-
-    div[data-testid="stRadio"] > div {
-        width: 100% !important;
-    }
-
-    div[data-testid="stRadio"] {
-        display: flex !important;
-        justify-content: center !important;
-    }
-    
-    div[data-testid="stRadio"] > div {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
-
-
-    /* Modalidade como botões via radio, centralizado por coluna */
-    div[data-testid="stRadio"] {
-        width: 100% !important;
-    }
-
-    div[data-testid="stRadio"] > div {
-        width: 100% !important;
-    }
-
-    div[role="radiogroup"] {
-        width: 100% !important;
-        max-width: 340px !important;
-    
-        margin: 0.12rem auto 0 auto !important;
-    
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-    
-        gap: 0.18rem !important;
-    }
-
-    div[role="radiogroup"] label {
-        width: 230px !important;
-        max-width: 100% !important;
-        min-height: 38px !important;
-        margin: 0 auto !important;
-        padding: 0.28rem 0.7rem !important;
-        border-radius: 14px !important;
-        background: rgba(255,255,255,0.92) !important;
-        border: 1px solid rgba(255,255,255,0.35) !important;
-        color: #111827 !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
-    }
-
-    div[role="radiogroup"] label > div:first-child {
-        display: none !important;
-    }
-
-    div[role="radiogroup"] label p {
-        margin: 0 !important;
-        color: #111827 !important;
-        font-size: 0.88rem !important;
-        font-weight: 550 !important;
-        text-align: center !important;
-    }
-
-    div[role="radiogroup"] label:has(input:checked) {
-        border: 2px solid #58a6ff !important;
-        background: rgba(255,255,255,0.98) !important;
-        font-weight: 800 !important;
     }
 
     div[data-testid="stSlider"] {
@@ -265,68 +201,84 @@ st.markdown(
         margin: 0.02rem auto 0.35rem auto !important;
     }
 
+    /* Botões centralizados de forma estável */
     div[data-testid="stButton"] {
-        margin: 0 !important;
-        padding: 0 !important;
+        width: 100% !important;
         display: flex !important;
         justify-content: center !important;
+        align-items: center !important;
+        margin: 0.04rem auto !important;
+        padding: 0 !important;
     }
 
     div[data-testid="stButton"] > button {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
         border: 1px solid #e5e7eb !important;
         background: rgba(255,255,255,0.94) !important;
         color: #111827 !important;
         box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
         border-radius: 14px !important;
-        margin: 0 auto !important;
+        box-sizing: border-box !important;
     }
 
     div[data-testid="stButton"] > button p {
         margin: 0 !important;
         color: inherit !important;
+        text-align: center !important;
     }
 
-    .start-button {
-        max-width: 240px;
-        margin: 0.2rem auto 0 auto;
+    div[class*="st-key-modo_"] button {
+        width: 230px !important;
+        max-width: 88vw !important;
+        min-height: 38px !important;
+        padding: 0.28rem 0.7rem !important;
     }
 
-    .start-button div[data-testid="stButton"] > button {
+    div[class*="st-key-modo_"] button p {
+        font-size: 0.88rem !important;
+        font-weight: 650 !important;
+    }
+
+    div[class*="st-key-resposta_"] button {
+        width: 320px !important;
+        max-width: 88vw !important;
+        min-height: 34px !important;
+        padding: 0.16rem 0.55rem !important;
+    }
+
+    div[class*="st-key-resposta_"] button p {
+        font-size: 0.82rem !important;
+        line-height: 1.05 !important;
+        font-weight: 600 !important;
+    }
+
+    div[class*="st-key-btn_commencer"] button {
         width: 240px !important;
         max-width: 82vw !important;
         min-height: 40px !important;
         padding: 0.32rem 0.7rem !important;
     }
 
-    .start-button div[data-testid="stButton"] > button p {
+    div[class*="st-key-btn_commencer"] button p {
         font-size: 0.9rem !important;
-        font-weight: 550 !important;
+        font-weight: 650 !important;
     }
 
-    .top-actions {
-        position: fixed !important;
-        top: 18px !important;
-        right: 18px !important;
-        z-index: 999999 !important;
-        width: 38px !important;
-        height: 38px !important;
-    }
-
-    .top-actions div[data-testid="stButton"] > button {
-        width: 38px !important;
-        height: 38px !important;
-        min-height: 38px !important;
-        max-width: 38px !important;
+    div[class*="st-key-proxima_"] button {
+        width: 50px !important;
+        height: 50px !important;
+        min-height: 50px !important;
+        max-width: 50px !important;
         border-radius: 50% !important;
         padding: 0 !important;
-        background: #ffffff !important;
     }
 
-    .top-actions div[data-testid="stButton"] > button p {
-        font-size: 1.2rem !important;
+    div[class*="st-key-proxima_"] button p {
+        font-size: 1.4rem !important;
         font-weight: 900 !important;
         line-height: 1 !important;
     }
@@ -387,29 +339,6 @@ st.markdown(
         margin: 0;
     }
 
-    .answers-area {
-        max-width: 320px;
-        margin: 0 auto 0 auto;
-    }
-
-    .answer-button {
-        margin: -0.03rem 0 !important;
-        padding: 0 !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button {
-        width: 320px !important;
-        max-width: 82vw !important;
-        min-height: 30px !important;
-        padding: 0.10rem 0.5rem !important;
-    }
-
-    .answer-button div[data-testid="stButton"] > button p {
-        font-size: 0.82rem !important;
-        line-height: 1 !important;
-        font-weight: 600 !important;
-    }
-
     .options-wrapper {
         width: 100% !important;
         max-width: 360px !important;
@@ -417,7 +346,7 @@ st.markdown(
     }
 
     .option-box {
-        width: min(320px, 82vw) !important;
+        width: min(320px, 88vw) !important;
         max-width: 320px !important;
         min-height: 36px !important;
         margin: 0.05rem auto !important;
@@ -430,6 +359,7 @@ st.markdown(
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        text-align: center !important;
         box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
     }
 
@@ -451,23 +381,29 @@ st.markdown(
         color: #111827 !important;
     }
 
-    .next-button {
-        max-width: 54px;
-        margin: 0.3rem auto 0 auto;
-    }
-
-    .next-button div[data-testid="stButton"] > button {
-        width: 50px !important;
-        height: 50px !important;
-        min-height: 50px !important;
-        max-width: 50px !important;
+    .top-close {
+        position: fixed !important;
+        top: max(18px, env(safe-area-inset-top)) !important;
+        right: 12px !important;
+        z-index: 2147483647 !important;
+        width: 42px !important;
+        height: 42px !important;
         border-radius: 50% !important;
-        padding: 0 !important;
+        background: rgba(255,255,255,0.98) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: #111827 !important;
+        text-decoration: none !important;
+        font-size: 1.2rem !important;
+        font-weight: 900 !important;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25) !important;
     }
 
-    .next-button div[data-testid="stButton"] > button p {
-        font-size: 1.4rem !important;
-        font-weight: 900 !important;
+    .top-close:hover {
+        background: #f3f4f6 !important;
+        color: #111827 !important;
+        text-decoration: none !important;
     }
 
     @media (max-width: 600px) {
@@ -488,168 +424,20 @@ st.markdown(
             margin-bottom: 0.42rem !important;
         }
 
-        div[role="radiogroup"] {
-            gap: 0.26rem !important;
-        }
-
-        div[role="radiogroup"] label {
+        div[class*="st-key-modo_"] button {
             width: 220px !important;
-            max-width: 100% !important;
+            max-width: 88vw !important;
             min-height: 36px !important;
         }
 
-        .answers-area {
-            max-width: 300px;
-        }
-
-        .answer-button div[data-testid="stButton"] > button,
+        div[class*="st-key-resposta_"] button,
         .option-box {
-            width: 300px !important;
-            max-width: 82vw !important;
+            width: min(300px, 88vw) !important;
+            max-width: min(300px, 88vw) !important;
             min-height: 34px !important;
         }
     }
-    
-    /* Correção final: radio da tela inicial separado das respostas */
-    div[data-testid="stRadio"] {
-        width: 100% !important;
-    }
-
-    div[data-testid="stRadio"] > div {
-        width: 100% !important;
-    }
-
-    div[role="radiogroup"] {
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-
-    .answers-area div[role="radiogroup"] {
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-
-
-    .top-close {
-        position: fixed !important;
-        top: env(safe-area-inset-top, 18px) !important;
-        right: 12px !important;
-        z-index: 2147483647 !important;
-
-        width: 42px !important;
-        height: 42px !important;
-
-        border-radius: 50% !important;
-        background: rgba(255,255,255,0.98) !important;
-
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-
-        color: #111827 !important;
-        text-decoration: none !important;
-
-        font-size: 1.2rem !important;
-        font-weight: 900 !important;
-
-        box-shadow: 0 6px 18px rgba(0,0,0,0.25) !important;
-    }
-
-    .top-close:hover {
-        background: #f3f4f6 !important;
-        color: #111827 !important;
-        text-decoration: none !important;
-    }
-
-
-    /* Selectbox seta maior e centralizada */
-    div[data-baseweb="select"] svg {
-        width: 22px !important;
-        height: 22px !important;
-        margin-top: 1px !important;
-    }
-
-    div[data-baseweb="select"] {
-        display: flex !important;
-        align-items: center !important;
-    }
-    div[data-testid="stRadio"] {
-        display: flex !important;
-        justify-content: center !important;
-    }
-    
-    div[data-testid="stRadio"] > div {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
-    
-    div[role="radiogroup"] {
-        margin-left: auto !important;
-        margin-right: auto !important;
-        align-items: center !important;
-    }
-
-    /* Correção mobile definitiva: evita desalinhamento causado por colunas */
-    div[data-testid="stRadio"] {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-
-    div[data-testid="stRadio"] > div {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-    }
-
-    div[role="radiogroup"] {
-        width: 100% !important;
-        max-width: 340px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-
-    div[role="radiogroup"] label {
-        box-sizing: border-box !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-
-    @media (max-width: 600px) {
-        div[data-testid="stRadio"],
-        div[data-testid="stRadio"] > div,
-        div[role="radiogroup"] {
-            width: 100% !important;
-            max-width: 100% !important;
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-        }
-
-        div[role="radiogroup"] label {
-            width: min(300px, 88vw) !important;
-            max-width: min(300px, 88vw) !important;
-        }
-
-        div[data-testid="stSelectbox"],
-        div[data-testid="stSlider"],
-        .start-button,
-        .next-button,
-        .options-wrapper {
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
-    }
-</style>
+    </style>
     """,
     unsafe_allow_html=True
 )
@@ -878,15 +666,13 @@ if st.session_state.tela == "configuracao":
     opcoes_modo = ["Vocabulário", "Verbos", "Ambos"]
     modo_atual = "Ambos" if st.session_state.modalidade == "Vocabulário + Verbos" else st.session_state.modalidade
 
-    modalidade_escolhida = st.radio(
-        "",
-        opcoes_modo,
-        index=opcoes_modo.index(modo_atual),
-        label_visibility="collapsed",
-        key="radio_modalidade"
-    )
+    modalidade_escolhida = modo_atual
+    for opcao in opcoes_modo:
+        texto_botao = f"✓ {opcao}" if opcao == modo_atual else opcao
+        if st.button(texto_botao, key=f"modo_{opcao}"):
+            st.session_state.modalidade = "Vocabulário + Verbos" if opcao == "Ambos" else opcao
+            st.rerun()
 
-    st.session_state.modalidade = "Vocabulário + Verbos" if modalidade_escolhida == "Ambos" else modalidade_escolhida
     modalidade = st.session_state.modalidade
 
     qtd_vocabulario = 0
@@ -982,85 +768,10 @@ elif st.session_state.tela == "questao":
                     unsafe_allow_html=True
                 )
     else:
-        st.markdown(
-            """
-            <style>
-            /* Radio de respostas: centralizado e com espaçamento pequeno */
-            div[role="radiogroup"] {
-                width: 100% !important;
-                max-width: 340px !important;
-                margin: 0.08rem auto 0 auto !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                justify-content: center !important;
-                gap: 0.24rem !important;
-            }
-
-            div[role="radiogroup"] label {
-                width: min(320px, 82vw) !important;
-                min-height: 32px !important;
-                margin: 0 auto !important;
-                padding: 0.18rem 0.55rem !important;
-                border-radius: 13px !important;
-                background: rgba(255,255,255,0.94) !important;
-                border: 1px solid #e5e7eb !important;
-                color: #111827 !important;
-                display: flex !important;
-                justify-content: center !important;
-                align-items: center !important;
-                box-shadow: 0 5px 16px rgba(0,0,0,0.16) !important;
-            }
-
-            div[role="radiogroup"] label > div:first-child {
-                display: none !important;
-            }
-
-            div[role="radiogroup"] label p {
-                margin: 0 !important;
-                color: #111827 !important;
-                font-size: 0.82rem !important;
-                font-weight: 600 !important;
-                line-height: 1 !important;
-                text-align: center !important;
-            }
-
-            div[role="radiogroup"] label:has(input:checked) {
-                border: 2px solid #58a6ff !important;
-                background: rgba(255,255,255,0.98) !important;
-            }
-
-            @media (max-width: 600px) {
-                div[role="radiogroup"] {
-                    max-width: 300px !important;
-                    gap: 0.12rem !important;
-                }
-
-                div[role="radiogroup"] label {
-                    width: min(300px, 82vw) !important;
-                    min-height: 30px !important;
-                }
-
-                div[role="radiogroup"] label p {
-                    font-size: 0.78rem !important;
-                }
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-
-        resposta_escolhida = st.radio(
-            "",
-            pergunta["opcoes"],
-            index=None,
-            label_visibility="collapsed",
-            key=f"radio_resposta_{indice}"
-        )
-
-        if resposta_escolhida is not None:
-            selecionar_resposta(resposta_escolhida)
-            st.rerun()
+        for pos, opcao in enumerate(pergunta["opcoes"]):
+            if st.button(opcao, key=f"resposta_{indice}_{pos}"):
+                selecionar_resposta(opcao)
+                st.rerun()
 
     st.markdown('</div>', unsafe_allow_html=True)
 
