@@ -589,6 +589,66 @@ st.markdown(
         margin-right: auto !important;
         align-items: center !important;
     }
+
+    /* Correção mobile definitiva: evita desalinhamento causado por colunas */
+    div[data-testid="stRadio"] {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    div[data-testid="stRadio"] > div {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    div[role="radiogroup"] {
+        width: 100% !important;
+        max-width: 340px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    div[role="radiogroup"] label {
+        box-sizing: border-box !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    @media (max-width: 600px) {
+        div[data-testid="stRadio"],
+        div[data-testid="stRadio"] > div,
+        div[role="radiogroup"] {
+            width: 100% !important;
+            max-width: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+
+        div[role="radiogroup"] label {
+            width: min(300px, 88vw) !important;
+            max-width: min(300px, 88vw) !important;
+        }
+
+        div[data-testid="stSelectbox"],
+        div[data-testid="stSlider"],
+        .start-button,
+        .next-button,
+        .options-wrapper {
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+    }
 </style>
     """,
     unsafe_allow_html=True
@@ -818,16 +878,13 @@ if st.session_state.tela == "configuracao":
     opcoes_modo = ["Vocabulário", "Verbos", "Ambos"]
     modo_atual = "Ambos" if st.session_state.modalidade == "Vocabulário + Verbos" else st.session_state.modalidade
 
-#    col_radio_1, col_radio_2, col_radio_3 = st.columns([1.2, 1, 1.2], gap="small")
-
-    
-        modalidade_escolhida = st.radio(
-            "",
-            opcoes_modo,
-            index=opcoes_modo.index(modo_atual),
-            label_visibility="collapsed",
-            key="radio_modalidade"
-        )
+    modalidade_escolhida = st.radio(
+        "",
+        opcoes_modo,
+        index=opcoes_modo.index(modo_atual),
+        label_visibility="collapsed",
+        key="radio_modalidade"
+    )
 
     st.session_state.modalidade = "Vocabulário + Verbos" if modalidade_escolhida == "Ambos" else modalidade_escolhida
     modalidade = st.session_state.modalidade
@@ -993,16 +1050,13 @@ elif st.session_state.tela == "questao":
             unsafe_allow_html=True
         )
 
-    #    col_resp_1, col_resp_2, col_resp_3 = st.columns([1.2,1,1.2], gap="small")
-
-     
-            resposta_escolhida = st.radio(
-                "",
-                pergunta["opcoes"],
-                index=None,
-                label_visibility="collapsed",
-                key=f"radio_resposta_{indice}"
-            )
+        resposta_escolhida = st.radio(
+            "",
+            pergunta["opcoes"],
+            index=None,
+            label_visibility="collapsed",
+            key=f"radio_resposta_{indice}"
+        )
 
         if resposta_escolhida is not None:
             selecionar_resposta(resposta_escolhida)
