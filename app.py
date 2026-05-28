@@ -437,7 +437,97 @@ st.markdown(
             min-height: 34px !important;
         }
     }
-    </style>
+    
+
+    /* Centralização robusta usando st.container(key=...)
+       Igual ao Commencer: uma caixa com largura fixa + botão 100% */
+    .st-key-mode-buttons,
+    .st-key-start-button-box,
+    .st-key-answer-buttons,
+    .st-key-next-button-box {
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-sizing: border-box !important;
+    }
+
+    .st-key-mode-buttons {
+        width: 240px !important;
+        max-width: 82vw !important;
+    }
+
+    .st-key-mode-buttons div[data-testid="stButton"],
+    .st-key-mode-buttons div[data-testid="stButton"] > button {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .st-key-mode-buttons div[data-testid="stButton"] > button {
+        min-height: 38px !important;
+        margin: 0.06rem 0 !important;
+        padding: 0.28rem 0.7rem !important;
+    }
+
+    .st-key-start-button-box {
+        width: 240px !important;
+        max-width: 82vw !important;
+    }
+
+    .st-key-start-button-box div[data-testid="stButton"],
+    .st-key-start-button-box div[data-testid="stButton"] > button {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .st-key-answer-buttons {
+        width: 320px !important;
+        max-width: 82vw !important;
+    }
+
+    .st-key-answer-buttons div[data-testid="stButton"],
+    .st-key-answer-buttons div[data-testid="stButton"] > button {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .st-key-answer-buttons div[data-testid="stButton"] > button {
+        min-height: 34px !important;
+        margin: 0.05rem 0 !important;
+        padding: 0.14rem 0.55rem !important;
+    }
+
+    .st-key-next-button-box {
+        width: 54px !important;
+        max-width: 54px !important;
+    }
+
+    .st-key-next-button-box div[data-testid="stButton"],
+    .st-key-next-button-box div[data-testid="stButton"] > button {
+        width: 54px !important;
+        max-width: 54px !important;
+    }
+
+    .st-key-next-button-box div[data-testid="stButton"] > button {
+        height: 54px !important;
+        min-height: 54px !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+    }
+
+    @media (max-width: 600px) {
+        .st-key-mode-buttons,
+        .st-key-start-button-box {
+            width: 230px !important;
+            max-width: 82vw !important;
+        }
+
+        .st-key-answer-buttons {
+            width: 300px !important;
+            max-width: 82vw !important;
+        }
+    }
+
+</style>
     """,
     unsafe_allow_html=True
 )
@@ -666,12 +756,12 @@ if st.session_state.tela == "configuracao":
     opcoes_modo = ["Vocabulário", "Verbos", "Ambos"]
     modo_atual = "Ambos" if st.session_state.modalidade == "Vocabulário + Verbos" else st.session_state.modalidade
 
-    modalidade_escolhida = modo_atual
-    for opcao in opcoes_modo:
-        texto_botao = f"✓ {opcao}" if opcao == modo_atual else opcao
-        if st.button(texto_botao, key=f"modo_{opcao}"):
-            st.session_state.modalidade = "Vocabulário + Verbos" if opcao == "Ambos" else opcao
-            st.rerun()
+    with st.container(key="mode_buttons"):
+        for opcao in opcoes_modo:
+            texto_botao = f"✓ {opcao}" if opcao == modo_atual else opcao
+            if st.button(texto_botao, key=f"modo_{opcao}", use_container_width=True):
+                st.session_state.modalidade = "Vocabulário + Verbos" if opcao == "Ambos" else opcao
+                st.rerun()
 
     modalidade = st.session_state.modalidade
 
@@ -691,9 +781,8 @@ if st.session_state.tela == "configuracao":
         st.markdown('<div class="fake-label">Nº verbos</div>', unsafe_allow_html=True)
         qtd_verbos = st.slider("", 1, 50, 10, key="slider_verbos", label_visibility="collapsed")
 
-    st.markdown('<div class="start-button">', unsafe_allow_html=True)
-    iniciar = st.button("Commencer", key="btn_commencer", use_container_width=True)
-    st.markdown("</div>", unsafe_allow_html=True)
+    with st.container(key="start_button_box"):
+        iniciar = st.button("Commencer", key="btn_commencer", use_container_width=True)
 
     if iniciar:
         vocabulario_nivel = filtrar_por_nivel(vocabulario, nivel)
@@ -768,21 +857,21 @@ elif st.session_state.tela == "questao":
                     unsafe_allow_html=True
                 )
     else:
-        for pos, opcao in enumerate(pergunta["opcoes"]):
-            if st.button(opcao, key=f"resposta_{indice}_{pos}"):
-                selecionar_resposta(opcao)
-                st.rerun()
+        with st.container(key="answer_buttons"):
+            for pos, opcao in enumerate(pergunta["opcoes"]):
+                if st.button(opcao, key=f"resposta_{indice}_{pos}", use_container_width=True):
+                    selecionar_resposta(opcao)
+                    st.rerun()
 
     st.markdown('</div>', unsafe_allow_html=True)
 
     if st.session_state.respondido:
-        st.markdown('<div class="next-button">', unsafe_allow_html=True)
         simbolo_botao = "✓" if indice + 1 == total else "→"
 
-        if st.button(simbolo_botao, key=f"proxima_{indice}"):
-            proxima_questao()
-            st.rerun()
-        st.markdown("</div>", unsafe_allow_html=True)
+        with st.container(key="next_button_box"):
+            if st.button(simbolo_botao, key=f"proxima_{indice}", use_container_width=True):
+                proxima_questao()
+                st.rerun()
 
 elif st.session_state.tela == "resultado":
     total = len(st.session_state.teste)
