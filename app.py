@@ -532,9 +532,9 @@ st.markdown(
 
     .top-close {
         position: fixed !important;
-        top: 18px !important;
-        right: 18px !important;
-        z-index: 99999999 !important;
+        top: env(safe-area-inset-top, 18px) !important;
+        right: 12px !important;
+        z-index: 2147483647 !important;
 
         width: 42px !important;
         height: 42px !important;
@@ -573,7 +573,22 @@ st.markdown(
         display: flex !important;
         align-items: center !important;
     }
-
+    div[data-testid="stRadio"] {
+        display: flex !important;
+        justify-content: center !important;
+    }
+    
+    div[data-testid="stRadio"] > div {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+    
+    div[role="radiogroup"] {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        align-items: center !important;
+    }
 </style>
     """,
     unsafe_allow_html=True
@@ -803,7 +818,7 @@ if st.session_state.tela == "configuracao":
     opcoes_modo = ["Vocabulário", "Verbos", "Ambos"]
     modo_atual = "Ambos" if st.session_state.modalidade == "Vocabulário + Verbos" else st.session_state.modalidade
 
-    col_radio_1, col_radio_2, col_radio_3 = st.columns([1.2, 1, 1.2], gap="small")
+#    col_radio_1, col_radio_2, col_radio_3 = st.columns([1.2, 1, 1.2], gap="small")
 
     with col_radio_2:
         modalidade_escolhida = st.radio(
@@ -978,7 +993,7 @@ elif st.session_state.tela == "questao":
             unsafe_allow_html=True
         )
 
-        col_resp_1, col_resp_2, col_resp_3 = st.columns([1, 2.1, 1], gap="small")
+    #    col_resp_1, col_resp_2, col_resp_3 = st.columns([1.2,1,1.2], gap="small")
 
         with col_resp_2:
             resposta_escolhida = st.radio(
