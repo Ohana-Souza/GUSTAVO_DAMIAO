@@ -119,7 +119,7 @@ st.markdown(
     
         /* NOVO */
         position: relative !important;
-        transform: translateY(80px) !important;
+        transform: translateY(24px) !important;
     }
 
 
@@ -128,7 +128,7 @@ st.markdown(
     
         /* NOVO */
         position: relative !important;
-        transform: translateY(80px) !important;
+        transform: translateY(24px) !important;
     }
     
     .small-title {
@@ -469,7 +469,7 @@ st.markdown(
 
     .st-key-mode-buttons div[data-testid="stButton"] > button {
         min-height: 38px !important;
-        margin: 0.005rem 0 !important;
+        margin: 0.06rem 0 !important;
         padding: 0.28rem 0.7rem !important;
     }
 
@@ -623,95 +623,26 @@ st.markdown(
     }
 
 
-    /* =============================
-       CORREÇÃO FINAL GERADA
-       - título desce também no PC
-       - respostas e opções ficam com mesmo espaçamento
-       ============================= */
-
-    .block-container {
-        padding-top: 2.45rem !important;
+    /* AJUSTES PEDIDOS NA TELA INICIAL
+       - aumenta o espaço abaixo de "Nível de dificuldade"
+       - aumenta o espaço abaixo de "O que você quer treinar?"
+       - reduz o espaço entre Vocabulário / Verbos / Ambos */
+    .nivel-label {
+        margin-bottom: 0.26rem !important;
     }
 
-    .main-title,
-    .subtitle {
-        transform: none !important;
-        position: relative !important;
+    .treino-label {
+        margin-top: 0.18rem !important;
+        margin-bottom: 0.34rem !important;
     }
 
-    .main-title {
-        margin-top: 0.85rem !important;
-        margin-bottom: 0.05rem !important;
+    .st-key-mode-buttons div[data-testid="stButton"] {
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
-    .subtitle {
-        margin-bottom: 0.32rem !important;
-    }
-
-    .small-title {
-        margin-top: 1.05rem !important;
-        margin-bottom: 0.08rem !important;
-    }
-
-    .options-wrapper,
-    .st-key-answer-buttons {
-        width: 320px !important;
-        max-width: 82vw !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        display: block !important;
-        box-sizing: border-box !important;
-    }
-
-    .st-key-answer-buttons div[data-testid="stButton"],
-    .st-key-answer-buttons div[data-testid="stButton"] > button,
-    .option-box {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-height: 34px !important;
-        margin: 0.05rem 0 !important;
-        padding: 0.14rem 0.55rem !important;
-        border-radius: 13px !important;
-        box-sizing: border-box !important;
-    }
-
-    .st-key-answer-buttons div[data-testid="stButton"] > button {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-
-    .option-box {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        text-align: center !important;
-    }
-
-    @media (max-width: 600px) {
-        .block-container {
-            padding-top: 2.15rem !important;
-        }
-
-        .main-title {
-            margin-top: 0.75rem !important;
-            margin-bottom: 0.04rem !important;
-        }
-
-        .small-title {
-            margin-top: 0.95rem !important;
-            margin-bottom: 0.08rem !important;
-        }
-
-        .subtitle {
-            margin-bottom: 0.28rem !important;
-        }
-
-        .options-wrapper,
-        .st-key-answer-buttons {
-            width: 300px !important;
-            max-width: 82vw !important;
-        }
+    .st-key-mode-buttons div[data-testid="stButton"] > button {
+        margin: 0.01rem 0 !important;
     }
 
 </style>
@@ -927,7 +858,7 @@ vocabulario = carregar_csv(ARQUIVO_VOCABULARIO)
 verbos = carregar_csv(ARQUIVO_VERBOS)
 
 if st.session_state.tela == "configuracao":
-    st.markdown('<div class="fake-label">Nível de dificuldade</div>', unsafe_allow_html=True)
+    st.markdown('<div class="fake-label nivel-label">Nível de dificuldade</div>', unsafe_allow_html=True)
 
     nivel = st.selectbox(
         "",
@@ -935,7 +866,7 @@ if st.session_state.tela == "configuracao":
         label_visibility="collapsed"
     )
 
-    st.markdown('<div class="fake-label">O que você quer treinar?</div>', unsafe_allow_html=True)
+    st.markdown('<div class="fake-label treino-label">O que você quer treinar?</div>', unsafe_allow_html=True)
 
     if "modalidade" not in st.session_state:
         st.session_state.modalidade = "Vocabulário"
