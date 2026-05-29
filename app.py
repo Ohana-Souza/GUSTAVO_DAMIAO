@@ -31,9 +31,9 @@ st.markdown(
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-    html, body, [class*="css"], .stApp, button, input, select, textarea {
+    html, body, [class*="css"], .stApp, button, input, select, textarea {{
         font-family: 'Inter', sans-serif !important;
-    }
+    }}
 
     html, body, [class*="css"] {{
         scroll-behavior: smooth;
@@ -42,16 +42,11 @@ st.markdown(
     .stApp {{
         background-color: #0d1117;
         background-image: url("{URL_FUNDO_FIGMA}");
-        background-repeat: repeat-x;
-        background-size: auto 100vh;
-        background-position: 0 0;
-        animation: moverFundo 150s linear infinite;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
         overflow-x: hidden !important;
-    }}
-
-    @keyframes moverFundo {{
-        from {{ background-position: 0 0; }}
-        to {{ background-position: -2200px 0; }}
     }}
 
     .stApp::before {{
@@ -489,6 +484,12 @@ st.markdown(
     }}
 
     @media (max-width: 600px) {{
+        .stApp {{
+            background-attachment: scroll;
+            background-size: cover;
+            background-position: center center;
+        }}
+
         .block-container {{
             max-width: 100% !important;
             padding-left: 0.55rem !important;
