@@ -29,6 +29,12 @@ URL_FUNDO_FIGMA = "https://images.unsplash.com/photo-1638290046992-db6003db69d1?
 st.markdown(
     f"""
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    html, body, [class*="css"], .stApp, button, input, select, textarea {
+        font-family: 'Inter', sans-serif !important;
+    }
+
     html, body, [class*="css"] {{
         scroll-behavior: smooth;
     }}
